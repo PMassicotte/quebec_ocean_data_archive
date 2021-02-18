@@ -311,23 +311,21 @@ sf %>%
   
 # The GeoTIFF format
   
+.pull-left[
 > **GeoTIFF is a public domain metadata standard which allows georeferencing information to be embedded within a TIFF file.** The potential additional information includes map projection, coordinate systems, ellipsoids, datums, and everything else necessary to establish the exact spatial reference for the file.
 >
 > Wikipedia
+]
 
----
-  
-# Example of GeoTIFF
-  
-An example of GeoTIFF image of the Europe. <small>Data: https://bit.ly/2M8jAs1</small>
-  
-```{r geotiff, cache=TRUE, fig.height=3, fig.asp=NA, dev='png', dpi=300}
+.pull-right[
+```{r geotiff, cache=TRUE, fig.height=5, fig.asp=NA, dev='png', dpi=300}
 url <- "http://www.gisat.cz/data/mozaiky/MOS_EU_LAEA_2000.zip"
 file <- curl::curl_download(url, destfile = tempfile())
 file <- unzip(file, exdir = tempdir())
 r <- stars::read_stars(file[2])
 plot(r, rgb = c(1, 2, 3))
 ```
+]
 
 ---
 
@@ -339,7 +337,7 @@ class: inverse, center, middle
   <figure>
   <img src="https://media.giphy.com/media/B1uajA01vvL91Urtsp/giphy.gif" width = "350"/>
   </figure>
-  </center>
+</center>
   
 ---
   
@@ -349,12 +347,11 @@ Data science is an iterative process that can be time-consuming when working wit
 
 <center>
   <figure>
-  <img src="https://d33wubrfki0l68.cloudfront.net/571b056757d68e6df81a3e3853f54d3c76ad6efc/32d37/diagrams/data-science.png" width = "800"/>
+      <img src="https://d33wubrfki0l68.cloudfront.net/571b056757d68e6df81a3e3853f54d3c76ad6efc/32d37/diagrams/data-science.png" width = "800"/>
   </figure>
-  </center>
-  
-  <small>Image from https://r4ds.had.co.nz</small>
-  
+  <figcaption>Image from: https://r4ds.had.co.nz</figcaption>
+</center>
+
 ---
   
 # Efficient tools for reading large datasets
@@ -438,7 +435,7 @@ class: inverse, center, middle
   
 # File naming
   
-File naming can be a nightmare for the future you and your colleagues.
+.gradient-underline[File naming can be a nightmare for the future you and your colleagues.]
 
 <center>
   <figure>
@@ -499,14 +496,21 @@ sort(files) %>%
 ---
   
 # When file naming goes wrong!
-  
+
+.pull-left[
 <center>
     <figure>
       <img style="margin:0px auto;display:block" src="img/python_file_naming.png" width = "500"/>
-      </figure>
+    </figure>
+    <figcaption>Source: https://bit.ly/2M8cViI</figcaption>  
 </center>
-  
-Source: https://bit.ly/2M8cViI
+]
+
+.pull-right[
+> The glitch caused results of a common chemistry computation to vary depending on the operating system used, causing discrepancies among **Mac**, **Windows**, and **Linux** systems.
+
+> ...the glitch, had to do with how different operating systems sort files.
+]
 
 ---
   
@@ -518,17 +522,17 @@ Source: https://bit.ly/2M8cViI
 
 - Project name
 
-- Location
+- The sampling locations
 
 - Type of data/variable
 
-- Date (YYYYMMDD)
+- Date (YYYY-MM-DD)
 
 ---
   
 # A note on dates
   
-Always use the ISO format: <big>**yyyy**</big>-<medium>**mm**</medium>-<small>**dd**</small> (large `r fontawesome::fa("arrow-right", fill = "#d5695d")` small)
+Always use the ISO format: <big>**YYYY**</big>-<medium>**MM**</medium>-<small>**DD**</small> (large `r fontawesome::fa("arrow-right", fill = "#d5695d")` small).
 
 <br>
 
@@ -578,25 +582,31 @@ Basic recommendations to preserve the raw data for future use:
   
 --
   
-1. Do not make any changes/corrections to the original raw data file.
+- Do not make any changes/corrections to the original raw data file.
 
 --
   
-2. Use a scripted language to perform analysis or make corrections and save that information in a separate file.
+- .gradient-underline[Use a scripted language to perform analysis or make corrections and save that information in a separate file.]
 
 --
   
-3. If you want to do some analyses in Excel, make a copy of the file and do your calculations and graphs in the copy.
+- If you want to do some analyses in Excel, make a copy of the file and do your calculations and graphs in the copy.
 
 <small>Source: https://www.dataone.org/best-practices/preserve-information-keep-your-raw-data-raw</small>
   
 ---
   
 # Project directory structure
-  
+
+--
+
 - Choosing a logical and consistent way to organize your data files makes it easier for you and your colleagues to find and use your data.
 
+--
+
 - Consider using a folder to store raw data files. 
+
+--
 
 - In my workflow, I use a folder named **raw** in which I consider files as **read-only**.
 
@@ -626,9 +636,13 @@ class: inverse, center, middle
   
 # Tidy data
   
-- Why we want tidy data?
+Why do we want tidy data?
 
-- Well-formatted data allows for quick visualization, modeling, manipulation .gradient-underline[and archiving].
+--
+
+- .gradient-underline[Well-formatted data allows for quick visualization, modeling, manipulation and archiving].
+
+--
 
 - Whatever the language used (R, Python, Matlab, etc.), there are several tools to tidy your data.
 
@@ -675,7 +689,7 @@ class: inverse, center, middle
 
 ---
   
-# Column headers are values, not variable names
+## Column headers are values, not variable names
   
 This table presents the number of tuberculosis cases documented by the World Health Organization in 1999 and 2000 for different countries.
 
@@ -692,8 +706,8 @@ What is the problem with this table?
 ---
   
 ## Column headers are values, not variable names
-  
-To make this data **tidy**, we have to *pivot* it longer. Two new columns (`year` and `number_of_cases`) are created.
+
+To make this data **tidy**, .gradient-underline[we have to **pivot** it longer]. Two new columns (`year` and `number_of_cases`) are created.
 
 .pull-left[
   Data **is not** tidy
@@ -734,7 +748,7 @@ df %>%
   
 # Multiple variables in one column
   
-After *pivoting* the table, we realize that there is another problem. How would you visualize the temporal evolution of tuberculosis cases for men and women?
+After pivoting the table, we realize that there is another problem. How would you visualize the temporal evolution of tuberculosis cases for men and women?
   
 ```{r}
 df <- df %>%
@@ -862,7 +876,7 @@ df %>%
   
 # Visualization 
 
-```{r plot_temperature, out.width="85%", cache=TRUE}
+```{r plot_temperature, out.width="75%", cache=TRUE}
 df %>%
   pivot_longer(c(tmin, tmax), names_to = "type", values_to = "temperature") %>%
   mutate(date = lubridate::make_date(year, month, day)) %>%
@@ -926,14 +940,22 @@ How to choose variable names when creating data files?
 ---
   
 # Variable names
-  
+
+--
+
 - Do not forget to provide information about abbreviations.
 
+--
+
 - Do not use special characters or spaces.
+
+--
 
 - Explicitly state the unit of each variable:
   - `depth_m`, `chla_mg_m2`
   
+--
+
 - Be consistent with variable names across files:
   - `temp` vs `temperature`
   
@@ -956,7 +978,7 @@ How to choose variable names when creating data files?
 
 --
 
-`r fontawesome::fa("exclamation-triangle", fill = "#ffb82a")` .gradient-underline[Do not use a numerical (ex.: **999**) value to indicate missing values.]
+`r fontawesome::fa("exclamation-triangle", fill = "#ffb82a")` .gradient-underline[Do not use a numerical value (ex.: **999**) to indicate missing values.]
 
 ---
   
@@ -1033,7 +1055,7 @@ The question is not **if**, but **when** your hard drive will fail.
   
 - It is important to have **redundancy** in your data.
 
-- Disk space is much cheaper than the time you invested in collecting, cleaning and analyzing your data.
+- .gradient-underline[**Disk space is much cheaper than the time you invested in collecting, cleaning and analyzing your data.**]
 
 - Backups should not be only done on your computer (use cloud services)
 
@@ -1047,15 +1069,15 @@ The question is not **if**, but **when** your hard drive will fail.
   
 # Importance of backups
   
-- Use an incremental strategy to backup your data (daily).
+- Use an incremental strategy to backup your data (ideally on a daily basis).
 
-- [rsync](https://fr.wikipedia.org/wiki/Rsync)
+    - [rsync](https://fr.wikipedia.org/wiki/Rsync)
 
-- [SyncBack](https://www.2brightsparks.com/syncback/syncback-hub.html)
+    - [SyncBack](https://www.2brightsparks.com/syncback/syncback-hub.html)
 
-- [Duplicati](https://www.duplicati.com/)
+    - [Duplicati](https://www.duplicati.com/)
 
-- [Syncthing](https://syncthing.net/)
+    - [Syncthing](https://syncthing.net/)
 
 - I keep 3 months of data.
 
@@ -1066,12 +1088,11 @@ The question is not **if**, but **when** your hard drive will fail.
   
 - Backups of the source code used to generate data are also important.
 
-- Git is a version control system (Wikipedia): 
-  - Tracking changes in computer files
+- Git is a version control system used to keep track of changes in computer files.
 
-- Coordinating work on those files among multiple people
+- Coordinating work on those files among multiple people.
 
-- Primarily used for source code management in software development
+- Primarily used for source code management in software development.
 
 <div id = "container">
 <div><img src="https://miro.medium.com/max/1812/1*pXPseZOkwPqHGKaBXGS3sQ.png" height="100"/></div>
