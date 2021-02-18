@@ -1,0 +1,1207 @@
+---
+title: "Québec-Océan Training Workshop<br>Data Management and Archiving"
+subtitle: "Good practices"
+author: "Philippe Massicotte"
+date: "October 18, 22 and 25, 2021"
+output:
+  xaringan::moon_reader:
+    yolo: false
+    seal: false
+    lib_dir: libs
+    css: [default, default, robot-fonts, styles.css]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      highlightSpans: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+---
+
+<!-- https://evamaerey.github.io/flipbooks/flipbook_recipes#49 -->
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  dev = "svg",
+  message = FALSE,
+  cache = TRUE,
+  fig.align = "center",
+  fig.height = 4
+)
+options(htmltools.dir.version = FALSE)
+# names(xaringan:::list_css())
+
+# devtools::install_github("rstudio/fontawesome")
+library(tidyverse)
+library(ggpmthemes)
+library(patchwork)
+library(flipbookr)
+library(fontawesome)
+library(kableExtra)
+
+theme_set(theme_poppins())
+theme_update(
+  strip.background = element_blank(),
+  panel.border = element_blank(),
+  axis.ticks = element_blank(),
+  strip.text = element_text(face = "bold", size = 14),
+  plot.title = element_text(size = 18, hjust = 0.5, color = "#474448")
+)
+
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+```{r xaringanExtra, echo=FALSE}
+xaringanExtra::use_xaringan_extra(
+  c(
+    "tile_view",
+    "animate_css",
+    "tachyons"
+  )
+)
+xaringanExtra::use_broadcast()
+# xaringanExtra::use_clipboard()
+# xaringanExtra::use_share_again()
+```
+
+```{r xaringanExtra-clipboard, echo=FALSE}
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "Copy</i>",
+    success_text = "<i class=\"fa fa-check\" style=\"color: #90BE6D\"></i>",
+    error_text = "<i class=\"fa fa-times-circle\" style=\"color: #F94144\"></i>"
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
+```
+
+```{r xaringan-animate-all, echo=FALSE}
+# xaringanExtra::use_animate_all("fade")
+xaringanExtra::use_tachyons()
+# xaringanExtra::use_text_poster()
+```
+
+class: title-slide, center, bottom
+
+# `r rmarkdown::metadata$title`
+
+### *`r rmarkdown::metadata$subtitle`*
+
+<img src="img/logo_quebec_ocean.jpg"/ height="150"/>
+
+March 22, 2021 (updated: `r Sys.Date()`)
+
+## `r rmarkdown::metadata$author`
+
+---
+
+<br>
+
+<center><img src="img/myname.png" alt="drawing" width="400"/></center>
+
+<p align="left">
+
+<b>Research assistant at Takuvik (Laval University)</b><br>
+
+- Remote sensing, modelling, data science, data visualization<br>
+
+<br>
+
+`r fontawesome::fa("github", fill = "#3C3C3C", height = 20)` <small>https://github.com/PMassicotte</small> <br>
+
+`r fontawesome::fa("envelope", fill = "#3C3C3C", height = 20)` <small>philippe.massicotte@takuvik.ulaval.ca</small> <br>
+
+`r fontawesome::fa("twitter", fill = "#3C3C3C", height = 20)` <small>@philmassicotte</small> <br>
+
+`r fontawesome::fa("blog", fill = "#3C3C3C", height = 20)` <small>www.pmassicotte.com</small>
+
+</p>
+
+---
+
+# Outlines
+
+1. File formats for data archiving.
+
+2. Choosing the tools to read and manipulate your data.
+
+3. Files and data organization.
+
+4. Tidying and formatting data.
+
+5. Backups.
+
+6. Publishing your data.
+
+7. Practical exercises with your data.
+
+---
+
+class: inverse, center, middle
+
+# File formats
+
+The best choices for archiving your data.
+
+<div id="container">
+<div>`r fontawesome::fa("file-excel", fill = "white", height = 150)`</div>
+<div>`r fontawesome::fa("file-alt", fill = "white", height = 150)`</div>
+<div>`r fontawesome::fa("file-csv", fill = "white", height = 150)`</div>
+<div>`r fontawesome::fa("file-archive", fill = "white", height = 150)`</div>
+</div>
+
+---
+  
+# File formats
+  
+Data file format has important implications:
+  
+--
+  
+1. Ability to **re-open** and **re-use** your data in the future.
+
+--
+  
+2. Other people can read your data without fancy software that is often not cross platforms (Windows/Mac/Linux).
+
+--
+  
+.left-column[`r fontawesome::fa("file-excel", fill = "#3c3c3c", height = 150)`]
+.right-column[**Example**: difficult to open an XLSX file in older versions of Microsoft Excel.]
+
+---
+  
+# File formats
+  
+Ideally, the chosen file format should be:
+  
+--
+  
+1. **Non-proprietary**: open source
+
+--
+  
+2. **Unencrypted**: unless it contains personal data
+
+--
+  
+3. **Uncompressed**: your time is more valuable than disk space
+
+---
+  
+# Common open source text file formats
+  
+Tabular plain text file formats (standard text documents that contain unformatted text):
+  
+- `.CSV` : comma (or semicolon) separated values
+
+- `.TAB` : tab separated values
+
+- `.TXT` and `.DAT` : plain text files (.gradient-underline[data delimiter is not known])
+
+All these file formats can be opened using a simple text editor.
+
+---
+  
+# Example of a CSV file
+  
+This CSV file contains 11 variables (columns).
+
+<center>
+  <figure>
+      <img src="img/csv_format.png" width = "550"/>
+  </figure>
+</center>
+  
+---
+  
+# NetCDF
+  
+.NC (NetCDF, **N**etwork **C**ommon **D**ata **F**orm) is a file format for storing multidimensional scientific data.
+
+`r fontawesome::fa("check", fill = "#34A74BFF")` Often used for gridded data <br>
+`r fontawesome::fa("check", fill = "#34A74BFF")` Very popular in oceanography <br>
+`r fontawesome::fa("check", fill = "#34A74BFF")` Fast <br>
+`r fontawesome::fa("times", fill = "#E6352FFF")` Can be problematic between versions <br>
+`r fontawesome::fa("times", fill = "#E6352FFF")` Extra libraries are needed (*libnetcdf-dev, libnetcdfc++4*): can not be read as easy as plain text files
+
+---
+  
+## Example of NetCDF (sea surface temperature)
+  
+```{r plot_ncdf, cache = TRUE, dev='png', dpi=300, fig.height=3, fig.asp=NA}
+url <- "https://www.unidata.ucar.edu/software/netcdf/examples/tos_O1_2001-2002.nc"
+file <- curl::curl_download(url, destfile = tempfile())
+k <- stars::read_ncdf(file)
+plot(k[, , , 1:9])
+```
+<figcaption>
+Source: https://www.unidata.ucar.edu/software/netcdf/examples/tos_O1_2001-2002.nc</figcaption>
+  
+---
+  
+# Common open source geographic file formats
+  
+Geographic data:
+  
+- `.SHP` (ESRI shapefile)
+
+- GeoJSON (JSON variant with simple geographical features)
+
+- GeoTIFF (TIFF variant enriched with GIS relevant metadata)
+
+- XML/KMZ/KML (Google Earth)
+
+---
+  
+# The GeoJSON format
+  
+.pull-left[
+    
+A simple GeoJSON file
+    
+<small>
+```json
+    { "type": "LineString", 
+      "coordinates": [
+        [30, 10], [10, 30], [40, 40]
+    ]
+    }
+```
+</small>
+]
+
+.pull-right[
+  
+A graphical view
+  
+```{r, message=FALSE}
+sf::st_read('{ "type": "LineString", 
+    "coordinates": [
+        [30, 10], [10, 30], [40, 40]
+  ]
+}', quiet = TRUE) %>%
+  ggplot() +
+  geom_sf(size = 3) +
+  coord_sf()
+```
+  
+]
+
+---
+  
+# The GeoJSON format
+  
+```{r geojson, out.width="85%"}
+url <- "https://github.com/Robinlovelace/Creating-maps-in-R/raw/master/data/test-multifeature.geojson"
+sf <- geojsonsf::geojson_sf(url)
+sf %>%
+  ggplot() +
+  geom_sf(size = 0.25) +
+  labs(
+    title = str_wrap("The Colosseum amphitheatre in the centre of the city of Rome", 30),
+    caption = str_wrap("Data source: https://bit.ly/2pAjOAr", 80)
+  ) +
+  theme(
+    plot.title = element_text(size = 14, hjust = 0.5)
+  )
+```
+
+---
+  
+# The GeoTIFF format
+  
+> **GeoTIFF is a public domain metadata standard which allows georeferencing information to be embedded within a TIFF file.** The potential additional information includes map projection, coordinate systems, ellipsoids, datums, and everything else necessary to establish the exact spatial reference for the file.
+>
+> Wikipedia
+
+---
+  
+# Example of GeoTIFF
+  
+An example of GeoTIFF image of the Europe. <small>Data: https://bit.ly/2M8jAs1</small>
+  
+```{r geotiff, cache=TRUE, fig.height=3, fig.asp=NA, dev='png', dpi=300}
+url <- "http://www.gisat.cz/data/mozaiky/MOS_EU_LAEA_2000.zip"
+file <- curl::curl_download(url, destfile = tempfile())
+file <- unzip(file, exdir = tempdir())
+r <- stars::read_stars(file[2])
+plot(r, rgb = c(1, 2, 3))
+```
+
+---
+
+class: inverse, center, middle
+
+# Efficient tools for reading large datasets
+
+<center>
+  <figure>
+  <img src="https://media.giphy.com/media/B1uajA01vvL91Urtsp/giphy.gif" width = "350"/>
+  </figure>
+  </center>
+  
+---
+  
+# Efficient tools for reading large datasets
+  
+Data science is an iterative process that can be time-consuming when working with large datasets.
+
+<center>
+  <figure>
+  <img src="https://d33wubrfki0l68.cloudfront.net/571b056757d68e6df81a3e3853f54d3c76ad6efc/32d37/diagrams/data-science.png" width = "800"/>
+  </figure>
+  </center>
+  
+  <small>Image from https://r4ds.had.co.nz</small>
+  
+---
+  
+# Efficient tools for reading large datasets
+  
+- R is my main programming environment, so here are some recommendations to be efficient when reading files. 
+
+- However, you can easily read all these file formats in your preferred programming language.
+
+<center>
+  `r fontawesome::fa("r-project", fill = "#3c3c3c", height = 200)`
+</center>
+  
+---
+  
+# R data importation tools
+
+--
+
+For tabular data (`.CSV`, `.TXT`, `.TAB`, `.DAT`):
+  
+- `readr`, `data.table` and `vroom` packages (.gradient-underline[the last two are particularly fast]).
+
+<br>
+
+--
+
+For geographic data:
+  
+- Shapefiles, KMZ and KML: `sf`
+  
+- GeoJSON: `jsonlite`, `sf`, `geojson` and `geojsonsf`
+  
+- GeoTIFF: `raster` and `stars`
+  
+- For NetCDF: `ncdf4`, `tidync` and `stars`
+  
+---
+  
+# Efficient reading tools
+  
+```{r benchmark, cache = TRUE, results='hide'}
+file <- curl::curl_download("http://eforexcel.com/wp/wp-content/uploads/2017/07/500000-Sales-Records.zip", destfile = tempfile())
+file <- unzip(file, exdir = tempdir())
+
+bm <- microbenchmark::microbenchmark(
+  read.csv(file),
+  readr::read_csv(file),
+  vroom::vroom(file),
+  data.table::fread(file),
+  times = 10
+)
+```
+
+```{r, fig.height=5, fig.width=10}
+autoplot(bm) +
+  labs(
+    title = str_wrap("Benchmarks of various R functions to read a simple CSV file", 70),
+    subtitle = "Time to read a CSV file with 500 000 rows and 14 columns (7 000 000 entries)."
+  ) +
+  theme(
+    plot.title = element_text(hjust = 0)
+  )
+```
+
+
+---
+
+class: inverse, center, middle
+
+# File naming and project organization
+
+<br>
+
+<div id="container">
+<div>`r fontawesome::fa("folder-open", fill = "white", height = 150)`</div>
+<div>`r fontawesome::fa("file-csv", fill = "white", height = 150)`</div>
+<div>`r fontawesome::fa("file-alt", fill = "white", height = 150)`</div>
+</div>
+
+---
+  
+# File naming
+  
+File naming can be a nightmare for the future you and your colleagues.
+
+<center>
+  <figure>
+      <img style="margin:0px auto;display:block" src="http://phdcomics.com/comics/archive/phd052810s.gif" width = "500"/>
+  </figure>
+</center>
+  
+---
+  
+# File naming basic rules
+  
+There are few rules to adopt when naming files:
+  
+--
+  
+- Do not use special characters: **~ ! @ # $ % ^ & * ( ) ; < > ? , [ ] { } é è à**
+  
+--
+  
+- No spaces
+
+--
+  
+- Not too long (can be problematic with older softwares)
+
+---
+  
+# File naming basic rules
+  
+For sequential numbering, use leading zeros to ensure files sort properly.
+
+- For example, use `0001`, `0002`, `1001` instead of  `1`, `2`, `1001`
+
+.pull-left[
+  **Not sorted correctly**
+    
+```{r, results='asis'}
+files <- paste0("file", c(1, 10, 2), ".csv")
+sort(files) %>%
+  tibble(filename = .) %>%
+  knitr::kable() %>%
+  kable_styling(font_size = 36)
+```
+]
+
+.pull-right[
+**Sorted correctly**
+    
+```{r}
+files <- paste0("file", str_pad(c(1, 10, 2), width = 2, side = "left", pad = "0"), ".csv")
+sort(files) %>%
+  tibble(filename = .) %>%
+  knitr::kable() %>%
+  kable_styling(font_size = 36)
+```
+]
+
+---
+  
+# When file naming goes wrong!
+  
+<center>
+    <figure>
+      <img style="margin:0px auto;display:block" src="img/python_file_naming.png" width = "500"/>
+      </figure>
+</center>
+  
+Source: https://bit.ly/2M8cViI
+
+---
+  
+# File naming basic rules
+  
+- Be consistent and descriptive when naming your files.
+
+- Separate file names with `_`  or `-` to add useful information about the data.  
+
+- Project name
+
+- Location
+
+- Type of data/variable
+
+- Date (YYYYMMDD)
+
+---
+  
+# A note on dates
+  
+Always use the ISO format: <big>**yyyy**</big>-<medium>**mm**</medium>-<small>**dd**</small> (large `r fontawesome::fa("arrow-right", fill = "#d5695d")` small)
+
+<br>
+
+```{r world-map}
+wm <- rnaturalearth::ne_countries(returnclass = "sf", scale = "medium")
+usa <- rnaturalearth::ne_countries(country = "united states of america", returnclass = "sf", scale = "medium")
+
+ggplot() +
+  geom_sf(data = wm, fill = NA, size = 0.1) +
+  geom_sf(data = usa, fill = "red", size = 0.1) +
+  labs(
+    title = str_wrap("Comprehensive map of every country that use MMDDYYYY date format", 50)
+  ) +
+  coord_sf(crs = 8857)
+```
+
+  
+---
+  
+# File naming basic rules (examples)
+  
+`r fontawesome::fa("times", fill = "#E6352FFF")` `data.csv` (not descriptive enough)
+
+`r fontawesome::fa("times", fill = "#E6352FFF")` `temperature_1.csv` (what is the meaning of **1** ?)
+
+`r fontawesome::fa("times", fill = "#E6352FFF")` `temperature_20160708` (no file extension provided)
+
+`r fontawesome::fa("check", fill = "#34A74BFF")` `station01_temperature_20160708.csv`
+  
+---
+
+class: inverse, center, middle
+
+# Working with data from other people
+
+<center>
+  <figure>
+      <img src="https://media.giphy.com/media/3oxRmGXbquXKz6DNPq/giphy.gif" width = "400"/>
+  </figure>
+</center>
+  
+---
+  
+## Preserve information: keep your raw data raw
+  
+Basic recommendations to preserve the raw data for future use:
+  
+--
+  
+1. Do not make any changes/corrections to the original raw data file.
+
+--
+  
+2. Use a scripted language to perform analysis or make corrections and save that information in a separate file.
+
+--
+  
+3. If you want to do some analyses in Excel, make a copy of the file and do your calculations and graphs in the copy.
+
+<small>Source: https://www.dataone.org/best-practices/preserve-information-keep-your-raw-data-raw</small>
+  
+---
+  
+# Project directory structure
+  
+- Choosing a logical and consistent way to organize your data files makes it easier for you and your colleagues to find and use your data.
+
+- Consider using a folder to store raw data files. 
+
+- In my workflow, I use a folder named **raw** in which I consider files as **read-only**.
+
+- Data files produced by code are placed in a folder named **clean**.
+
+---
+  
+# Project directory structure
+  
+The way I structure my **data** folder.
+
+<center>
+  <figure>
+      <img src="img/project_data_structure.png" width = "500"/>
+  </figure>
+</center>
+  
+---
+
+class: inverse, center, middle
+
+# Tidy data
+
+> It is often said that **80% of the data analysis is dedicated to cleaning and data preparation**. And this is not only a first step, but it must be repeated several times during the analysis as new problems arise or new data is collected.
+
+---
+  
+# Tidy data
+  
+- Why we want tidy data?
+
+- Well-formatted data allows for quick visualization, modeling, manipulation .gradient-underline[and archiving].
+
+- Whatever the language used (R, Python, Matlab, etc.), there are several tools to tidy your data.
+
+---
+  
+# Tidy data
+  
+The main idea is that data should be organized in columns with **each column representing only a single type of data** (character, numerical, etc.).
+
+> There are **three rules** which make a dataset tidy:
+> 
+> 1. Each variable must have its own column.
+> 2. Each observation must have its own row.
+> 3. Each value must have its own cell.
+>
+> Hadley Wickham
+
+---
+  
+# Tidy data
+  
+A graphical view of a tidy dataset.
+
+<center>
+  <figure>
+      <img src="https://garrettgman.github.io/images/tidy-4.png" width = "1000"/>
+  </figure>
+</center>
+  
+<small>Source: https://garrettgman.github.io/tidying/</small>
+  
+---
+
+class: inverse, center, middle
+
+# Three common problems with data
+
+<br>
+<center>
+1. Column headers are values, not variable names.<br><br>
+2. Multiple variables are stored in one column.<br><br>
+3. Variables are stored in both rows and columns.<br>
+</center>
+
+---
+  
+# Column headers are values, not variable names
+  
+This table presents the number of tuberculosis cases documented by the World Health Organization in 1999 and 2000 for different countries.
+
+```{r}
+table4a %>%
+  kable() %>%
+  kable_styling(font_size = 22)
+```
+
+--
+
+What is the problem with this table?
+  
+---
+  
+## Column headers are values, not variable names
+  
+To make this data **tidy**, we have to *pivot* it longer. Two new columns (`year` and `number_of_cases`) are created.
+
+.pull-left[
+  Data **is not** tidy
+```{r}
+table4a %>%
+  kable() %>%
+  kable_styling(font_size = 22)
+```
+]
+.pull-right[
+  Data **is** tidy
+```{r}
+table4a %>%
+  pivot_longer(-country, names_to = "year", values_to = "number_of_cases") %>%
+  kable() %>%
+  kable_styling(font_size = 22)
+```
+]
+
+---
+  
+# Multiple variables in one column
+  
+First problem: column headers are values, not variable names.
+
+```{r}
+df <- who %>%
+  slice(289:296) %>%
+  select(-c(2:3)) %>%
+  select(1:5)
+
+df %>%
+  kable() %>%
+  kable_styling(font_size = 22)
+```
+
+---
+  
+# Multiple variables in one column
+  
+After *pivoting* the table, we realize that there is another problem. How would you visualize the temporal evolution of tuberculosis cases for men and women?
+  
+```{r}
+df <- df %>%
+  pivot_longer(-c(country, year), names_to = "demographic", values_to = "number_of_cases") %>%
+  head(8)
+
+df %>%
+  kable() %>%
+  kable_styling(font_size = 22)
+```
+
+---
+  
+# Multiple variables in one column
+  
+Column demographic contains .gradient-underline[four types of information].
+
+<center>
+  <figure>
+      <img style="margin:0px auto;display:block" src="img/new_sp.svg.png" width = "700"/>
+  </figure>
+</center>
+  
+---
+  
+# Multiple variables in one column
+  
+The column `demographic` was separated into four new columns (`new`, `type`, `sex`, `age`).
+
+```{r}
+df <- df %>%
+  separate(demographic, into = c("new", "type", "sexage")) %>%
+  separate(sexage, c("sex", "age"), sep = 1) %>%
+  mutate(age = str_replace_all(age, "(\\d+)(\\d{2}$)", "\\1-\\2"))
+
+df %>%
+  kable() %>%
+  kable_styling(font_size = 22)
+```
+
+---
+  
+# Graphics are easier to make with tidy data
+  
+```{r plot_tuberculosis, out.width="85%", cache=TRUE}
+who %>%
+  select(-c(2:3)) %>%
+  pivot_longer(-c(country, year), names_to = "demographic", values_to = "count") %>%
+  filter(str_detect(demographic, "new_ep")) %>%
+  separate(demographic, into = c("new", "type", "sexage")) %>%
+  separate(sexage, c("sex", "age"), sep = 1) %>%
+  mutate(age = str_replace_all(age, "(\\d+)(\\d{2}$)", "\\1-\\2")) %>%
+  filter(country %in% c("Canada", "France")) %>%
+  drop_na(count) %>%
+  mutate(sex = ifelse(sex == "f", "Females", "Males")) %>%
+  ggplot(aes(x = year, y = count, color = age)) +
+  geom_line() +
+  facet_grid(country ~ sex) +
+  xlab(NULL) +
+  ylab("Number of tuberculosis cases") +
+  labs(
+    title = str_wrap("Number of tuberculosis cases in Canada and France between 2006 and 2012", 40),
+    color = "Age group"
+  ) +
+  theme(
+    strip.background = element_blank(),
+    panel.border = element_blank(),
+    axis.ticks = element_blank(),
+    strip.text = element_text(face = "bold", size = 14),
+    plot.title = element_text(size = 18, hjust = 0.5, color = "#474448")
+  )
+```
+
+---
+
+# Variables are in both rows and columns
+  
+The first problem: column headers are values, not variable names.
+
+```{r}
+df <- read_csv("https://raw.githubusercontent.com/tidyverse/tidyr/master/vignettes/weather.csv")
+
+df %>%
+  select(1:14) %>%
+  head(8) %>%
+  kable() %>%
+  kable_styling(font_size = 22)
+```
+
+---
+
+# Variables are in both rows and columns
+  
+What is still wrong with this structure?
+  
+```{r}
+df <- df %>%
+  pivot_longer(-c(id:element), names_to = "day", values_to = "temperature") %>%
+  drop_na() %>%
+  mutate(day = parse_number(day))
+
+df %>%
+  head(8) %>%
+  kable() %>%
+  kable_styling(font_size = 22)
+```
+
+---
+  
+# Variables are in both rows and columns
+  
+`tmax` and `tmin` become variables
+
+```{r}
+df <- df %>%
+  pivot_wider(names_from = element, values_from = temperature)
+
+df %>%
+  head(8) %>%
+  kable() %>%
+  kable_styling(font_size = 22)
+```
+
+---
+  
+# Visualization 
+
+```{r plot_temperature, out.width="85%", cache=TRUE}
+df %>%
+  pivot_longer(c(tmin, tmax), names_to = "type", values_to = "temperature") %>%
+  mutate(date = lubridate::make_date(year, month, day)) %>%
+  ggplot(aes(x = date, y = temperature, color = type)) +
+  geom_line() +
+  geom_point(size = 3, show.legend = FALSE) +
+  xlab(NULL) +
+  ylab("Temperature (°C)") +
+  scale_x_date(date_breaks = "2 months", date_labels = "%B") +
+  labs(
+    title = "Maximum and minimum daily temperature in 2010",
+    color = NULL
+  ) +
+  theme(
+    plot.title = element_text(color = "#474448", size = 16)
+  )
+```
+
+---
+
+# Keep your data as rectangle tables
+  
+*One more note:* if you use a spreadsheet program, keep your data arranged as rectangular tables. Otherwise, .gradient-underline[it makes data importation difficult]. 
+  
+.pull-left[
+    <center><img src="https://exceljet.net/sites/default/files/styles/function_screen/public/images/formulas/join%20tables%20with%20INDEX%20and%20MATCH%202.png?itok=HK29obOJ" class="centerImage" height="300"></center>
+]
+
+.pull-right[
+  <center><img src="https://www.excel-easy.com/examples/images/split/split-worksheet.png" class="centerImage" height="300"></center>
+]
+
+---
+
+class: inverse, center, middle
+
+# Variable names
+
+How to choose variable names when creating data files?
+
+---
+  
+# Variable names
+  
+--
+
+.gradient-underline[Be consistent] with variable name capitalization:
+
+`r fontawesome::fa("check", fill = "#34A74BFF")` `temperature`, `precipitation`
+
+`r fontawesome::fa("check", fill = "#34A74BFF")` `Temperature`, `Precipitation`
+
+--
+
+.gradient-underline[Avoid] mixing name capitalization:
+
+`r fontawesome::fa("times", fill = "#E6352FFF")` `temperature`, `Precipitation`
+
+`r fontawesome::fa("times", fill = "#E6352FFF")` `temperature_min`, `TemperatureMax`
+
+---
+  
+# Variable names
+  
+- Do not forget to provide information about abbreviations.
+
+- Do not use special characters or spaces.
+
+- Explicitly state the unit of each variable:
+  - `depth_m`, `chla_mg_m2`
+  
+- Be consistent with variable names across files:
+  - `temp` vs `temperature`
+  
+---
+  
+# Missing values
+  
+--
+
+- Missing values should be simply represented by **space** in your data files.
+
+--
+
+- R, Python, Matlab and other programming languages deal well with this.
+
+--
+
+- If not possible, use a standardized code to represent missing values:
+    - `NA`, `NaN`
+
+--
+
+`r fontawesome::fa("exclamation-triangle", fill = "#ffb82a")` .gradient-underline[Do not use a numerical (ex.: **999**) value to indicate missing values.]
+
+---
+  
+# Visualization
+  
+--
+
+- Once data is tidy, .gradient-underline[**perform a visual inspection**].
+
+--
+
+- Make sure there are no obvious errors in your data.
+
+--
+
+- A picture is worth a thousand words.
+
+--
+
+- .gradient-underline[**Always, always, always plot the data!**]
+  
+--
+
+- A histogram is an accurate representation of the distribution of numerical data. 
+
+---
+  
+# Visualization
+
+A histogram is an accurate representation of the distribution of numerical data.
+  
+```{r, fig.height=4, fig.asp=NA}
+df$tmin[12] <- 123
+
+df %>%
+  ggplot(aes(x = tmin)) +
+  geom_histogram(binwidth = 5) +
+  labs(
+    title = "Histogram of air temperature",
+    subtitle = str_wrap("A histogram is an accurate representation of the distribution of numerical data. Here we can observe that there is an outlier in the data.", 90)
+  ) +
+  xlab("Temperature (°C)") +
+  ylab("Count")
+```
+
+---
+
+class: inverse, center, middle
+
+# Backups
+
+The question is not **if**, but **when** your hard drive will fail.
+
+`r fontawesome::fa("hdd", fill = "white", height = 200)`
+
+---
+  
+# Backups vs Archives
+  
+- Backups: .gradient-underline[used to restore data in case of loss.]
+
+- Archives: .gradient-underline[data that is not used daily.]
+
+- Once your paper has been published, make the data available to the community:
+    - Reproducible research
+    
+    - Find errors in your data
+    
+    - Data can be used in other studies to build up knowledge
+
+---
+  
+# Importance of backups
+  
+- It is important to have **redundancy** in your data.
+
+- Disk space is much cheaper than the time you invested in collecting, cleaning and analyzing your data.
+
+- Backups should not be only done on your computer (use cloud services)
+
+- Google Drive
+
+- Microsoft OneDrive (1TB of space if a student at Université Laval)
+
+- Dropbox
+
+---
+  
+# Importance of backups
+  
+- Use an incremental strategy to backup your data (daily).
+
+- [rsync](https://fr.wikipedia.org/wiki/Rsync)
+
+- [SyncBack](https://www.2brightsparks.com/syncback/syncback-hub.html)
+
+- [Duplicati](https://www.duplicati.com/)
+
+- [Syncthing](https://syncthing.net/)
+
+- I keep 3 months of data.
+
+
+---
+  
+# Version control
+  
+- Backups of the source code used to generate data are also important.
+
+- Git is a version control system (Wikipedia): 
+  - Tracking changes in computer files
+
+- Coordinating work on those files among multiple people
+
+- Primarily used for source code management in software development
+
+<div id = "container">
+<div><img src="https://miro.medium.com/max/1812/1*pXPseZOkwPqHGKaBXGS3sQ.png" height="100"/></div>
+<div><img class="middle-img" src="https://seesparkbox.com/uploads/article_uploads/cat-_gitlab.jpg"/ height="100"/></div>
+<div><img src="https://i2.wp.com/wptavern.com/wp-content/uploads/2016/10/bitbucket-logo.png?ssl=1"/ height="100"/></div>
+</div>
+
+---
+
+class: inverse, center, middle
+
+# Publishing your data
+
+---
+  
+# Publishing your data
+  
+- Many journals and funding agencies now require to have archiving strategies. Why?
+  
+- Makes your data shareable.
+
+- Makes your data discoverable.
+
+- Makes your data citable (DOI).
+
+---
+  
+# Publishing your data
+  
+- Collecting and producing data is difficult and requires a lot of resources (technical and financial). 
+    
+    - Publishing your data allows other people to you credit for your hard work.
+
+- There are a few ways to make your data available:
+  
+    - In an appendix along with your paper (**assuming that your paper is published in an open-access journal**).
+
+    - In a dedicated data paper.
+
+<center>
+  <figure>
+      <img src="https://www.doaj.org/static/doaj/images/logo_cropped.jpg" width = "350"/>
+  </figure>
+  <figcaption>https://www.doaj.org/</figcaption>
+</center>
+  
+---
+  
+# Supplementary information vs data paper
+  
+- .gradient-underline[Data presented in an appendix are rarely reviewed by peers.]
+  
+- Data papers are interesting alternatives to publish data:
+  
+  - **Peer-reviewed** (high-quality data)
+  
+  - Generally open access
+  
+  - Data are citable with a DOI
+
+---
+  
+# What is a data paper?
+  
+> A data paper is a **peer-reviewed document** describing a dataset, published in a peer-reviewed journal. It takes effort to prepare, curate and describe data. Data papers provide recognition for this effort by means of a scholarly article.
+>
+> https://www.gbif.org/data-papers
+
+---
+  
+# What is a data paper?
+  
+A data paper is similar to a traditional scientific paper.
+
+<center>
+  <figure>
+      <img src="img/essd.png" width = "450"/>
+  </figure>
+</center>
+  
+---
+  
+# What is a data paper?
+  
+The data associated with the paper is available online.
+
+<center>
+  <figure>
+      <img src="img/seanoe.png" width = "450"/>
+  </figure>
+</center>
+  
+---
+  
+# Open repositories
+
+There are many options available.
+  
+- Polar Data Catalogue (https://www.polardata.ca/)
+
+- Pangaea (https://www.pangaea.de/)
+
+- Dryad (https://datadryad.org)
+
+- Catalogue de données ouverte OGSL (https://ogsl.ca/fr/)
+
+- Zenodo (https://zenodo.org/)
+
+- Figshare (https://figshare.com/)
+
+- Seanoe (https://www.seanoe.org/)
+
+- And much much more...
+
+---
+
+class: inverse, center, middle
+
+# Take home messages
+
+---
+  
+# Take home messages
+  
+- Choose non-proprietary file formats (ex.: `CSV`).
+
+- Give your files and variables meaningful names.
+
+- Tidy and visually explore your data to remove obvious errors.
+
+- Backups your data as often as possible.
+
+- Use a version control system for your computer code.
