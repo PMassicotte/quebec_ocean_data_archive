@@ -2,7 +2,6 @@
 title: "Québec-Océan Training Workshop<br>Data Management and Archiving"
 subtitle: "Good practices"
 author: "Philippe Massicotte"
-date: "October 18, 22 and 25, 2021"
 output:
   xaringan::moon_reader:
     yolo: false
@@ -103,7 +102,7 @@ March 22, 2021 (updated: `r Sys.Date()`)
 
 <b>Research assistant at Takuvik (Laval University)</b><br>
 
-- Remote sensing, modelling, data science, data visualization<br>
+- Remote sensing, modeling, data science, data visualization<br>
 
 <br>
 
@@ -141,7 +140,7 @@ class: inverse, center, middle
 
 # File formats
 
-The best choices for archiving your data.
+## The best choices for archiving your data.
 
 <div id="container">
 <div>`r fontawesome::fa("file-excel", fill = "white", height = 150)`</div>
@@ -162,12 +161,12 @@ Data file format has important implications:
 
 --
   
-2. Other people can read your data without fancy software that is often not cross platforms (Windows/Mac/Linux).
+2. Other people can read your data without fancy softwares that are often not cross platforms (Windows/Mac/Linux).
 
 --
   
 .left-column[`r fontawesome::fa("file-excel", fill = "#3c3c3c", height = 150)`]
-.right-column[**Example**: difficult to open an XLSX file in older versions of Microsoft Excel.]
+.right-column[**Example**: XLSX files can not be opened in older versions of Microsoft Excel.]
 
 ---
   
@@ -209,7 +208,7 @@ This CSV file contains 11 variables (columns).
 
 <center>
   <figure>
-      <img src="img/csv_format.png" width = "550"/>
+      <img src="img/csv_format.png" height = "450"/>
   </figure>
 </center>
   
@@ -219,11 +218,15 @@ This CSV file contains 11 variables (columns).
   
 .NC (NetCDF, **N**etwork **C**ommon **D**ata **F**orm) is a file format for storing multidimensional scientific data.
 
-`r fontawesome::fa("check", fill = "#34A74BFF")` Often used for gridded data <br>
-`r fontawesome::fa("check", fill = "#34A74BFF")` Very popular in oceanography <br>
-`r fontawesome::fa("check", fill = "#34A74BFF")` Fast <br>
-`r fontawesome::fa("times", fill = "#E6352FFF")` Can be problematic between versions <br>
-`r fontawesome::fa("times", fill = "#E6352FFF")` Extra libraries are needed (*libnetcdf-dev, libnetcdfc++4*): can not be read as easy as plain text files
+`r fontawesome::fa("check", fill = "#34A74BFF")` Often used for gridded data. <br>
+
+`r fontawesome::fa("check", fill = "#34A74BFF")` Very popular in oceanography. <br>
+
+`r fontawesome::fa("check", fill = "#34A74BFF")` Fast. <br>
+
+`r fontawesome::fa("times", fill = "#E6352FFF")` Can be problematic between versions. <br>
+
+`r fontawesome::fa("times", fill = "#E6352FFF")` Extra libraries are needed (*libnetcdf-dev, libnetcdfc++4*): .gradient-underline[can not be opened in a simple text editor.]
 
 ---
   
@@ -240,7 +243,7 @@ Source: https://www.unidata.ucar.edu/software/netcdf/examples/tos_O1_2001-2002.n
   
 ---
   
-# Common open source geographic file formats
+## Common open source geographic file formats
   
 Geographic data:
   
@@ -250,16 +253,16 @@ Geographic data:
 
 - GeoTIFF (TIFF variant enriched with GIS relevant metadata)
 
-- XML/KMZ/KML (Google Earth)
+- `.xml`, `.kmz`, `.kml` (Google Earth)
 
 ---
   
 # The GeoJSON format
   
 .pull-left[
-    
-A simple GeoJSON file
-    
+
+This is a simple GeoJSON file defining 3 points that are joined by lines.
+
 <small>
 ```json
     { "type": "LineString", 
@@ -272,10 +275,8 @@ A simple GeoJSON file
 ]
 
 .pull-right[
-  
-A graphical view
-  
-```{r, message=FALSE}
+
+```{r, message=FALSE, fig.height=6, fig.asp=NA}
 sf::st_read('{ "type": "LineString", 
     "coordinates": [
         [30, 10], [10, 30], [40, 40]
@@ -338,12 +339,12 @@ class: inverse, center, middle
   <img src="https://media.giphy.com/media/B1uajA01vvL91Urtsp/giphy.gif" width = "350"/>
   </figure>
 </center>
-  
+
 ---
   
 # Efficient tools for reading large datasets
   
-Data science is an iterative process that can be time-consuming when working with large datasets.
+.gradient-underline[Data science is an iterative process that can be time-consuming when working with large datasets.]
 
 <center>
   <figure>
@@ -355,14 +356,18 @@ Data science is an iterative process that can be time-consuming when working wit
 ---
   
 # Efficient tools for reading large datasets
-  
-- R is my main programming environment, so here are some recommendations to be efficient when reading files. 
 
-- However, you can easily read all these file formats in your preferred programming language.
-
+.left-column[
 <center>
   `r fontawesome::fa("r-project", fill = "#3c3c3c", height = 200)`
 </center>
+]
+
+.right-column[
+- R is my main programming environment, so here are some recommendations to be efficient when reading files. 
+
+- However, you can easily read all these file formats in your preferred programming language.
+]
   
 ---
   
@@ -520,19 +525,19 @@ sort(files) %>%
 
 - Separate file names with `_`  or `-` to add useful information about the data.  
 
-- Project name
+- Project name.
 
-- The sampling locations
+- The sampling locations.
 
-- Type of data/variable
+- Type of data/variable.
 
-- Date (YYYY-MM-DD)
+- Date (YYYY-MM-DD).
 
 ---
   
 # A note on dates
   
-Always use the ISO format: <big>**YYYY**</big>-<medium>**MM**</medium>-<small>**DD**</small> (large `r fontawesome::fa("arrow-right", fill = "#d5695d")` small).
+.gradient-underline[Always use the ISO format:] <big>**YYYY**</big>-<medium>**MM**</medium>-<small>**DD**</small> (large `r fontawesome::fa("arrow-right", fill = "#d5695d")` small).
 
 <br>
 
@@ -582,7 +587,7 @@ Basic recommendations to preserve the raw data for future use:
   
 --
   
-- Do not make any changes/corrections to the original raw data file.
+- Do not make any changes or corrections to the original raw data file.
 
 --
   
@@ -608,15 +613,17 @@ Basic recommendations to preserve the raw data for future use:
 
 --
 
-- In my workflow, I use a folder named **raw** in which I consider files as **read-only**.
+- In my workflow, I use a folder named `raw` in which I consider files as **read-only**.
 
-- Data files produced by code are placed in a folder named **clean**.
+--
+
+- Data files produced by code are placed in a folder named `clean`.
 
 ---
   
 # Project directory structure
   
-The way I structure my **data** folder.
+The way I structure my `data` folder.
 
 <center>
   <figure>
@@ -678,7 +685,7 @@ A graphical view of a tidy dataset.
 
 class: inverse, center, middle
 
-# Three common problems with data
+# Three common problems
 
 <br>
 <center>
@@ -748,8 +755,8 @@ df %>%
   
 # Multiple variables in one column
   
-After pivoting the table, we realize that there is another problem. How would you visualize the temporal evolution of tuberculosis cases for men and women?
-  
+After pivoting the table, we realize that there is another problem. 
+
 ```{r}
 df <- df %>%
   pivot_longer(-c(country, year), names_to = "demographic", values_to = "number_of_cases") %>%
@@ -759,6 +766,10 @@ df %>%
   kable() %>%
   kable_styling(font_size = 22)
 ```
+
+--
+
+How would you visualize the temporal evolution of tuberculosis cases for men and women?
 
 ---
   
@@ -776,7 +787,7 @@ Column demographic contains .gradient-underline[four types of information].
   
 # Multiple variables in one column
   
-The column `demographic` was separated into four new columns (`new`, `type`, `sex`, `age`).
+The column `demographic` should be separated into four new columns (`new`, `type`, `sex`, `age`).
 
 ```{r}
 df <- df %>%
@@ -809,6 +820,12 @@ who %>%
   facet_grid(country ~ sex) +
   xlab(NULL) +
   ylab("Number of tuberculosis cases") +
+  paletteer::scale_colour_paletteer_d(
+    "ggsci::default_nejm",
+    guide = guide_legend(
+      override.aes = list(size = 2)
+    )
+  ) +
   labs(
     title = str_wrap("Number of tuberculosis cases in Canada and France between 2006 and 2012", 40),
     color = "Age group"
@@ -825,7 +842,9 @@ who %>%
 ---
 
 # Variables are in both rows and columns
-  
+
+> Daily weather data from the Global Historical Climatology Network for one weather station (MX17004) in Mexico for five months in 2010.  
+
 The first problem: column headers are values, not variable names.
 
 ```{r}
@@ -842,8 +861,8 @@ df %>%
 
 # Variables are in both rows and columns
   
-What is still wrong with this structure?
-  
+After pivoting, the data look like this.
+
 ```{r}
 df <- df %>%
   pivot_longer(-c(id:element), names_to = "day", values_to = "temperature") %>%
@@ -856,11 +875,15 @@ df %>%
   kable_styling(font_size = 22)
 ```
 
+--
+
+What is still wrong with this structure?
+
 ---
   
 # Variables are in both rows and columns
   
-`tmax` and `tmin` become variables
+Now, we have to .gradient-underline[pivot the data wider] so the `element` column becomes `tmax` and `tmin` variables.
 
 ```{r}
 df <- df %>%
@@ -876,6 +899,8 @@ df %>%
   
 # Visualization 
 
+Once again, visualizing data is easier with tidy data.
+
 ```{r plot_temperature, out.width="75%", cache=TRUE}
 df %>%
   pivot_longer(c(tmin, tmax), names_to = "type", values_to = "temperature") %>%
@@ -886,12 +911,23 @@ df %>%
   xlab(NULL) +
   ylab("Temperature (°C)") +
   scale_x_date(date_breaks = "2 months", date_labels = "%B") +
+  paletteer::scale_colour_paletteer_d(
+    breaks = c("tmin", "tmax"),
+    labels = c("Minimum temperature", "Maximum temperature"),
+    "ggthemes::wsj_colors6",
+    guide = guide_legend(
+      override.aes = list(size = 2),
+      label.position = "top",
+      keywidth = unit(5, "cm")
+    )
+  ) +
   labs(
     title = "Maximum and minimum daily temperature in 2010",
     color = NULL
   ) +
   theme(
-    plot.title = element_text(color = "#474448", size = 16)
+    plot.title = element_text(color = "#474448", size = 16),
+    legend.position = "top"
   )
 ```
 
@@ -899,7 +935,7 @@ df %>%
 
 # Keep your data as rectangle tables
   
-*One more note:* if you use a spreadsheet program, keep your data arranged as rectangular tables. Otherwise, .gradient-underline[it makes data importation difficult]. 
+**One more note:** if you use a spreadsheet program, keep your data arranged as rectangular tables. Otherwise, .gradient-underline[it makes data importation difficult]. 
   
 .pull-left[
     <center><img src="https://exceljet.net/sites/default/files/styles/function_screen/public/images/formulas/join%20tables%20with%20INDEX%20and%20MATCH%202.png?itok=HK29obOJ" class="centerImage" height="300"></center>
@@ -915,7 +951,7 @@ class: inverse, center, middle
 
 # Variable names
 
-How to choose variable names when creating data files?
+## How to choose variable names when creating data files?
 
 ---
   
@@ -947,7 +983,7 @@ How to choose variable names when creating data files?
 
 --
 
-- Do not use special characters or spaces.
+- Do not use special characters or spaces (same as for file names).
 
 --
 
@@ -956,7 +992,7 @@ How to choose variable names when creating data files?
   
 --
 
-- Be consistent with variable names across files:
+- Be consistent with variable names .gradient-underline[across files]:
   - `temp` vs `temperature`
   
 ---
@@ -1030,46 +1066,57 @@ class: inverse, center, middle
 
 # Backups
 
-The question is not **if**, but **when** your hard drive will fail.
+## The question is not *if*, but *when* your hard drive will fail.
 
 `r fontawesome::fa("hdd", fill = "white", height = 200)`
 
 ---
   
 # Backups vs Archives
-  
+
+--
+
 - Backups: .gradient-underline[used to restore data in case of loss.]
+
+--
 
 - Archives: .gradient-underline[data that is not used daily.]
 
+--
+
 - Once your paper has been published, make the data available to the community:
-    - Reproducible research
     
-    - Find errors in your data
+    - Reproducible research.
     
-    - Data can be used in other studies to build up knowledge
+    - Find errors in your data.
+    
+    - Data can be re-used in other studies to build up knowledge.
 
 ---
   
 # Importance of backups
   
+--
+
 - It is important to have **redundancy** in your data.
+
+--
 
 - .gradient-underline[**Disk space is much cheaper than the time you invested in collecting, cleaning and analyzing your data.**]
 
+--
+
 - Backups should not be only done on your computer (use cloud services)
-
-- Google Drive
-
-- Microsoft OneDrive (1TB of space if a student at Université Laval)
-
-- Dropbox
+    
+    - Google Drive
+    - Microsoft OneDrive (1TB of space if a student at Université Laval)
+    - Dropbox
 
 ---
   
 # Importance of backups
   
-- Use an incremental strategy to backup your data (ideally on a daily basis).
+- Use an incremental strategy to backup your data (.gradient-underline[ideally on a daily basis]).
 
     - [rsync](https://fr.wikipedia.org/wiki/Rsync)
 
@@ -1089,10 +1136,11 @@ The question is not **if**, but **when** your hard drive will fail.
 - Backups of the source code used to generate data are also important.
 
 - Git is a version control system used to keep track of changes in computer files.
+    
+    - Primarily used for source code management in software development.
+    
+    - Coordinating work on those files among multiple people.
 
-- Coordinating work on those files among multiple people.
-
-- Primarily used for source code management in software development.
 
 <div id = "container">
 <div><img src="https://miro.medium.com/max/1812/1*pXPseZOkwPqHGKaBXGS3sQ.png" height="100"/></div>
@@ -1110,11 +1158,17 @@ class: inverse, center, middle
   
 # Publishing your data
   
-- Many journals and funding agencies now require to have archiving strategies. Why?
+Many journals and funding agencies now require to have archiving strategies. Why?
   
+--
+
 - Makes your data shareable.
 
+--
+
 - Makes your data discoverable.
+
+--
 
 - Makes your data citable (DOI).
 
@@ -1189,7 +1243,7 @@ The data associated with the paper is available online.
   
 # Open repositories
 
-There are many options available.
+There are many options available to publish your data.
   
 - Polar Data Catalogue (https://www.polardata.ca/)
 
@@ -1217,12 +1271,22 @@ class: inverse, center, middle
   
 # Take home messages
   
+--
+
 - Choose non-proprietary file formats (ex.: `CSV`).
+
+--
 
 - Give your files and variables meaningful names.
 
+--
+
 - Tidy and visually explore your data to remove obvious errors.
 
+--
+
 - Backups your data as often as possible.
+
+--
 
 - Use a version control system for your computer code.

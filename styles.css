@@ -4,7 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;400;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Kreon:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kreon:wght@300;700&display=swap');
 
 .remark-inline-code {
   font-size: 90%;
@@ -177,8 +177,8 @@ a:hover {
 .title-slide p {
   color: #fff;
   font-family: 'Roboto', sans-serif;
-  font-size: 0.75em;
-  font-weight: 300;
+  font-size: 1.5em;
+  font-weight: 100;
 }
 
 .inverse {
@@ -194,6 +194,14 @@ a:hover {
   color: #FFFFFF;
 }
 
+.inverse h2 {
+  font-family: 'Kreon', sans-serif;
+  font-size: 2em;
+  word-wrap: break-word;
+  font-weight: 700;
+  margin-bottom: -10px !important;
+  color: #FFFFFF;
+}
 .inverse-two h1 {
   font-family: 'Paytone One', sans-serif;
   font-size: 3em;
