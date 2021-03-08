@@ -196,7 +196,7 @@ NetCDF (**N**etwork **C**ommon **D**ata **F**orm, `.nc`) is a file format for st
   
 &lt;img src="index_files/figure-html/plot_ncdf-1.png" style="display: block; margin: auto;" /&gt;
 &lt;figcaption&gt;
-Source: https://www.unidata.ucar.edu/software/netcdf/examples/tos_O1_2001-2002.nc&lt;/figcaption&gt;
+&lt;b&gt;Source:&lt;/b&gt; https://www.unidata.ucar.edu/software/netcdf/examples/tos_O1_2001-2002.nc&lt;/figcaption&gt;
   
 ---
   
@@ -285,7 +285,7 @@ class: inverse, center, middle
   &lt;figure&gt;
       &lt;img src="https://d33wubrfki0l68.cloudfront.net/571b056757d68e6df81a3e3853f54d3c76ad6efc/32d37/diagrams/data-science.png" width = "800"/&gt;
   &lt;/figure&gt;
-  &lt;figcaption&gt;Image from: https://r4ds.had.co.nz&lt;/figcaption&gt;
+  &lt;figcaption&gt;&lt;b&gt;Image from:&lt;/b&gt; https://r4ds.had.co.nz&lt;/figcaption&gt;
 &lt;/center&gt;
 
 ---
@@ -375,19 +375,19 @@ There are few rules to adopt when naming files:
   
 --
   
-- No spaces
+- No spaces.
 
 --
   
-- Not too long (can be problematic with older softwares)
+- Not too long (can be problematic with older softwares).
 
 ---
   
 # File naming basic rules
   
-For sequential numbering, use leading zeros to ensure files sort properly.
+For sequential numbering, .gradient-underline[use leading zeros to ensure files sort properly].
 
-- For example, use `0001`, `0002`, `1001` instead of  `1`, `2`, `1001`
+- For example, use `0001`, `0002`, `1001` instead of  `1`, `2`, `1001`.
 
 .pull-left[
   **Not sorted correctly**
@@ -444,7 +444,7 @@ For sequential numbering, use leading zeros to ensure files sort properly.
     &lt;figure&gt;
       &lt;img style="margin:0px auto;display:block" src="img/python_file_naming.png" width = "500"/&gt;
     &lt;/figure&gt;
-    &lt;figcaption&gt;Source: https://bit.ly/2M8cViI&lt;/figcaption&gt;  
+    &lt;figcaption&gt;&lt;b&gt;Source:&lt;/b&gt; https://bit.ly/2M8cViI&lt;/figcaption&gt;  
 &lt;/center&gt;
 ]
 
@@ -453,6 +453,20 @@ For sequential numbering, use leading zeros to ensure files sort properly.
 
 &gt; ...the glitch, had to do with how different operating systems sort files.
 ]
+
+---
+  
+# When file naming goes wrong!
+
+Data files were sorted differently depending on the operating system where the Python scripts were executed.
+
+&lt;center&gt;
+    &lt;figure&gt;
+      &lt;img style="margin:0px auto;display:block" src="https://www.ncbi.nlm.nih.gov/corecgi/tileshop/tileshop.fcgi?p=PMC3&amp;id=475246&amp;s=95&amp;r=1&amp;c=1" width = "500"/&gt;
+    &lt;/figure&gt;
+    &lt;figcaption&gt;&lt;b&gt;Image from:&lt;/b&gt; Bhandari Neupane, J. et al. Characterization of Leptazolines A–D, Polar Oxazolines from the Cyanobacterium Leptolyngbya sp., Reveals a Glitch with the “Willoughby–Hoye” Scripts for Calculating NMR Chemical Shifts. Org. Lett. 21, 8449–8453 (2019).&lt;/figcaption&gt;  
+&lt;/center&gt;
+
 
 ---
   
@@ -1497,18 +1511,6 @@ class: inverse, center, middle
 &lt;credit&gt;Source: https://www.networkworld.com/article/3285652/backup-vs-archive-why-its-important-to-know-the-difference.html&lt;/credit&gt;
 
 ---
-
-# Archiving your research data
-
-- Once your paper has been published, make the data available to the community:
-    
-    - Reproducible research.
-    
-    - Find errors in your data.
-    
-    - Data can be re-used in other studies to build up knowledge.
-
----
   
 # Importance of backups
   
@@ -1563,6 +1565,24 @@ class: inverse, center, middle
 &lt;div&gt;&lt;img class="middle-img" src="https://seesparkbox.com/uploads/article_uploads/cat-_gitlab.jpg"/ height="100"/&gt;&lt;/div&gt;
 &lt;div&gt;&lt;img src="https://i2.wp.com/wptavern.com/wp-content/uploads/2016/10/bitbucket-logo.png?ssl=1"/ height="100"/&gt;&lt;/div&gt;
 &lt;/div&gt;
+
+---
+
+# Archiving your research data
+
+.gradient-underline[Once your paper has been published, make the data available to the community].
+    
+  - Reproducible research.
+    
+  - Find errors in your data.
+    
+  - Data can be re-used in other studies to build up knowledge.
+
+--
+
+&lt;br&gt;
+
+.gradient-underline[Summary tables in an PDF article are not very useful.] You should rather provide the data in a way that is easily importable into a programming language as supplementary information (for example, a `CSV` file).
 
 ---
 
@@ -1703,11 +1723,15 @@ class: inverse, center, middle
 
 --
 
-- Backups your data as often as possible.
+- .gradient-underline[**Backups your data externally**] as often as possible for the day when your hard drive will crash.
 
 --
 
-- Use a version control system for your computer code.
+- Use a version control system (git) for your analysis scripts.
+
+--
+
+- When possible, share the data and the scripts that were used in your research papers.
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
