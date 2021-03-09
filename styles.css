@@ -154,26 +154,6 @@ a:hover {
     position: relative;
 }
 
-.title-slide:after,
-.title-slide:before {
-    border: 8pt solid #577590;
-    bottom: 0;
-    content: '';
-    position: fixed;
-    top: 50px;
-    width: 5%;
-}
-.title-slide:after {
-    border-left: none;
-    right: 47px;
-    height: 83%;
-}
-.title-slide:before {
-    border-right: none;
-    left: 47px;
-    height: 83%;
-}
-
 .title-slide p {
   color: #fff;
   font-family: 'Roboto', sans-serif;

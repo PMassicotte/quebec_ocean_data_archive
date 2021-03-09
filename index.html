@@ -46,7 +46,7 @@ class: title-slide, center, bottom
 
 &lt;img src="img/logo_quebec_ocean.jpg"/ height="150"/&gt;
 
-March 22, 2021 (updated: March 08, 2021)
+March 22, 2021 (updated: March 09, 2021)
 
 ## Philippe Massicotte
 
@@ -361,6 +361,7 @@ class: inverse, center, middle
   &lt;figure&gt;
       &lt;img style="margin:0px auto;display:block" src="http://phdcomics.com/comics/archive/phd052810s.gif" width = "500"/&gt;
   &lt;/figure&gt;
+  &lt;figcaption&gt;&lt;b&gt;Image from:&lt;/b&gt; https://phdcomics.com/&lt;/figcaption&gt;
 &lt;/center&gt;
   
 ---
@@ -471,16 +472,27 @@ Data files were sorted differently depending on the operating system where the P
 ---
   
 # File naming basic rules
-  
+
+--
+
 - Be consistent and descriptive when naming your files.
 
+--
+
 - Separate file names with `_`  or `-` to add useful information about the data.  
+--
 
 - Project name.
 
+--
+
 - The sampling locations.
 
+--
+
 - Type of data/variable.
+
+--
 
 - Date (YYYY-MM-DD).
 
@@ -599,11 +611,20 @@ Why do we want tidy data?
 
 --
 
-- .gradient-underline[Well-formatted data allows for quick visualization, modeling, manipulation and archiving].
+- Well-formatted data allows for quicker visualization, modeling, manipulation and archiving.
 
 --
 
-- Whatever the language used (R, Python, Matlab, etc.), there are several tools to tidy your data.
+Whatever the language used (R, Python, Matlab, etc.), there are several tools to tidy your data.
+
+&lt;br&gt;
+
+&lt;center&gt;
+&lt;div id="container"&gt;
+&lt;div&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 581 512" class="rfa" style="height:200;fill:#3c3c3c;position:relative;"&gt;&lt;path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;div&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="rfa" style="height:200;fill:#3c3c3c;position:relative;"&gt;&lt;path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6zM286.2 404c11.1 0 20.1 9.1 20.1 20.3 0 11.3-9 20.4-20.1 20.4-11 0-20.1-9.2-20.1-20.4.1-11.3 9.1-20.3 20.1-20.3zM167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4zm-6.7-142.6c-11.1 0-20.1-9.1-20.1-20.3.1-11.3 9-20.4 20.1-20.4 11 0 20.1 9.2 20.1 20.4s-9 20.3-20.1 20.3z"/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/center&gt;
 
 ---
   
@@ -1456,23 +1477,16 @@ class: inverse, center, middle
   
 --
 
-- Once data is tidy, .gradient-underline[**perform a visual inspection**].
-
---
-
-- Make sure there are no obvious errors in your data.
+- Once data is tidy, .gradient-underline[**perform a visual inspection**] to make sure there are no obvious errors in your data.
 
 --
 
 - A picture is worth a thousand words.
-
---
-
-- .gradient-underline[**Always, always, always plot the data!**]
+    - &lt;span class = "gradient-underline"&gt;**Always, always, always plot the data!**&lt;/span&gt;
   
 --
 
-- A histogram is an accurate representation of the distribution of numerical data. 
+- A histogram is an accurate representation of the distribution of numerical data.
 
 ---
   
@@ -1508,7 +1522,7 @@ class: inverse, center, middle
 
 &gt; An archive is a copy of data created for reference purposes. **Although not required, the original is often deleted after an archive is made.**
 
-&lt;credit&gt;Source: https://www.networkworld.com/article/3285652/backup-vs-archive-why-its-important-to-know-the-difference.html&lt;/credit&gt;
+&lt;credit&gt;&lt;b&gt;Source:&lt;/b&gt; https://www.networkworld.com/article/3285652/backup-vs-archive-why-its-important-to-know-the-difference.html&lt;/credit&gt;
 
 ---
   
@@ -1516,11 +1530,12 @@ class: inverse, center, middle
   
 --
 
-- It is important to have **redundancy** in your data.
+- .gradient-underline[**Disk space is much cheaper than the time you invested in collecting, cleaning and analyzing your data.**]
 
 --
 
-- .gradient-underline[**Disk space is much cheaper than the time you invested in collecting, cleaning and analyzing your data.**]
+- It is important to have **redundancy** in your data.
+    - &lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="rfa" style="height:0.75em;fill:#ffb82a;position:relative;"&gt;&lt;path d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/&gt;&lt;/svg&gt; &lt;span class = "gradient-underline"&gt;A copy of your working directory is not redundancy!&lt;/span&gt;
 
 --
 
@@ -1633,7 +1648,7 @@ Many journals and funding agencies now require to have archiving strategies. Why
   
 ---
   
-# Supplementary information vs data paper
+# What is a data paper?
   
 - .gradient-underline[Data presented in an appendix are rarely reviewed by peers.]
   
@@ -1645,16 +1660,12 @@ Many journals and funding agencies now require to have archiving strategies. Why
   
   - Data are citable with a DOI.
 
----
-  
-# What is a data paper?
-  
 &gt; A data paper is a **peer-reviewed document** describing a dataset, published in a peer-reviewed journal. It takes effort to prepare, curate and describe data. Data papers provide recognition for this effort by means of a scholarly article.
 &gt;
 &gt; https://www.gbif.org/data-papers
 
 ---
-  
+
 # What is a data paper?
   
 A data paper is similar to a traditional scientific paper.

@@ -479,6 +479,7 @@ class: inverse, center, middle
   <figure>
       <img style="margin:0px auto;display:block" src="http://phdcomics.com/comics/archive/phd052810s.gif" width = "500"/>
   </figure>
+  <figcaption><b>Image from:</b> https://phdcomics.com/</figcaption>
 </center>
   
 ---
@@ -567,16 +568,27 @@ Data files were sorted differently depending on the operating system where the P
 ---
   
 # File naming basic rules
-  
+
+--
+
 - Be consistent and descriptive when naming your files.
 
+--
+
 - Separate file names with `_`  or `-` to add useful information about the data.  
+--
 
 - Project name.
 
+--
+
 - The sampling locations.
 
+--
+
 - Type of data/variable.
+
+--
 
 - Date (YYYY-MM-DD).
 
@@ -710,11 +722,20 @@ Why do we want tidy data?
 
 --
 
-- .gradient-underline[Well-formatted data allows for quick visualization, modeling, manipulation and archiving].
+- Well-formatted data allows for quicker visualization, modeling, manipulation and archiving.
 
 --
 
-- Whatever the language used (R, Python, Matlab, etc.), there are several tools to tidy your data.
+Whatever the language used (R, Python, Matlab, etc.), there are several tools to tidy your data.
+
+<br>
+
+<center>
+<div id="container">
+<div>`r fontawesome::fa("r-project", fill = "#3c3c3c", height = 200)`</div>
+<div>`r fontawesome::fa("python", fill = "#3c3c3c", height = 200)`</div>
+</div>
+</center>
 
 ---
   
@@ -1087,23 +1108,16 @@ class: inverse, center, middle
   
 --
 
-- Once data is tidy, .gradient-underline[**perform a visual inspection**].
-
---
-
-- Make sure there are no obvious errors in your data.
+- Once data is tidy, .gradient-underline[**perform a visual inspection**] to make sure there are no obvious errors in your data.
 
 --
 
 - A picture is worth a thousand words.
-
---
-
-- .gradient-underline[**Always, always, always plot the data!**]
+    - <span class = "gradient-underline">**Always, always, always plot the data!**</span>
   
 --
 
-- A histogram is an accurate representation of the distribution of numerical data. 
+- A histogram is an accurate representation of the distribution of numerical data.
 
 ---
   
@@ -1140,9 +1154,10 @@ df %>%
   geom_text(
     data = df_arrow,
     aes(x = x, y = y, label = label),
-    hjust = 1.2,
+    hjust = 1.1,
     fontface = "bold",
-    color = "#E60505FF"
+    color = "#E60505FF",
+    size = 6
   ) +
   xlab("Temperature (°C)") +
   ylab("Count")
@@ -1174,7 +1189,7 @@ class: inverse, center, middle
 
 > An archive is a copy of data created for reference purposes. **Although not required, the original is often deleted after an archive is made.**
 
-<credit>Source: https://www.networkworld.com/article/3285652/backup-vs-archive-why-its-important-to-know-the-difference.html</credit>
+<credit><b>Source:</b> https://www.networkworld.com/article/3285652/backup-vs-archive-why-its-important-to-know-the-difference.html</credit>
 
 ---
   
@@ -1182,11 +1197,12 @@ class: inverse, center, middle
   
 --
 
-- It is important to have **redundancy** in your data.
+- .gradient-underline[**Disk space is much cheaper than the time you invested in collecting, cleaning and analyzing your data.**]
 
 --
 
-- .gradient-underline[**Disk space is much cheaper than the time you invested in collecting, cleaning and analyzing your data.**]
+- It is important to have **redundancy** in your data.
+    - `r fontawesome::fa("exclamation-triangle", fill = "#ffb82a")` <span class = "gradient-underline">A copy of your working directory is not redundancy!</span>
 
 --
 
@@ -1299,7 +1315,7 @@ Many journals and funding agencies now require to have archiving strategies. Why
   
 ---
   
-# Supplementary information vs data paper
+# What is a data paper?
   
 - .gradient-underline[Data presented in an appendix are rarely reviewed by peers.]
   
@@ -1311,16 +1327,12 @@ Many journals and funding agencies now require to have archiving strategies. Why
   
   - Data are citable with a DOI.
 
----
-  
-# What is a data paper?
-  
 > A data paper is a **peer-reviewed document** describing a dataset, published in a peer-reviewed journal. It takes effort to prepare, curate and describe data. Data papers provide recognition for this effort by means of a scholarly article.
 >
 > https://www.gbif.org/data-papers
 
 ---
-  
+
 # What is a data paper?
   
 A data paper is similar to a traditional scientific paper.
