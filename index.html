@@ -46,7 +46,7 @@ class: title-slide, center, bottom
 
 &lt;img src="img/logo_quebec_ocean.jpg"/ height="150"/&gt;
 
-March 22, 2021 (updated: March 09, 2021)
+March 22, 2021 (updated: March 18, 2021)
 
 ## Philippe Massicotte
 
@@ -60,7 +60,7 @@ March 22, 2021 (updated: March 09, 2021)
 
 &lt;b&gt;Research assistant at Takuvik (Laval University)&lt;/b&gt;&lt;br&gt;
 
-- Remote sensing, modeling, data science, data visualization&lt;br&gt;
+- Remote sensing, modelling, data science, data visualization&lt;br&gt;
 
 &lt;br&gt;
 
@@ -90,8 +90,6 @@ March 22, 2021 (updated: March 09, 2021)
 
 6. Publishing your data.
 
-7. Practical exercises with your data.
-
 ---
 
 class: inverse, center, middle
@@ -119,7 +117,7 @@ Data file format has important implications:
 
 --
   
-2. Other people can read your data without fancy softwares that are often not cross platforms (Windows/Mac/Linux).
+2. Other people can read your data without fancy software that are often not cross platforms (Windows/Mac/Linux).
 
 --
   
@@ -138,7 +136,7 @@ Ideally, the chosen file format should be:
 
 --
   
-2. **Unencrypted**: unless it contains personal data.
+2. **Unencrypted**: unless it contains personal or sensitive data.
 
 --
   
@@ -146,7 +144,7 @@ Ideally, the chosen file format should be:
 
 ---
   
-# Common open source text file formats
+# Common open-source text file formats
   
 Tabular plain text file formats (standard text documents that contain unformatted text):
   
@@ -169,40 +167,12 @@ This CSV file contains 11 variables (columns).
       &lt;img src="img/csv_format.png" height = "450"/&gt;
   &lt;/figure&gt;
 &lt;/center&gt;
-  
----
-  
-# NetCDF
-  
-NetCDF (**N**etwork **C**ommon **D**ata **F**orm, `.nc`) is a file format for storing multidimensional scientific data.
-
-**Pros:**
-
-&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="rfa" style="height:0.75em;fill:#34A74BFF;position:relative;"&gt;&lt;path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"/&gt;&lt;/svg&gt; Often used for gridded data. &lt;br&gt;
-
-&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="rfa" style="height:0.75em;fill:#34A74BFF;position:relative;"&gt;&lt;path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"/&gt;&lt;/svg&gt; Very popular in oceanography. &lt;br&gt;
-
-&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="rfa" style="height:0.75em;fill:#34A74BFF;position:relative;"&gt;&lt;path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"/&gt;&lt;/svg&gt; Fast. &lt;br&gt;
-
-**Cons:**
-
-&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512" class="rfa" style="height:0.75em;fill:#E6352FFF;position:relative;"&gt;&lt;path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"/&gt;&lt;/svg&gt; Can be problematic between versions. &lt;br&gt;
-
-&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512" class="rfa" style="height:0.75em;fill:#E6352FFF;position:relative;"&gt;&lt;path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"/&gt;&lt;/svg&gt; Extra libraries are needed (*libnetcdf-dev, libnetcdfc++4*): .gradient-underline[can not be opened in a simple text editor.]
 
 ---
   
-## Example of NetCDF (sea surface temperature)
+## Common open-source geographic file formats
   
-&lt;img src="index_files/figure-html/plot_ncdf-1.png" style="display: block; margin: auto;" /&gt;
-&lt;figcaption&gt;
-&lt;b&gt;Source:&lt;/b&gt; https://www.unidata.ucar.edu/software/netcdf/examples/tos_O1_2001-2002.nc&lt;/figcaption&gt;
-  
----
-  
-## Common open source geographic file formats
-  
-Geographic data:
+These files contain information of geographic features such as **points**, **lines** or **polygons**. There are a ton of [file formats](https://gisgeography.com/gis-formats/), but here are some that are particularly popular.
   
 - `.SHP` (ESRI shapefile)
 
@@ -248,7 +218,7 @@ This is a simple GeoJSON file defining 3 points that are joined by lines.
 # The GeoTIFF format
   
 .pull-left[
-&gt; **GeoTIFF is a public domain metadata standard which allows georeferencing information to be embedded within a TIFF file.** The potential additional information includes map projection, coordinate systems, ellipsoids, datums, and everything else necessary to establish the exact spatial reference for the file.
+&gt; **GeoTIFF is a public domain metadata standard that allows georeferencing information to be embedded within a TIFF file.** The potential additional information includes map projection, coordinate systems, ellipsoids, datums, and everything else necessary to establish the exact spatial reference for the file.
 &gt;
 &gt; Wikipedia
 ]
@@ -380,7 +350,7 @@ There are few rules to adopt when naming files:
 
 --
   
-- Not too long (can be problematic with older softwares).
+- Not too long (can be problematic with older software).
 
 ---
   
@@ -611,7 +581,7 @@ Why do we want tidy data?
 
 --
 
-- Well-formatted data allows for quicker visualization, modeling, manipulation and archiving.
+- Well-formatted data allows for quicker **visualization**, **modeling**, **manipulation** and **archiving**.
 
 --
 
@@ -1193,7 +1163,7 @@ The first problem: column headers are values, not variable names.
 
 # Variables are in both rows and columns
   
-After pivoting, the data look like this.
+After pivoting `d1` to `d31` into a new column `day`, the data look like this.
 
 &lt;table class="table" style="font-size: 22px; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
@@ -1421,6 +1391,8 @@ class: inverse, center, middle
 
 - Do not forget to provide information about abbreviations.
 
+    - `tmin` vs `temperature_maximum`
+
 --
 
 - Do not use special characters or spaces (same as for file names).
@@ -1428,7 +1400,8 @@ class: inverse, center, middle
 --
 
 - Explicitly state the unit of each variable:
-  - `depth_m`, `chla_mg_m2`
+
+    - `depth_m`, `chla_mg_m2`
   
 --
 
@@ -1454,7 +1427,7 @@ class: inverse, center, middle
 
 --
 
-- &lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="rfa" style="height:0.75em;fill:#ffb82a;position:relative;"&gt;&lt;path d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/&gt;&lt;/svg&gt; .gradient-underline[Do not use a numerical value (ex.: **999**) to indicate missing values.]
+- &lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="rfa" style="height:0.75em;fill:#ffb82a;position:relative;"&gt;&lt;path d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/&gt;&lt;/svg&gt; .gradient-underline[Do not use a numerical value (ex.: **-999**) to indicate missing values.]
 
     - This can create situations where missing values will be included in calculations.
 
@@ -1473,13 +1446,13 @@ class: inverse, center, middle
   
 --
 
-- A histogram is an accurate representation of the distribution of numerical data.
+- A histogram can be used to represent the distribution of numerical data.
 
 ---
   
 # Visualization
 
-A histogram is an accurate representation of the distribution of numerical data.
+In this example, we see that there is an outlier in the data. Measuring device fault? Manual entry error?
   
 &lt;img src="index_files/figure-html/unnamed-chunk-14-1.svg" style="display: block; margin: auto;" /&gt;
 
@@ -1522,14 +1495,16 @@ class: inverse, center, middle
 --
 
 - It is important to have **redundancy** in your data.
-    - &lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="rfa" style="height:0.75em;fill:#ffb82a;position:relative;"&gt;&lt;path d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/&gt;&lt;/svg&gt; &lt;span class = "gradient-underline"&gt;A copy of your working directory is not redundancy!&lt;/span&gt;
+    - &lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="rfa" style="height:0.75em;fill:#ffb82a;position:relative;"&gt;&lt;path d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/&gt;&lt;/svg&gt; &lt;span class = "gradient-underline"&gt;A copy of your working directory in another directory on the same hard drive is not redundancy!&lt;/span&gt;
 
 --
 
 - Backups should not be only done on your computer (use cloud services)
     
     - Google Drive
+    
     - Microsoft OneDrive (1TB of space if a student at Université Laval)
+  
     - Dropbox
 
 ---
@@ -1583,8 +1558,9 @@ class: inverse, center, middle
 --
 
 &lt;br&gt;
+.gradient-underline[Summary tables in an PDF article are not very useful.]
 
-.gradient-underline[Summary tables in an PDF article are not very useful.] You should rather provide the data in a way that is easily importable into a programming language as supplementary information (for example, a `CSV` file).
+- You should rather provide the data in a way that is easily importable into a programming language as supplementary information (for example, a `CSV` file).
 
 ---
 
@@ -1616,7 +1592,7 @@ Many journals and funding agencies now require to have archiving strategies. Why
   
 - Collecting and producing data is difficult and requires a lot of resources (technical and financial). 
     
-    - Publishing your data allows other people credit your for your hard work.
+    - Publishing your data allows other people to credit you for your hard work.
 
 - There are a few ways to make your data available:
   
@@ -1643,7 +1619,7 @@ Many journals and funding agencies now require to have archiving strategies. Why
   
   - **Peer-reviewed** (high-quality data).
   
-  - Generally open access.
+  - Generally open access (obliviously!).
   
   - Data are citable with a DOI.
 
@@ -1721,7 +1697,8 @@ class: inverse, center, middle
 
 --
 
-- .gradient-underline[**Backups your data externally**] as often as possible for the day when your hard drive will crash.
+- .gradient-underline[**Backups your data externally**] as often as possible.
+    - Your hard drive will eventually crash, for sure!
 
 --
 
@@ -1730,6 +1707,30 @@ class: inverse, center, middle
 --
 
 - When possible, share the data and the scripts that were used in your research papers.
+
+---
+
+# A final note...
+
+I hope you have learned something today.
+
+--
+
+If it is not the case...
+
+--
+
+&lt;div class="row"&gt;
+    &lt;div class="column"&gt;
+        &lt;img src="https://media.giphy.com/media/62cTOas6rcoRQsxwSy/giphy.gif" alt="Snow" style="width:80%"&gt;
+    &lt;/div&gt;
+    &lt;div class="column"&gt;
+        &lt;img src="https://media.giphy.com/media/3Gl8sOjurR3ihZj27S/giphy.gif" alt="Forest" style="width:80%"&gt;
+    &lt;/div&gt;
+    &lt;div class="column"&gt;
+        &lt;img src="https://media.giphy.com/media/ekvSclOoygt90LW8Ro/giphy.gif" alt="Forest" style="width:80%"&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

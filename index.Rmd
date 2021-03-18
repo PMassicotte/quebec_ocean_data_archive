@@ -104,7 +104,7 @@ March 22, 2021 (updated: `r format(Sys.Date(), "%B %d, %Y")`)
 
 <b>Research assistant at Takuvik (Laval University)</b><br>
 
-- Remote sensing, modeling, data science, data visualization<br>
+- Remote sensing, modelling, data science, data visualization<br>
 
 <br>
 
@@ -134,8 +134,6 @@ March 22, 2021 (updated: `r format(Sys.Date(), "%B %d, %Y")`)
 
 6. Publishing your data.
 
-7. Practical exercises with your data.
-
 ---
 
 class: inverse, center, middle
@@ -163,7 +161,7 @@ Data file format has important implications:
 
 --
   
-2. Other people can read your data without fancy softwares that are often not cross platforms (Windows/Mac/Linux).
+2. Other people can read your data without fancy software that are often not cross platforms (Windows/Mac/Linux).
 
 --
   
@@ -182,7 +180,7 @@ Ideally, the chosen file format should be:
 
 --
   
-2. **Unencrypted**: unless it contains personal data.
+2. **Unencrypted**: unless it contains personal or sensitive data.
 
 --
   
@@ -190,7 +188,7 @@ Ideally, the chosen file format should be:
 
 ---
   
-# Common open source text file formats
+# Common open-source text file formats
   
 Tabular plain text file formats (standard text documents that contain unformatted text):
   
@@ -213,45 +211,12 @@ This CSV file contains 11 variables (columns).
       <img src="img/csv_format.png" height = "450"/>
   </figure>
 </center>
-  
----
-  
-# NetCDF
-  
-NetCDF (**N**etwork **C**ommon **D**ata **F**orm, `.nc`) is a file format for storing multidimensional scientific data.
-
-**Pros:**
-
-`r fontawesome::fa("check", fill = "#34A74BFF")` Often used for gridded data. <br>
-
-`r fontawesome::fa("check", fill = "#34A74BFF")` Very popular in oceanography. <br>
-
-`r fontawesome::fa("check", fill = "#34A74BFF")` Fast. <br>
-
-**Cons:**
-
-`r fontawesome::fa("times", fill = "#E6352FFF")` Can be problematic between versions. <br>
-
-`r fontawesome::fa("times", fill = "#E6352FFF")` Extra libraries are needed (*libnetcdf-dev, libnetcdfc++4*): .gradient-underline[can not be opened in a simple text editor.]
 
 ---
   
-## Example of NetCDF (sea surface temperature)
+## Common open-source geographic file formats
   
-```{r plot_ncdf, cache = TRUE, dev='png', dpi=300, fig.height=3, fig.asp=NA}
-url <- "https://www.unidata.ucar.edu/software/netcdf/examples/tos_O1_2001-2002.nc"
-file <- curl::curl_download(url, destfile = tempfile())
-k <- stars::read_ncdf(file)
-plot(k[, , , 1:9])
-```
-<figcaption>
-<b>Source:</b> https://www.unidata.ucar.edu/software/netcdf/examples/tos_O1_2001-2002.nc</figcaption>
-  
----
-  
-## Common open source geographic file formats
-  
-Geographic data:
+These files contain information of geographic features such as **points**, **lines** or **polygons**. There are a ton of [file formats](https://gisgeography.com/gis-formats/), but here are some that are particularly popular.
   
 - `.SHP` (ESRI shapefile)
 
@@ -283,13 +248,19 @@ This is a simple GeoJSON file defining 3 points that are joined by lines.
 .pull-right[
 
 ```{r, message=FALSE, fig.height=6, fig.asp=NA}
-sf::st_read('{ "type": "LineString", 
+sf_line <- sf::st_read('{ "type": "LineString", 
     "coordinates": [
         [30, 10], [10, 30], [40, 40]
   ]
-}', quiet = TRUE) %>%
+}', quiet = TRUE)
+
+sf_point <- sf_line %>% 
+  st_cast("POINT")
+
+sf_line %>%
   ggplot() +
   geom_sf(size = 3) +
+  geom_sf(data = sf_point, size = 8, color = "red") +
   coord_sf()
 ```
   
@@ -319,7 +290,7 @@ sf %>%
 # The GeoTIFF format
   
 .pull-left[
-> **GeoTIFF is a public domain metadata standard which allows georeferencing information to be embedded within a TIFF file.** The potential additional information includes map projection, coordinate systems, ellipsoids, datums, and everything else necessary to establish the exact spatial reference for the file.
+> **GeoTIFF is a public domain metadata standard that allows georeferencing information to be embedded within a TIFF file.** The potential additional information includes map projection, coordinate systems, ellipsoids, datums, and everything else necessary to establish the exact spatial reference for the file.
 >
 > Wikipedia
 ]
@@ -498,7 +469,7 @@ There are few rules to adopt when naming files:
 
 --
   
-- Not too long (can be problematic with older softwares).
+- Not too long (can be problematic with older software).
 
 ---
   
@@ -524,7 +495,14 @@ sort(files) %>%
 **Sorted correctly**
     
 ```{r}
-files <- paste0("file", str_pad(c(1, 10, 2), width = 2, side = "left", pad = "0"), ".csv")
+files <-
+  paste0("file", str_pad(
+    c(1, 10, 2),
+    width = 2,
+    side = "left",
+    pad = "0"
+  ), ".csv")
+
 sort(files) %>%
   tibble(filename = .) %>%
   knitr::kable() %>%
@@ -610,7 +588,7 @@ ggplot() +
   labs(
     title =
       str_wrap(
-        "A comprehensive map of every country that use MMDDYYYY date format",
+        "A comprehensive map of every country that uses MMDDYYYY date format",
         50
       )
   ) +
@@ -722,7 +700,7 @@ Why do we want tidy data?
 
 --
 
-- Well-formatted data allows for quicker visualization, modeling, manipulation and archiving.
+- Well-formatted data allows for quicker **visualization**, **modeling**, **manipulation** and **archiving**.
 
 --
 
@@ -906,7 +884,8 @@ who %>%
     panel.border = element_blank(),
     axis.ticks = element_blank(),
     strip.text = element_text(face = "bold", size = 14),
-    plot.title = element_text(size = 18, hjust = 0.5, color = "#474448")
+    plot.title = element_text(size = 18, hjust = 0.5, color = "#474448"),
+    panel.spacing = unit(1, "lines")
   )
 ```
 
@@ -932,7 +911,7 @@ df %>%
 
 # Variables are in both rows and columns
   
-After pivoting, the data look like this.
+After pivoting `d1` to `d31` into a new column `day`, the data look like this.
 
 ```{r}
 df <- df %>%
@@ -978,7 +957,7 @@ df %>%
   mutate(date = lubridate::make_date(year, month, day)) %>%
   ggplot(aes(x = date, y = temperature, color = type)) +
   geom_line() +
-  geom_point(size = 3, show.legend = FALSE) +
+  geom_point(size = 2, show.legend = FALSE) +
   xlab(NULL) +
   ylab("Temperature (°C)") +
   scale_x_date(date_breaks = "2 months", date_labels = "%B") +
@@ -1052,6 +1031,8 @@ class: inverse, center, middle
 
 - Do not forget to provide information about abbreviations.
 
+    - `tmin` vs `temperature_maximum`
+
 --
 
 - Do not use special characters or spaces (same as for file names).
@@ -1059,7 +1040,8 @@ class: inverse, center, middle
 --
 
 - Explicitly state the unit of each variable:
-  - `depth_m`, `chla_mg_m2`
+
+    - `depth_m`, `chla_mg_m2`
   
 --
 
@@ -1085,7 +1067,7 @@ class: inverse, center, middle
 
 --
 
-- `r fontawesome::fa("exclamation-triangle", fill = "#ffb82a")` .gradient-underline[Do not use a numerical value (ex.: **999**) to indicate missing values.]
+- `r fontawesome::fa("exclamation-triangle", fill = "#ffb82a")` .gradient-underline[Do not use a numerical value (ex.: **-999**) to indicate missing values.]
 
     - This can create situations where missing values will be included in calculations.
 
@@ -1104,13 +1086,13 @@ class: inverse, center, middle
   
 --
 
-- A histogram is an accurate representation of the distribution of numerical data.
+- A histogram can be used to represent the distribution of numerical data.
 
 ---
   
 # Visualization
 
-A histogram is an accurate representation of the distribution of numerical data.
+In this example, we see that there is an outlier in the data. Measuring device fault? Manual entry error?
   
 ```{r, fig.height=4, fig.asp=NA}
 df$tmin[12] <- 123
@@ -1189,14 +1171,16 @@ class: inverse, center, middle
 --
 
 - It is important to have **redundancy** in your data.
-    - `r fontawesome::fa("exclamation-triangle", fill = "#ffb82a")` <span class = "gradient-underline">A copy of your working directory is not redundancy!</span>
+    - `r fontawesome::fa("exclamation-triangle", fill = "#ffb82a")` <span class = "gradient-underline">A copy of your working directory in another directory on the same hard drive is not redundancy!</span>
 
 --
 
 - Backups should not be only done on your computer (use cloud services)
     
     - Google Drive
+    
     - Microsoft OneDrive (1TB of space if a student at Université Laval)
+  
     - Dropbox
 
 ---
@@ -1250,8 +1234,9 @@ class: inverse, center, middle
 --
 
 <br>
+.gradient-underline[Summary tables in an PDF article are not very useful.]
 
-.gradient-underline[Summary tables in an PDF article are not very useful.] You should rather provide the data in a way that is easily importable into a programming language as supplementary information (for example, a `CSV` file).
+- You should rather provide the data in a way that is easily importable into a programming language as supplementary information (for example, a `CSV` file).
 
 ---
 
@@ -1283,7 +1268,7 @@ Many journals and funding agencies now require to have archiving strategies. Why
   
 - Collecting and producing data is difficult and requires a lot of resources (technical and financial). 
     
-    - Publishing your data allows other people credit your for your hard work.
+    - Publishing your data allows other people to credit you for your hard work.
 
 - There are a few ways to make your data available:
   
@@ -1310,7 +1295,7 @@ Many journals and funding agencies now require to have archiving strategies. Why
   
   - **Peer-reviewed** (high-quality data).
   
-  - Generally open access.
+  - Generally open access (obliviously!).
   
   - Data are citable with a DOI.
 
@@ -1388,7 +1373,8 @@ class: inverse, center, middle
 
 --
 
-- .gradient-underline[**Backups your data externally**] as often as possible for the day when your hard drive will crash.
+- .gradient-underline[**Backups your data externally**] as often as possible.
+    - Your hard drive will eventually crash, for sure!
 
 --
 
@@ -1397,3 +1383,27 @@ class: inverse, center, middle
 --
 
 - When possible, share the data and the scripts that were used in your research papers.
+
+---
+
+# A final note...
+
+I hope you have learned something today.
+
+--
+
+If it is not the case...
+
+--
+
+<div class="row">
+    <div class="column">
+        <img src="https://media.giphy.com/media/62cTOas6rcoRQsxwSy/giphy.gif" alt="Snow" style="width:80%">
+    </div>
+    <div class="column">
+        <img src="https://media.giphy.com/media/3Gl8sOjurR3ihZj27S/giphy.gif" alt="Forest" style="width:80%">
+    </div>
+    <div class="column">
+        <img src="https://media.giphy.com/media/ekvSclOoygt90LW8Ro/giphy.gif" alt="Forest" style="width:80%">
+    </div>
+</div>
