@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins");
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;300;400&display=swap");
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;400;600&display=swap');
@@ -241,4 +240,22 @@ blockquote {
   display: inline-block;
   vertical-align: top;
   horizontal-align: center;
+  white-space:nowrap;
 }
+
+/*
+.image-row {
+    text-align: center;
+}
+.image-box {
+    width: 20%;
+    padding: 1%;
+    margin: .5%;
+    display: inline-block;
+    font-size: 0;
+}
+.image-box img {
+    max-width: 100%;
+}
+*/
+

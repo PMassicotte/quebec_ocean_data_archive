@@ -122,17 +122,33 @@ March 22, 2021 (updated: `r format(Sys.Date(), "%B %d, %Y")`)
 
 # Outlines
 
-1. File formats for data archiving.
+--
 
-2. Choosing the tools to read and manipulate your data.
+- Open file formats for your data.
+    
+    - Tabular data.
+    
+    - Geographical data.
 
-3. Files and data organization.
+--
 
-4. Tidying and formatting data.
+- Choosing the tools to read and manipulate your data.
 
-5. Backups.
+--
 
-6. Publishing your data.
+- Files and data organization.
+
+--
+
+- Tidying and formatting data.
+
+--
+
+- Backups.
+
+--
+
+- Publishing your data.
 
 ---
 
@@ -140,7 +156,7 @@ class: inverse, center, middle
 
 # File formats
 
-## The best choices for archiving your data.
+## Open file formats for your data.
 
 <div id="container">
 <div>`r fontawesome::fa("file-excel", fill = "white", height = 150)`</div>
@@ -190,13 +206,13 @@ Ideally, the chosen file format should be:
   
 # Common open-source text file formats
   
-Tabular plain text file formats (standard text documents that contain unformatted text):
+Tabular plain text file formats (.gradient-underline[standard text documents that contain unformatted text]):
   
-- `.CSV` : comma (or semicolon) separated values
+- `.CSV`: Comma (or semicolon) separated values.
 
-- `.TAB` : tab separated values
+- `.TAB`: Tab separated values.
 
-- `.TXT` and `.DAT` : plain text files (.gradient-underline[data delimiter is not known])
+- `.TXT` and `.DAT`: Plain text files (.gradient-underline[data delimiter is not known]).
 
 All these file formats can be opened using a simple text editor.
 
@@ -204,11 +220,11 @@ All these file formats can be opened using a simple text editor.
   
 # Example of a CSV file
   
-This CSV file contains 11 variables (columns).
+This CSV file contains 11 variables (columns). The first line generally contains the names of the variables.
 
 <center>
   <figure>
-      <img src="img/csv_format.png" height = "450"/>
+      <img src="img/csv_format.png" height = "400"/>
   </figure>
 </center>
 
@@ -218,17 +234,17 @@ This CSV file contains 11 variables (columns).
   
 These files contain information of geographic features such as **points**, **lines** or **polygons**. There are a ton of [file formats](https://gisgeography.com/gis-formats/), but here are some that are particularly popular.
   
-- `.SHP` (ESRI shapefile)
+- ESRI shapefile (`.SHP`)
 
-- GeoJSON (JSON variant with simple geographical features)
+- GeoJSON (`.json`, `.geojson`, JSON variant with simple geographical features)
 
-- GeoTIFF (TIFF variant enriched with GIS relevant metadata)
+- GeoTIFF (`.tif`, `.tiff`, TIFF variant enriched with GIS relevant metadata)
 
-- `.xml`, `.kmz`, `.kml` (Google Earth)
+- Google Earth (`.xml`, `.kmz`, `.kml`)
 
 ---
   
-# The GeoJSON format
+# The GeoJSON format (Lines)
   
 .pull-left[
 
@@ -259,7 +275,51 @@ sf_point <- sf_line %>%
 
 sf_line %>%
   ggplot() +
-  geom_sf(size = 3) +
+  geom_sf(size = 3, color = "#3c3c3c") +
+  geom_sf(data = sf_point, size = 8, color = "red") +
+  coord_sf()
+```
+  
+]
+
+---
+  
+# The GeoJSON format (Polygons)
+  
+.pull-left[
+
+This is a simple GeoJSON file defining 3 points that form a polygon.
+
+<small>
+```json
+{     
+    "type": "Polygon", 
+    "coordinates": [
+        [30, 10], 
+        [10, 30], 
+        [40, 40], 
+        [30, 10]
+    ]
+}
+```
+</small>
+]
+
+.pull-right[
+
+```{r, message=FALSE, fig.height=6, fig.asp=NA}
+sf_polygon <- sf::st_read('{ "type": "Polygon", 
+    "coordinates": [
+        [[30, 10], [10, 30], [40, 40], [30, 10]]
+  ]
+}', quiet = TRUE)
+
+sf_point <- sf_polygon %>% 
+  st_cast("POINT")
+
+sf_polygon %>%
+  ggplot() +
+  geom_sf(size = 3, color = "#3c3c3c") +
   geom_sf(data = sf_point, size = 8, color = "red") +
   coord_sf()
 ```
@@ -290,7 +350,7 @@ sf %>%
 # The GeoTIFF format
   
 .pull-left[
-> **GeoTIFF is a public domain metadata standard that allows georeferencing information to be embedded within a TIFF file.** The potential additional information includes map projection, coordinate systems, ellipsoids, datums, and everything else necessary to establish the exact spatial reference for the file.
+> GeoTIFF is a public domain metadata standard that allows **georeferencing information to be embedded within a TIFF file.** The potential additional information includes map projection, coordinate systems, ellipsoids, datums, and everything else necessary to establish the exact spatial reference for the file.
 >
 > Wikipedia
 ]
@@ -325,11 +385,107 @@ par(
   oma = c(10, 0, 0, 0)
 )
 
-plot(r, reset = FALSE, key.pos = NULL, main = NULL)
-plot(st_centroid(poly), add = TRUE, pch = 22, bg = "red", col = "red", cex = 1.1)
+plot(r,
+  reset = FALSE,
+  key.pos = NULL,
+  main = NULL
+)
+plot(
+  st_centroid(poly),
+  add = TRUE,
+  pch = 22,
+  bg = "red",
+  col = "red",
+  cex = 1.1
+)
 
-pal <- as.character(paletteer::paletteer_d("RColorBrewer::Pastel2"))
-plot(r[poly], text_values = TRUE, col = pal, key.pos = NULL, main = NULL)
+pal <- colorspace::lighten(rev(as.character(
+  paletteer::paletteer_d("ggthemes::excel_Grayscale")
+)), 0.4)
+
+plot(
+  r[poly],
+  text_values = TRUE,
+  col = pal,
+  key.pos = NULL,
+  main = NULL
+)
+```
+
+---
+  
+# The GeoTIFF format (SST)
+
+GeoTIFF can also contain other information such as the Sea Surface Temperature (SST).
+
+```{r geotiff3, cache=TRUE, fig.height=5, fig.asp=NA, dev='png', dpi=300}
+poly <- read_sf('{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -66.44805908203125,
+              49.814948620925776
+            ],
+            [
+              -66.17340087890625,
+              49.814948620925776
+            ],
+            [
+              -66.17340087890625,
+              49.99891228081066
+            ],
+            [
+              -66.44805908203125,
+              49.99891228081066
+            ],
+            [
+              -66.44805908203125,
+              49.814948620925776
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}')
+
+r <- read_stars(here::here("data/sst_st_lawrence_river.tif"))
+
+par(
+  mar = c(0.5, 0.5, 0.2, 0.2),
+  mfrow = c(1, 2),
+  oma = c(10, 0, 0, 0)
+)
+
+plot(r,
+  reset = FALSE,
+  key.pos = NULL,
+  main = "SST in the SLR (2020-01-20)"
+)
+
+plot(
+  poly,
+  add = TRUE,
+  pch = 22,
+  bg = "red",
+  col = "red",
+  cex = 1.1
+)
+
+plot(
+  round(r3[poly], digits = 2),
+  text_values = TRUE,
+  col = colorspace::lighten(viridis::viridis(n = 10), amount = 0.25),
+  key.pos = NULL,
+  main = NULL
+)
 ```
 
 ---
@@ -553,22 +709,22 @@ Data files were sorted differently depending on the operating system where the P
 
 --
 
-- Separate file names with `_`  or `-` to add useful information about the data.  
+- Separate file names with `_`  or `-` to add useful information about the data:  
 --
 
-- Project name.
-
---
-
-- The sampling locations.
+  - Project name.
 
 --
 
-- Type of data/variable.
+  - The sampling locations.
 
 --
 
-- Date (YYYY-MM-DD).
+  - Type of data/variable.
+
+--
+
+  - Date (YYYY-MM-DD).
 
 ---
   
@@ -606,7 +762,7 @@ ggplot() +
 
 --
 
-`r fontawesome::fa("times", fill = "#E6352FFF")` `temperature_1.csv` (what is the meaning of **1** ?)
+`r fontawesome::fa("times", fill = "#E6352FFF")` `temperature_1.csv` (what is the meaning of **1** ?, no number padding!)
 
 --
 
@@ -1182,6 +1338,8 @@ class: inverse, center, middle
     - Microsoft OneDrive (1TB of space if a student at Université Laval)
   
     - Dropbox
+    
+    - MEGA
 
 ---
   
@@ -1221,38 +1379,21 @@ class: inverse, center, middle
 
 ---
 
-# Archiving your research data
-
-.gradient-underline[Once your paper has been published, make the data available to the community].
-    
-  - Reproducible research.
-    
-  - Find errors in your data.
-    
-  - Data can be re-used in other studies to build up knowledge.
-
---
-
-<br>
-.gradient-underline[Summary tables in an PDF article are not very useful.]
-
-- You should rather provide the data in a way that is easily importable into a programming language as supplementary information (for example, a `CSV` file).
-
----
-
 class: inverse, center, middle
 
 # Publishing your data
 
+## Making your data available to the community
+
 ---
   
 # Publishing your data
   
-Many journals and funding agencies now require to have archiving strategies. Why?
+Many journals and [funding agencies](http://www.science.gc.ca/eic/site/063.nsf/fra/h_97610.html) now require to have archiving strategies. Why?
   
 --
 
-- Makes your data shareable.
+- Makes your data shareable (do not forget that research if funded with public money).
 
 --
 
@@ -1260,21 +1401,29 @@ Many journals and funding agencies now require to have archiving strategies. Why
 
 --
 
-- Makes your data citable (DOI).
-
----
-  
-# Publishing your data
-  
-- Collecting and producing data is difficult and requires a lot of resources (technical and financial). 
+- Makes your data citable (DOI, Digital Object Identifier).
+    
+    - Collecting and producing data is difficult and requires a lot of resources (technical and financial). 
     
     - Publishing your data allows other people to credit you for your hard work.
 
-- There are a few ways to make your data available:
-  
-    - In an appendix along with your paper (**assuming that your paper is published in an open-access journal**).
+--
 
-    - In a dedicated data paper.
+- Others can find and correct errors in your data.
+
+--
+
+- Data can be re-used in other studies to build up knowledge.
+
+---
+
+# Publishing your data
+  
+There are at least two different ways to make your data available:
+  
+- In an appendix along with your paper (**assuming that your paper is published in an open-access journal**).
+
+- In a dedicated data paper.
 
 <br>
 
@@ -1284,7 +1433,25 @@ Many journals and funding agencies now require to have archiving strategies. Why
   </figure>
   <figcaption>https://www.doaj.org/</figcaption>
 </center>
-  
+
+---
+
+# Public announcement
+
+--
+
+<p style="font-size:38px">.gradient-underline[**Summary tables in an PDF article are not very useful!**]</p>
+
+<center>
+  <figure>
+  <img src="https://media.giphy.com/media/j9Y9vsklHWtjgHOtLk/giphy.gif" width = "400"/>
+  </figure>
+</center>
+
+--
+
+You should rather provide the data in a way that is easily importable into a programming language as supplementary information (for example, a `CSV` file).
+
 ---
   
 # What is a data paper?
@@ -1335,6 +1502,10 @@ There are many options available to publish your data.
   
 - Polar Data Catalogue (https://www.polardata.ca/)
 
+- Scholars Portal Dataverse (https://dataverse.scholarsportal.info/)
+
+- Federated Research Data Repository (https://www.frdr-dfdr.ca/repo/?locale=fr)
+
 - Pangaea (https://www.pangaea.de/)
 
 - Dryad (https://datadryad.org)
@@ -1346,8 +1517,6 @@ There are many options available to publish your data.
 - Figshare (https://figshare.com/)
 
 - Seanoe (https://www.seanoe.org/)
-
-- And much much more...
 
 ---
 
