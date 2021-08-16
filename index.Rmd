@@ -14,6 +14,8 @@ output:
       highlightSpans: true
       countIncrementalSlides: false
       ratio: '16:9'
+editor_options: 
+  chunk_output_type: console
 ---
 
 <!-- https://evamaerey.github.io/flipbooks/flipbook_recipes#49 -->
@@ -32,6 +34,7 @@ options(htmltools.dir.version = FALSE)
 # names(xaringan:::list_css())
 
 # devtools::install_github("rstudio/fontawesome")
+# devtools::install_github("gadenbuie/xaringanExtra")
 library(tidyverse)
 library(ggpmthemes)
 library(patchwork)
@@ -108,13 +111,13 @@ March 22, 2021 (updated: `r format(Sys.Date(), "%B %d, %Y")`)
 
 <br>
 
-`r fontawesome::fa("github", fill = "#3C3C3C", height = 20)` <small>https://github.com/PMassicotte</small> <br>
+`r fontawesome::fa("github", fill = "#3C3C3C", height = "25px")` <small>https://github.com/PMassicotte</small> <br>
 
-`r fontawesome::fa("envelope", fill = "#3C3C3C", height = 20)` <small>philippe.massicotte@takuvik.ulaval.ca</small> <br>
+`r fontawesome::fa("envelope", fill = "#3C3C3C", height = "25px")` <small>philippe.massicotte@takuvik.ulaval.ca</small> <br>
 
-`r fontawesome::fa("twitter", fill = "#3C3C3C", height = 20)` <small>@philmassicotte</small> <br>
+`r fontawesome::fa("twitter", fill = "#3C3C3C", height = "25px")` <small>@philmassicotte</small> <br>
 
-`r fontawesome::fa("blog", fill = "#3C3C3C", height = 20)` <small>www.pmassicotte.com</small>
+`r fontawesome::fa("blog", fill = "#3C3C3C", height = "25px")` <small>www.pmassicotte.com</small>
 
 </p>
 
@@ -159,10 +162,10 @@ class: inverse, center, middle
 ## Open file formats for your data.
 
 <div id="container">
-<div>`r fontawesome::fa("file-excel", fill = "white", height = 150)`</div>
-<div>`r fontawesome::fa("file-alt", fill = "white", height = 150)`</div>
-<div>`r fontawesome::fa("file-csv", fill = "white", height = 150)`</div>
-<div>`r fontawesome::fa("file-archive", fill = "white", height = 150)`</div>
+<div>`r fontawesome::fa("file-excel", fill = "white", height = "150px")`</div>
+<div>`r fontawesome::fa("file-alt", fill = "white", height = "150px")`</div>
+<div>`r fontawesome::fa("file-csv", fill = "white", height = "150px")`</div>
+<div>`r fontawesome::fa("file-archive", fill = "white", height = "150px")`</div>
 </div>
 
 ---
@@ -181,7 +184,7 @@ Data file format has important implications:
 
 --
   
-.left-column[`r fontawesome::fa("file-excel", fill = "#3c3c3c", height = 150)`]
+.left-column[`r fontawesome::fa("file-excel", fill = "#3c3c3c", height = "150px")`]
 .right-column[**Example**: `.xlsx` files can not be opened in older versions of Microsoft Excel.]
 
 ---
@@ -362,7 +365,7 @@ file <- curl::curl_download(url, destfile = tempfile())
 file <- unzip(file, exdir = tempdir())
 r <- stars::read_stars(file[2])
 
-plot(r, rgb = c(1, 2, 3), main = NULL)
+plot(r, rgb = c(1, 2, 3), main = NULL, downsample = c(2,2,1))
 ```
 ]
 
@@ -385,18 +388,22 @@ par(
   oma = c(10, 0, 0, 0)
 )
 
-plot(r,
+plot(
+  r,
   reset = FALSE,
   key.pos = NULL,
-  main = NULL
+  main = NULL,
+  downsample = c(1, 1, 1)
 )
+
 plot(
   st_centroid(poly),
   add = TRUE,
   pch = 22,
   bg = "red",
   col = "red",
-  cex = 1.1
+  cex = 1.1,
+  downsample = c(0, 1, 1)
 )
 
 pal <- colorspace::lighten(rev(as.character(
@@ -408,7 +415,8 @@ plot(
   text_values = TRUE,
   col = pal,
   key.pos = NULL,
-  main = NULL
+  main = NULL,
+  downsample = c(0, 0, 1)
 )
 ```
 
@@ -480,7 +488,7 @@ plot(
 )
 
 plot(
-  round(r3[poly], digits = 2),
+  round(r[poly], digits = 2),
   text_values = TRUE,
   col = colorspace::lighten(viridis::viridis(n = 10), amount = 0.25),
   key.pos = NULL,
@@ -519,7 +527,7 @@ class: inverse, center, middle
 
 .left-column[
 <center>
-  `r fontawesome::fa("r-project", fill = "#3c3c3c", height = 200)`
+  `r fontawesome::fa("r-project", fill = "#3c3c3c", height = "200px")`
 </center>
 ]
 
@@ -591,9 +599,9 @@ class: inverse, center, middle
 <br>
 
 <div id="container">
-<div>`r fontawesome::fa("folder-open", fill = "white", height = 150)`</div>
-<div>`r fontawesome::fa("file-csv", fill = "white", height = 150)`</div>
-<div>`r fontawesome::fa("file-alt", fill = "white", height = 150)`</div>
+<div>`r fontawesome::fa("folder-open", fill = "white", height = "150px")`</div>
+<div>`r fontawesome::fa("file-csv", fill = "white", height = "150px")`</div>
+<div>`r fontawesome::fa("file-alt", fill = "white", height = "150px")`</div>
 </div>
 
 ---
@@ -866,8 +874,8 @@ Whatever the language used (R, Python, Matlab, etc.), there are several tools to
 
 <center>
 <div id="container">
-<div>`r fontawesome::fa("r-project", fill = "#3c3c3c", height = 200)`</div>
-<div>`r fontawesome::fa("python", fill = "#3c3c3c", height = 200)`</div>
+<div>`r fontawesome::fa("r-project", fill = "#3c3c3c", height = "200px")`</div>
+<div>`r fontawesome::fa("python", fill = "#3c3c3c", height = "200px")`</div>
 </div>
 </center>
 
@@ -1296,7 +1304,7 @@ class: inverse, center, middle
 
 ## The question is not *if*, but *when* your hard drive will fail.
 
-`r fontawesome::fa("hdd", fill = "white", height = 200)`
+`r fontawesome::fa("hdd", fill = "white", height = "200px")`
 
 ---
   

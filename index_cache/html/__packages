@@ -13,10 +13,6 @@ patchwork
 flipbookr
 fontawesome
 kableExtra
-shiny
-miniUI
-rstudioapi
 abind
 sf
 stars
-paletteer
