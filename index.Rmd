@@ -33,8 +33,8 @@ knitr::opts_chunk$set(
 options(htmltools.dir.version = FALSE)
 # names(xaringan:::list_css())
 
-# devtools::install_github("rstudio/fontawesome")
-# devtools::install_github("gadenbuie/xaringanExtra")
+# renv::install("rstudio/fontawesome")
+# renv::install("gadenbuie/xaringanExtra")
 library(tidyverse)
 library(ggpmthemes)
 library(patchwork)
@@ -756,7 +756,11 @@ Basic recommendations to preserve the raw data for future use:
 
 If a script changes the content of a raw data file, it is likely that it will not work again the second time you run it.
 
-!!!ADD FIGURE HERE!!!
+<center>
+  <figure>
+      <img src="img/keep_data_raw.png" width = "600"/>
+  </figure>
+</center>
 
 ---
   
