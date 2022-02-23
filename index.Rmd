@@ -93,7 +93,7 @@ class: title-slide, center, bottom
 
 <img src="img/logo_quebec_ocean.jpg"/ height="150"/>
 
-March 22, 2021 (updated: `r format(Sys.Date(), "%B %d, %Y")`)
+March 16, 2022 (updated: `r format(Sys.Date(), "%B %d, %Y")`)
 
 ## `r rmarkdown::metadata$author`
 
@@ -239,51 +239,15 @@ These files contain information of geographic features such as **points**, **lin
   
 - ESRI shapefile (`.SHP`)
 
+  - Technically, the shalefile format is not open. It is however **widely used and often considered the standard**.
+
+  - The GeoPackage format (`.gpkg`) [is an interesting open format](https://geocompr.robinlovelace.net/read-write.html?q=geopack#file-formats).
+
 - GeoJSON (`.json`, `.geojson`, JSON variant with simple geographical features)
 
 - GeoTIFF (`.tif`, `.tiff`, TIFF variant enriched with GIS relevant metadata)
 
 - Google Earth (`.xml`, `.kmz`, `.kml`)
-
----
-  
-# The GeoJSON format (Lines)
-  
-.pull-left[
-
-This is a simple GeoJSON file defining 3 points that are joined by lines.
-
-<small>
-```json
-    { "type": "LineString", 
-      "coordinates": [
-        [30, 10], [10, 30], [40, 40]
-    ]
-    }
-```
-</small>
-]
-
-.pull-right[
-
-```{r, message=FALSE, fig.height=6, fig.asp=NA}
-sf_line <- sf::st_read('{ "type": "LineString", 
-    "coordinates": [
-        [30, 10], [10, 30], [40, 40]
-  ]
-}', quiet = TRUE)
-
-sf_point <- sf_line %>% 
-  st_cast("POINT")
-
-sf_line %>%
-  ggplot() +
-  geom_sf(size = 3, color = "#3c3c3c") +
-  geom_sf(data = sf_point, size = 8, color = "red") +
-  coord_sf()
-```
-  
-]
 
 ---
   
@@ -365,68 +329,17 @@ file <- curl::curl_download(url, destfile = tempfile())
 file <- unzip(file, exdir = tempdir())
 r <- stars::read_stars(file[2])
 
-plot(r, rgb = c(1, 2, 3), main = NULL, downsample = c(2,2,1))
+plot(r, rgb = c(1, 2, 3), main = NULL, downsample = TRUE)
 ```
 ]
 
 ---
   
-# The GeoTIFF format
-
-```{r geotiff2, cache=TRUE, fig.height=5, fig.asp=NA, dev='png', dpi=300}
-r <- r[, , , 1]
-
-poly <- r %>%
-  st_bbox() %>%
-  st_as_sfc() %>%
-  st_centroid() %>%
-  st_buffer(8000, endCapStyle = "SQUARE")
-
-par(
-  mar = c(0.5, 0.5, 0.2, 0.2),
-  mfrow = c(1, 2),
-  oma = c(10, 0, 0, 0)
-)
-
-plot(
-  r,
-  reset = FALSE,
-  key.pos = NULL,
-  main = NULL,
-  downsample = c(1, 1, 1)
-)
-
-plot(
-  st_centroid(poly),
-  add = TRUE,
-  pch = 22,
-  bg = "red",
-  col = "red",
-  cex = 1.1,
-  downsample = c(0, 1, 1)
-)
-
-pal <- colorspace::lighten(rev(as.character(
-  paletteer::paletteer_d("ggthemes::excel_Grayscale")
-)), 0.4)
-
-plot(
-  r[poly],
-  text_values = TRUE,
-  col = pal,
-  key.pos = NULL,
-  main = NULL,
-  downsample = c(0, 0, 1)
-)
-```
-
----
-  
 # The GeoTIFF format (SST)
 
-GeoTIFF can also contain other information such as the Sea Surface Temperature (SST).
+A GeoTIFF can contain information such as the Sea Surface Temperature (SST).
 
-```{r geotiff3, cache=TRUE, fig.height=5, fig.asp=NA, dev='png', dpi=300}
+```{r geotiff3, cache=TRUE, fig.height=3, fig.asp=NA, dev='png', dpi=300}
 poly <- read_sf('{
   "type": "FeatureCollection",
   "features": [
@@ -466,27 +379,62 @@ poly <- read_sf('{
 
 r <- read_stars(here::here("data/sst_st_lawrence_river.tif"))
 
-par(
-  mar = c(0.5, 0.5, 0.2, 0.2),
-  mfrow = c(1, 2),
-  oma = c(10, 0, 0, 0)
-)
+ggplot() +
+  geom_stars(data = r) +
+  geom_sf(data = poly, fill = "red") +
+  scale_fill_viridis_c(
+    breaks = scales::breaks_pretty(n = 6),
+    na.value = NA,
+    guide = guide_colorbar(
+      title.position = "top",
+      title.hjust = 0.5,
+      title.theme = element_text(family = "Montserrat", size = 8),
+      label.theme = element_text(family = "Montserrat", size = 6),
+      barwidth = unit(4, "cm"),
+      barheight = unit(0.25, "cm")
+    )
+  ) +
+  annotate(
+    "text",
+    x = -71,
+    y = 47.4,
+    label = "Quebec",
+    family = "Montserrat",
+    fontface = "bold",
+    size = 4
+  ) +
+  annotate(
+    "text",
+    x = -68.52396,
+    y = 48.44879,
+    label = "Rimouski",
+    family = "Montserrat",
+    fontface = "bold",
+    size = 4,
+    hjust = -0.25
+  ) +
+  labs(
+    fill = "Water temperature (°C)",
+    x = NULL,
+    y = NULL,
+    title = "SST in the SLR (2020-01-20)"
+  ) +
+  theme(
+    legend.justification = c(0, 0),
+    legend.position = c(0.05, 0.8),
+    legend.direction = "horizontal",
+    legend.background = element_blank(),
+    plot.title = element_text(size = 12)
+  )
+```
 
-plot(r,
-  reset = FALSE,
-  key.pos = NULL,
-  main = "SST in the SLR (2020-01-20)"
-)
+---
+  
+# The GeoTIFF format (SST)
 
-plot(
-  poly,
-  add = TRUE,
-  pch = 22,
-  bg = "red",
-  col = "red",
-  cex = 1.1
-)
+A closer look allows to better visualize the values (i.e. water temperature) within each pixel.
 
+```{r geotiff4, cache=TRUE, fig.height=3, fig.asp=NA, dev='png', dpi=300}
 plot(
   round(r[poly], digits = 2),
   text_values = TRUE,
@@ -495,6 +443,7 @@ plot(
   main = NULL
 )
 ```
+
 
 ---
 
@@ -557,7 +506,7 @@ For geographic data:
   
 - GeoJSON: `jsonlite`, `sf`, `geojson` and `geojsonsf`
   
-- GeoTIFF: `raster` and `stars`
+- GeoTIFF: `terra` and `stars`
   
 - For NetCDF: `ncdf4`, `tidync` and `stars`
   
@@ -734,32 +683,10 @@ Data files were sorted differently depending on the operating system where the P
 
   - Date (YYYY-MM-DD).
 
----
-  
-# A note on dates
-  
+--
+
 .gradient-underline[Always use the ISO format:] <big>**YYYY**</big>-<medium>**MM**</medium>-<small>**DD**</small> (large `r fontawesome::fa("arrow-right", fill = "#d5695d")` small).
 
-<br>
-
-```{r world-map}
-wm <- rnaturalearth::ne_countries(returnclass = "sf", scale = "medium")
-usa <- rnaturalearth::ne_countries(country = "united states of america", returnclass = "sf", scale = "medium")
-
-ggplot() +
-  geom_sf(data = wm, fill = NA, size = 0.2) +
-  geom_sf(data = usa, fill = "red", size = 0.1) +
-  labs(
-    title =
-      str_wrap(
-        "A comprehensive map of every country that uses MMDDYYYY date format",
-        50
-      )
-  ) +
-  coord_sf(crs = 8857)
-```
-
-  
 ---
   
 # File naming basic rules (examples)
@@ -779,10 +706,6 @@ ggplot() +
 --
 
 `r fontawesome::fa("check", fill = "#34A74BFF")` `station01_temperature_20160708.csv`
-
---
-
-`r fontawesome::fa("check", fill = "#34A74BFF")` `station01_air_temperature_20160708.csv` (even better, we know this is the air temperature)
   
 ---
 
@@ -826,7 +749,7 @@ Basic recommendations to preserve the raw data for future use:
 
 --
 
-- Consider using a folder to store raw data files. 
+- Consider using a specific folder to store raw data files. 
 
 --
 
@@ -901,11 +824,10 @@ class: inverse, center, middle
 # Three common problems
 
 <br>
-<center>
+
 1. Column headers are values, not variable names.<br><br>
 2. Multiple variables are stored in one column.<br><br>
 3. Variables are stored in both rows and columns.<br>
-</center>
 
 ---
   
@@ -1429,15 +1351,16 @@ Many journals and [funding agencies](http://www.science.gc.ca/eic/site/063.nsf/f
   
 There are at least two different ways to make your data available:
   
-- In an appendix along with your paper (**assuming that your paper is published in an open-access journal**).
+1. In a dedicated data paper.
 
-- In a dedicated data paper.
+2. In an appendix along with your paper (**assuming that your paper is published in an open-access journal**).
+  - [The Directory of Open Access Journals](https://www.doaj.org/) is useful to search for open access journal. 
 
 <br>
 
 <center>
   <figure>
-      <img src="https://www.doaj.org/static/doaj/images/logo_cropped.jpg" width = "350"/>
+      <img src="img/doaj_logo.png" width = "600"/>
   </figure>
   <figcaption>https://www.doaj.org/</figcaption>
 </center>
@@ -1550,7 +1473,7 @@ class: inverse, center, middle
 
 --
 
-- .gradient-underline[**Backups your data externally**] as often as possible.
+- .gradient-underline[**Backups your data externally as often as possible.**]
     - Your hard drive will eventually crash, for sure!
 
 --
@@ -1560,27 +1483,3 @@ class: inverse, center, middle
 --
 
 - When possible, share the data and the scripts that were used in your research papers.
-
----
-
-# A final note...
-
-I hope you have learned something today.
-
---
-
-If it is not the case...
-
---
-
-<div class="row">
-    <div class="column">
-        <img src="https://media.giphy.com/media/62cTOas6rcoRQsxwSy/giphy.gif" alt="Snow" style="width:80%">
-    </div>
-    <div class="column">
-        <img src="https://media.giphy.com/media/3Gl8sOjurR3ihZj27S/giphy.gif" alt="Forest" style="width:80%">
-    </div>
-    <div class="column">
-        <img src="https://media.giphy.com/media/ekvSclOoygt90LW8Ro/giphy.gif" alt="Forest" style="width:80%">
-    </div>
-</div>

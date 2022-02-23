@@ -10,10 +10,6 @@
     <link href="libs/remark-css/robot-fonts.css" rel="stylesheet" />
     <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
     <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
-    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
-    <script src="libs/tile-view/tile-view.js"></script>
-    <link href="libs/animate.css/animate.xaringan.css" rel="stylesheet" />
-    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
     <script src="libs/js-cookie/js.cookie.js"></script>
     <script src="libs/peerjs/peerjs.min.js"></script>
     <script src="libs/tiny.toast/toast.min.js"></script>
@@ -23,6 +19,7 @@
     <link href="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
     <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
     <script>window.xaringanExtraClipboard(null, {"button":"Copy<\/i>","success":"<i class=\"fa fa-check\" style=\"color: #90BE6D\"><\/i>","error":"<i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
     <script src="libs/kePrint/kePrint.js"></script>
     <link href="libs/lightable/lightable.css" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" type="text/css" />
@@ -49,7 +46,7 @@ class: title-slide, center, bottom
 
 &lt;img src="img/logo_quebec_ocean.jpg"/ height="150"/&gt;
 
-March 22, 2021 (updated: August 16, 2021)
+March 16, 2022 (updated: February 22, 2022)
 
 ## Philippe Massicotte
 
@@ -195,36 +192,15 @@ These files contain information of geographic features such as **points**, **lin
   
 - ESRI shapefile (`.SHP`)
 
+  - Technically, the shalefile format is not open. It is however **widely used and often considered the standard**.
+
+  - The GeoPackage format (`.gpkg`) [is an interesting open format](https://geocompr.robinlovelace.net/read-write.html?q=geopack#file-formats).
+
 - GeoJSON (`.json`, `.geojson`, JSON variant with simple geographical features)
 
 - GeoTIFF (`.tif`, `.tiff`, TIFF variant enriched with GIS relevant metadata)
 
 - Google Earth (`.xml`, `.kmz`, `.kml`)
-
----
-  
-# The GeoJSON format (Lines)
-  
-.pull-left[
-
-This is a simple GeoJSON file defining 3 points that are joined by lines.
-
-&lt;small&gt;
-```json
-    { "type": "LineString", 
-      "coordinates": [
-        [30, 10], [10, 30], [40, 40]
-    ]
-    }
-```
-&lt;/small&gt;
-]
-
-.pull-right[
-
-&lt;img src="index_files/figure-html/unnamed-chunk-1-1.svg" style="display: block; margin: auto;" /&gt;
-  
-]
 
 ---
   
@@ -251,7 +227,7 @@ This is a simple GeoJSON file defining 3 points that form a polygon.
 
 .pull-right[
 
-&lt;img src="index_files/figure-html/unnamed-chunk-2-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-1-1.svg" style="display: block; margin: auto;" /&gt;
   
 ]
 
@@ -277,17 +253,20 @@ This is a simple GeoJSON file defining 3 points that form a polygon.
 
 ---
   
-# The GeoTIFF format
+# The GeoTIFF format (SST)
 
-&lt;img src="index_files/figure-html/geotiff2-1.png" style="display: block; margin: auto;" /&gt;
+A GeoTIFF can contain information such as the Sea Surface Temperature (SST).
+
+&lt;img src="index_files/figure-html/geotiff3-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
   
 # The GeoTIFF format (SST)
 
-GeoTIFF can also contain other information such as the Sea Surface Temperature (SST).
+A closer look allows to better visualize the values (i.e. water temperature) within each pixel.
 
-&lt;img src="index_files/figure-html/geotiff3-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/geotiff4-1.png" style="display: block; margin: auto;" /&gt;
+
 
 ---
 
@@ -350,7 +329,7 @@ For geographic data:
   
 - GeoJSON: `jsonlite`, `sf`, `geojson` and `geojsonsf`
   
-- GeoTIFF: `raster` and `stars`
+- GeoTIFF: `terra` and `stars`
   
 - For NetCDF: `ncdf4`, `tidync` and `stars`
   
@@ -360,7 +339,7 @@ For geographic data:
   
 
 
-&lt;img src="index_files/figure-html/unnamed-chunk-3-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-2-1.svg" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -522,17 +501,10 @@ Data files were sorted differently depending on the operating system where the P
 
   - Date (YYYY-MM-DD).
 
----
-  
-# A note on dates
-  
+--
+
 .gradient-underline[Always use the ISO format:] &lt;big&gt;**YYYY**&lt;/big&gt;-&lt;medium&gt;**MM**&lt;/medium&gt;-&lt;small&gt;**DD**&lt;/small&gt; (large <svg aria-hidden="true" role="img" viewBox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#d5695d;overflow:visible;position:relative;"><path d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"/></svg> small).
 
-&lt;br&gt;
-
-&lt;img src="index_files/figure-html/world-map-1.svg" style="display: block; margin: auto;" /&gt;
-
-  
 ---
   
 # File naming basic rules (examples)
@@ -552,10 +524,6 @@ Data files were sorted differently depending on the operating system where the P
 --
 
 <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#34A74BFF;overflow:visible;position:relative;"><path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"/></svg> `station01_temperature_20160708.csv`
-
---
-
-<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#34A74BFF;overflow:visible;position:relative;"><path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"/></svg> `station01_air_temperature_20160708.csv` (even better, we know this is the air temperature)
   
 ---
 
@@ -599,7 +567,7 @@ Basic recommendations to preserve the raw data for future use:
 
 --
 
-- Consider using a folder to store raw data files. 
+- Consider using a specific folder to store raw data files. 
 
 --
 
@@ -674,11 +642,10 @@ class: inverse, center, middle
 # Three common problems
 
 &lt;br&gt;
-&lt;center&gt;
+
 1. Column headers are values, not variable names.&lt;br&gt;&lt;br&gt;
 2. Multiple variables are stored in one column.&lt;br&gt;&lt;br&gt;
 3. Variables are stored in both rows and columns.&lt;br&gt;
-&lt;/center&gt;
 
 ---
   
@@ -1510,7 +1477,7 @@ class: inverse, center, middle
 
 In this example, we see that there is an outlier in the data. Measuring device fault? Manual entry error?
   
-&lt;img src="index_files/figure-html/unnamed-chunk-15-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-14-1.svg" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1645,15 +1612,16 @@ Many journals and [funding agencies](http://www.science.gc.ca/eic/site/063.nsf/f
   
 There are at least two different ways to make your data available:
   
-- In an appendix along with your paper (**assuming that your paper is published in an open-access journal**).
+1. In a dedicated data paper.
 
-- In a dedicated data paper.
+2. In an appendix along with your paper (**assuming that your paper is published in an open-access journal**).
+  - [The Directory of Open Access Journals](https://www.doaj.org/) is useful to search for open access journal. 
 
 &lt;br&gt;
 
 &lt;center&gt;
   &lt;figure&gt;
-      &lt;img src="https://www.doaj.org/static/doaj/images/logo_cropped.jpg" width = "350"/&gt;
+      &lt;img src="img/doaj_logo.png" width = "600"/&gt;
   &lt;/figure&gt;
   &lt;figcaption&gt;https://www.doaj.org/&lt;/figcaption&gt;
 &lt;/center&gt;
@@ -1766,7 +1734,7 @@ class: inverse, center, middle
 
 --
 
-- .gradient-underline[**Backups your data externally**] as often as possible.
+- .gradient-underline[**Backups your data externally as often as possible.**]
     - Your hard drive will eventually crash, for sure!
 
 --
@@ -1776,30 +1744,6 @@ class: inverse, center, middle
 --
 
 - When possible, share the data and the scripts that were used in your research papers.
-
----
-
-# A final note...
-
-I hope you have learned something today.
-
---
-
-If it is not the case...
-
---
-
-&lt;div class="row"&gt;
-    &lt;div class="column"&gt;
-        &lt;img src="https://media.giphy.com/media/62cTOas6rcoRQsxwSy/giphy.gif" alt="Snow" style="width:80%"&gt;
-    &lt;/div&gt;
-    &lt;div class="column"&gt;
-        &lt;img src="https://media.giphy.com/media/3Gl8sOjurR3ihZj27S/giphy.gif" alt="Forest" style="width:80%"&gt;
-    &lt;/div&gt;
-    &lt;div class="column"&gt;
-        &lt;img src="https://media.giphy.com/media/ekvSclOoygt90LW8Ro/giphy.gif" alt="Forest" style="width:80%"&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
