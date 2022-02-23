@@ -44,7 +44,7 @@ class: title-slide, center, bottom
 
 ### *Good practices*
 
-&lt;img src="img/logo_quebec_ocean.jpg"/ height="150"/&gt;
+&lt;img src="img/logo_quebec_ocean.png"/ height="150"/&gt;
 
 March 16, 2022 (updated: February 23, 2022)
 
@@ -176,7 +176,7 @@ All these file formats can be opened using a simple text editor.
   
 # Example of a CSV file
   
-This CSV file contains 11 variables (columns). The first line generally contains the names of the variables.
+This CSV file contains 11 variables (columns). **The first line generally contains the names of the variables.**
 
 &lt;center&gt;
   &lt;figure&gt;
@@ -189,16 +189,24 @@ This CSV file contains 11 variables (columns). The first line generally contains
 ## Common open-source geographic file formats
   
 These files contain information of geographic features such as **points**, **lines** or **polygons**. There are a ton of [file formats](https://gisgeography.com/gis-formats/), but here are some that are particularly popular.
-  
+
+--
+
 - ESRI shapefile (`.SHP`)
 
   - Technically, the shalefile format is not open. It is however **widely used and often considered the standard**.
 
   - The GeoPackage format (`.gpkg`) [is an interesting open format](https://geocompr.robinlovelace.net/read-write.html?q=geopack#file-formats).
 
+--
+
 - GeoJSON (`.json`, `.geojson`, JSON variant with simple geographical features)
 
+--
+
 - GeoTIFF (`.tif`, `.tiff`, TIFF variant enriched with GIS relevant metadata)
+
+--
 
 - Google Earth (`.xml`, `.kmz`, `.kml`)
 
@@ -272,7 +280,7 @@ A closer look allows to better visualize the values (i.e. water temperature) wit
 
 class: inverse, center, middle
 
-# Efficient tools for reading large datasets
+# Efficient tools for reading large datasets in R
 
 &lt;center&gt;
   &lt;figure&gt;
@@ -284,7 +292,7 @@ class: inverse, center, middle
   
 # Efficient tools for reading large datasets
   
-.gradient-underline[Data science is an iterative process that can be time-consuming when working with large datasets.]
+Data science is an iterative process that can be time-consuming when working with large datasets.
 
 &lt;center&gt;
 &lt;figure&gt;
@@ -386,6 +394,7 @@ There are few rules to adopt when naming files:
 --
   
 - Not too long (can be problematic with older software).
+  - **Not so true anymore**, it is better to have a good descriptive file name.
 
 ---
   
@@ -556,7 +565,15 @@ Basic recommendations to preserve the raw data for future use:
 - If you want to do some analyses in Excel, make a copy of the file and do your calculations and graphs in the copy.
 
 &lt;small&gt;Source: https://www.dataone.org/best-practices/preserve-information-keep-your-raw-data-raw&lt;/small&gt;
-  
+
+---
+
+## Preserve information: keep your raw data raw
+
+If a script changes the content of a raw data file, it is likely that it will not work again the second time you run it.
+
+!!!ADD FIGURE HERE!!!
+
 ---
   
 # Project directory structure
@@ -919,7 +936,7 @@ Column demographic contains .gradient-underline[four types of information].
 
 &lt;center&gt;
   &lt;figure&gt;
-      &lt;img style="margin:0px auto;display:block" src="img/new_sp.svg.png" width = "700"/&gt;
+      &lt;img style="margin:0px auto;display:block" src="img/new_sp.png" width = "700"/&gt;
   &lt;/figure&gt;
 &lt;/center&gt;
   
@@ -1693,22 +1710,16 @@ The data associated with the paper is available online.
 There are many options available to publish your data.
   
 - Polar Data Catalogue (https://www.polardata.ca/)
-
 - Scholars Portal Dataverse (https://dataverse.scholarsportal.info/)
-
 - Federated Research Data Repository (https://www.frdr-dfdr.ca/repo/?locale=fr)
-
 - Pangaea (https://www.pangaea.de/)
-
 - Dryad (https://datadryad.org)
-
 - Catalogue de données ouverte OGSL (https://ogsl.ca/fr/)
-
 - Zenodo (https://zenodo.org/)
-
 - Figshare (https://figshare.com/)
-
 - Seanoe (https://www.seanoe.org/)
+- NFS Arctic Data Center (https://arcticdata.io/)
+- The Dataverse Project (https://dataverse.org/)
 
 ---
 

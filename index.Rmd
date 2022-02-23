@@ -91,7 +91,7 @@ class: title-slide, center, bottom
 
 ### *`r rmarkdown::metadata$subtitle`*
 
-<img src="img/logo_quebec_ocean.jpg"/ height="150"/>
+<img src="img/logo_quebec_ocean.png"/ height="150"/>
 
 March 16, 2022 (updated: `r format(Sys.Date(), "%B %d, %Y")`)
 
@@ -223,7 +223,7 @@ All these file formats can be opened using a simple text editor.
   
 # Example of a CSV file
   
-This CSV file contains 11 variables (columns). The first line generally contains the names of the variables.
+This CSV file contains 11 variables (columns). **The first line generally contains the names of the variables.**
 
 <center>
   <figure>
@@ -236,16 +236,24 @@ This CSV file contains 11 variables (columns). The first line generally contains
 ## Common open-source geographic file formats
   
 These files contain information of geographic features such as **points**, **lines** or **polygons**. There are a ton of [file formats](https://gisgeography.com/gis-formats/), but here are some that are particularly popular.
-  
+
+--
+
 - ESRI shapefile (`.SHP`)
 
   - Technically, the shalefile format is not open. It is however **widely used and often considered the standard**.
 
   - The GeoPackage format (`.gpkg`) [is an interesting open format](https://geocompr.robinlovelace.net/read-write.html?q=geopack#file-formats).
 
+--
+
 - GeoJSON (`.json`, `.geojson`, JSON variant with simple geographical features)
 
+--
+
 - GeoTIFF (`.tif`, `.tiff`, TIFF variant enriched with GIS relevant metadata)
+
+--
 
 - Google Earth (`.xml`, `.kmz`, `.kml`)
 
@@ -298,18 +306,20 @@ sf_polygon %>%
 # The GeoJSON format
   
 ```{r geojson, out.width="85%"}
-url <- "https://github.com/Robinlovelace/Creating-maps-in-R/raw/master/data/test-multifeature.geojson"
+url <-
+  "https://github.com/Robinlovelace/Creating-maps-in-R/raw/master/data/test-multifeature.geojson"
 sf <- geojsonsf::geojson_sf(url)
 sf %>%
   ggplot() +
   geom_sf(size = 0.25) +
   labs(
-    title = str_wrap("The Colosseum amphitheatre in the centre of the city of Rome", 30),
+    title = str_wrap(
+      "The Colosseum amphitheatre in the centre of the city of Rome", 30
+    ),
     caption = str_wrap("Data source: https://bit.ly/2pAjOAr", 80)
   ) +
-  theme(
-    plot.title = element_text(size = 14, hjust = 0.5)
-  )
+  coord_sf() +
+  theme(plot.title = element_text(size = 14, hjust = 0.5))
 ```
 
 ---
@@ -449,7 +459,7 @@ plot(
 
 class: inverse, center, middle
 
-# Efficient tools for reading large datasets
+# Efficient tools for reading large datasets in R
 
 <center>
   <figure>
@@ -461,7 +471,7 @@ class: inverse, center, middle
   
 # Efficient tools for reading large datasets
   
-.gradient-underline[Data science is an iterative process that can be time-consuming when working with large datasets.]
+Data science is an iterative process that can be time-consuming when working with large datasets.
 
 <center>
 <figure>
@@ -583,6 +593,7 @@ There are few rules to adopt when naming files:
 --
   
 - Not too long (can be problematic with older software).
+  - **Not so true anymore**, it is better to have a good descriptive file name.
 
 ---
   
@@ -738,7 +749,15 @@ Basic recommendations to preserve the raw data for future use:
 - If you want to do some analyses in Excel, make a copy of the file and do your calculations and graphs in the copy.
 
 <small>Source: https://www.dataone.org/best-practices/preserve-information-keep-your-raw-data-raw</small>
-  
+
+---
+
+## Preserve information: keep your raw data raw
+
+If a script changes the content of a raw data file, it is likely that it will not work again the second time you run it.
+
+!!!ADD FIGURE HERE!!!
+
 ---
   
 # Project directory structure
@@ -914,7 +933,7 @@ Column demographic contains .gradient-underline[four types of information].
 
 <center>
   <figure>
-      <img style="margin:0px auto;display:block" src="img/new_sp.svg.png" width = "700"/>
+      <img style="margin:0px auto;display:block" src="img/new_sp.png" width = "700"/>
   </figure>
 </center>
   
@@ -1432,22 +1451,16 @@ The data associated with the paper is available online.
 There are many options available to publish your data.
   
 - Polar Data Catalogue (https://www.polardata.ca/)
-
 - Scholars Portal Dataverse (https://dataverse.scholarsportal.info/)
-
 - Federated Research Data Repository (https://www.frdr-dfdr.ca/repo/?locale=fr)
-
 - Pangaea (https://www.pangaea.de/)
-
 - Dryad (https://datadryad.org)
-
 - Catalogue de données ouverte OGSL (https://ogsl.ca/fr/)
-
 - Zenodo (https://zenodo.org/)
-
 - Figshare (https://figshare.com/)
-
 - Seanoe (https://www.seanoe.org/)
+- NFS Arctic Data Center (https://arcticdata.io/)
+- The Dataverse Project (https://dataverse.org/)
 
 ---
 
