@@ -46,7 +46,7 @@ class: title-slide, center, bottom
 
 &lt;img src="img/logo_quebec_ocean.png"/ height="150"/&gt;
 
-March 16, 2022 (updated: February 23, 2022)
+March 16, 2022 (updated: February 24, 2022)
 
 ## Philippe Massicotte
 
@@ -570,9 +570,13 @@ Basic recommendations to preserve the raw data for future use:
 
 ## Preserve information: keep your raw data raw
 
-If a script changes the content of a raw data file, it is likely that it will not work again the second time you run it.
+If a script changes the content of a raw data file, it is likely that the same script will not work again the second time you run it because the structure of the file has changed.
 
-!!!ADD FIGURE HERE!!!
+&lt;center&gt;
+  &lt;figure&gt;
+      &lt;img src="img/keep_data_raw.png" width = "600"/&gt;
+  &lt;/figure&gt;
+&lt;/center&gt;
 
 ---
   
@@ -654,732 +658,234 @@ The main idea is that data should be organized in columns with **each column rep
 
 ---
 
-class: inverse, center, middle
+# How data is often structured
 
-# Three common problems
+Many researchers structure their data in such a way that it is easily manipulated by a human, **but not so much programatically**.
 
-&lt;br&gt;
+!!!ADD THE THREE PLANT IMAGES HERE!!!
 
-1. Column headers are values, not variable names.&lt;br&gt;&lt;br&gt;
-2. Multiple variables are stored in one column.&lt;br&gt;&lt;br&gt;
-3. Variables are stored in both rows and columns.&lt;br&gt;
+Klady, Rebecca A, Henry, Gregory HR, and Lemay, Valerie. 2017. [Flower and seed biomass, and germination rate of arctic tundra plants in response to long term experimental warming. doi:10.1594/PANGAEA.812091. ](https://search.dataone.org/view/doi%3A10.1594%2FPANGAEA.812091)
 
 ---
-  
-## Column headers are values, not variable names
-  
-This table presents the number of tuberculosis cases documented by the World Health Organization in 1999 and 2000 for different countries.
 
-&lt;table class="table" style="font-size: 22px; margin-left: auto; margin-right: auto;"&gt;
+# How data is often structured
+
+One common mistake is that information (such as **species**) are contained within column names.
+
+&lt;table class="table" style="font-size: 14px; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; country &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; 1999 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; 2000 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Date/Time &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Vegetation type &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Exp treat &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; D. integrifolia flower biom [g] &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; D. integrifolia std dev [±] &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; F. brachyphylla flower biom [g] &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; F. brachyphylla std dev [±] &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; L. arctica flower biom [g] &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; L. arctica std dev [±] &lt;/th&gt;
   &lt;/tr&gt;
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Afghanistan &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 745 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2666 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Brazil &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 37737 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 80488 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; China &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 212258 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 213766 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
---
-
-What is the problem with this table?
-  
----
-  
-## Column headers are values, not variable names
-
-To make this data **tidy**, .gradient-underline[we have to **pivot** it longer]. Two new columns (`year` and `number_of_cases`) are created.
-
-.pull-left[
-  Data **is not** tidy
-&lt;table class="table" style="font-size: 22px; margin-left: auto; margin-right: auto;"&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; country &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; 1999 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; 2000 &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Afghanistan &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 745 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2666 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Brazil &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 37737 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 80488 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; China &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 212258 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 213766 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-]
-.pull-right[
-  Data **is** tidy
-&lt;table class="table" style="font-size: 22px; margin-left: auto; margin-right: auto;"&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; country &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; year &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; number_of_cases &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Afghanistan &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 1999 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 745 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Afghanistan &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 2000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2666 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Brazil &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 1999 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 37737 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Brazil &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 2000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 80488 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; China &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 1999 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 212258 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; China &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 2000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 213766 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-]
-
----
-  
-# Multiple variables in one column
-  
-First problem: column headers are values, not variable names.
-
-&lt;table class="table" style="font-size: 22px; margin-left: auto; margin-right: auto;"&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; country &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; year &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; new_sp_m014 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; new_sp_m1524 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; new_sp_m2534 &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Argentina &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1996 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 113 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 611 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 535 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Argentina &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1997 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 96 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 580 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 600 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Argentina &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1998 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 84 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 578 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 571 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Argentina &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1999 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 90 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 490 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 546 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Argentina &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2000 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 97 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 278 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 594 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Argentina &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2001 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 78 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 682 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 611 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Argentina &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2002 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 70 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 612 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 658 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Argentina &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2003 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 89 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 574 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 565 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
----
-  
-# Multiple variables in one column
-  
-After pivoting the table, we realize that there is another problem. 
-
-&lt;table class="table" style="font-size: 22px; margin-left: auto; margin-right: auto;"&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; country &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; year &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; demographic &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; number_of_cases &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Argentina &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1996 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; new_sp_m014 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 113 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Argentina &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1996 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; new_sp_m1524 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 611 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Argentina &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1996 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; new_sp_m2534 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 535 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Argentina &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1997 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; new_sp_m014 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 96 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Argentina &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1997 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; new_sp_m1524 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 580 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Argentina &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1997 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; new_sp_m2534 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 600 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Argentina &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1998 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; new_sp_m014 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 84 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Argentina &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1998 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; new_sp_m1524 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 578 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
---
-
-How would you visualize the temporal evolution of tuberculosis cases for men and women?
-
----
-  
-# Multiple variables in one column
-  
-Column demographic contains .gradient-underline[four types of information].
-
-&lt;center&gt;
-  &lt;figure&gt;
-      &lt;img style="margin:0px auto;display:block" src="img/new_sp.png" width = "700"/&gt;
-  &lt;/figure&gt;
-&lt;/center&gt;
-  
----
-  
-# Multiple variables in one column
-  
-The column `demographic` should be separated into four new columns (`new`, `type`, `sex`, `age`).
-
-&lt;table class="table" style="font-size: 22px; margin-left: auto; margin-right: auto;"&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; country &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; year &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; new &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; type &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; sex &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; age &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; number_of_cases &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Argentina &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1996 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; new &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; sp &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; m &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 0-14 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 113 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Argentina &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1996 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; new &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; sp &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; m &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 15-24 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 611 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Argentina &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1996 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; new &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; sp &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; m &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 25-34 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 535 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Argentina &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1997 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; new &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; sp &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; m &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 0-14 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 96 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Argentina &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1997 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; new &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; sp &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; m &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 15-24 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 580 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Argentina &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1997 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; new &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; sp &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; m &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 25-34 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 600 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Argentina &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1998 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; new &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; sp &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; m &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 0-14 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 84 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Argentina &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1998 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; new &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; sp &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; m &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 15-24 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 578 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
----
-  
-# Graphics are easier to make with tidy data
-  
-&lt;img src="index_files/figure-html/plot_tuberculosis-1.svg" width="85%" style="display: block; margin: auto;" /&gt;
-
----
-
-# Variables are in both rows and columns
-
-&gt; Daily weather data from the Global Historical Climatology Network for one weather station (MX17004) in Mexico for five months in 2010.  
-
-The first problem: column headers are values, not variable names.
-
-&lt;table class="table" style="font-size: 22px; margin-left: auto; margin-right: auto;"&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; id &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; year &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; month &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; element &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; d1 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; d2 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; d3 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; d4 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; d5 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; d6 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; d7 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; d8 &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; d9 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; d10 &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; MX17004 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2010 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; tmax &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2004-07 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Sedge Meadow &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; control (C) &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.033 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.010 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; MX17004 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2010 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; tmin &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2004-07 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Sedge Meadow &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; warming (W) &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.015 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.004 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; MX17004 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2010 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; tmax &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 27.3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 24.1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2004-07 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Cassiope Heath &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; control (C) &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.030 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.010 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.026 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.02 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; MX17004 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2010 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; tmin &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 14.4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 14.4 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2004-07 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Cassiope Heath &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; warming (W) &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.023 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.010 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.030 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.01 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; MX17004 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2010 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; tmax &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2004-07 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Dryas Heath &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; control (C) &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.025 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.004 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 32.1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 34.5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.017 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.01 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; MX17004 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2010 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; tmin &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2004-07 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Dryas Heath &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; warming (W) &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.033 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.010 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 14.2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 16.8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.021 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.01 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; MX17004 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2010 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; tmax &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2004-07 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Dry Willow &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; control (C) &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.028 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.010 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.015 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.004 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.038 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.01 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; MX17004 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2010 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; tmin &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2004-07 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Dry Willow &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; warming (W) &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.026 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.004 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.023 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.006 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.061 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.01 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
 ---
 
-# Variables are in both rows and columns
-  
-After pivoting `d1` to `d31` into a new column `day`, the data look like this.
+# How data should be structured
 
-&lt;table class="table" style="font-size: 22px; margin-left: auto; margin-right: auto;"&gt;
+After proper transformations, the data is now tidy ([or in normal form](https://en.wikipedia.org/wiki/Database_normalization)). **Each column is a variable, each row is an observations.**
+
+&lt;table class="table" style="font-size: 16px; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; id &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; year &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; month &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; element &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; day &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; temperature &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; date_time &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; vegetation_type &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; exp_treat &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; species &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; biomass_grams &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; standard_deviation_grams &lt;/th&gt;
   &lt;/tr&gt;
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; MX17004 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2010 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; tmax &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 30 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 27.8 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2004-07 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Sedge Meadow &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; control (C) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; d_integrifolia &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.033 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.010 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; MX17004 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2010 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; tmin &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 30 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 14.5 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2004-07 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Sedge Meadow &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; warming (W) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; d_integrifolia &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.015 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.004 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; MX17004 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2010 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; tmax &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 27.3 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2004-07 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Cassiope Heath &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; control (C) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; d_integrifolia &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.030 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.010 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; MX17004 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2010 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; tmax &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 24.1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2004-07 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Cassiope Heath &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; control (C) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; l_arctica &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.026 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.020 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; MX17004 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2010 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; tmax &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 29.7 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2004-07 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Cassiope Heath &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; warming (W) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; d_integrifolia &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.023 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.010 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; MX17004 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2010 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; tmax &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 23 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 29.9 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2004-07 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Cassiope Heath &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; warming (W) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; l_arctica &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.030 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.010 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; MX17004 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2010 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; tmin &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 14.4 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2004-07 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Dryas Heath &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; control (C) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; d_integrifolia &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.025 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.004 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; MX17004 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2010 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; tmin &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 14.4 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
---
-
-What is still wrong with this structure?
-
----
-  
-# Variables are in both rows and columns
-  
-Now, we have to .gradient-underline[pivot the data wider] so the `element` column becomes `tmax` and `tmin` variables.
-
-&lt;table class="table" style="font-size: 22px; margin-left: auto; margin-right: auto;"&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; id &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; year &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; month &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; day &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; tmax &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; tmin &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; MX17004 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2010 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 30 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 27.8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 14.5 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2004-07 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Dryas Heath &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; control (C) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; l_arctica &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.017 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.010 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; MX17004 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2010 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 27.3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 14.4 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2004-07 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Dryas Heath &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; warming (W) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; d_integrifolia &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.033 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.010 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; MX17004 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2010 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 24.1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 14.4 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; MX17004 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2010 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 29.7 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 13.4 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; MX17004 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2010 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 23 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 29.9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 10.7 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; MX17004 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2010 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 32.1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 14.2 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; MX17004 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2010 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 34.5 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 16.8 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; MX17004 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2010 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 16 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 31.1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 17.6 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2004-07 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Dryas Heath &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; warming (W) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; l_arctica &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.021 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.010 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
 ---
-  
-# Visualization 
 
-Once again, visualizing data is easier with tidy data.
+# Easier to work with tidy data
 
-&lt;img src="index_files/figure-html/plot_temperature-1.svg" width="75%" style="display: block; margin: auto;" /&gt;
+Graphics, statistical analysis and models are easier to make with tidy data.
+
+&lt;img src="index_files/figure-html/plot_plant_biomass-1.svg" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1494,7 +1000,7 @@ class: inverse, center, middle
 
 In this example, we see that there is an outlier in the data. Measuring device fault? Manual entry error?
   
-&lt;img src="index_files/figure-html/unnamed-chunk-14-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-7-1.svg" style="display: block; margin: auto;" /&gt;
 
 ---
 

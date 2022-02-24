@@ -43,7 +43,7 @@ library(fontawesome)
 library(kableExtra)
 library(stars)
 
-theme_set(theme_poppins())
+theme_set(theme_light_modified(base_family = "Montserrat"))
 theme_update(
   strip.background = element_blank(),
   panel.border = element_blank(),
@@ -754,7 +754,7 @@ Basic recommendations to preserve the raw data for future use:
 
 ## Preserve information: keep your raw data raw
 
-If a script changes the content of a raw data file, it is likely that it will not work again the second time you run it.
+If a script changes the content of a raw data file, it is likely that the same script will not work again the second time you run it because the structure of the file has changed.
 
 <center>
   <figure>
@@ -842,251 +842,77 @@ The main idea is that data should be organized in columns with **each column rep
 
 ---
 
-class: inverse, center, middle
+# How data is often structured
 
-# Three common problems
+Many researchers structure their data in such a way that it is easily manipulated by a human, **but not so much programatically**.
 
-<br>
+!!!ADD THE THREE PLANT IMAGES HERE!!!
 
-1. Column headers are values, not variable names.<br><br>
-2. Multiple variables are stored in one column.<br><br>
-3. Variables are stored in both rows and columns.<br>
+Klady, Rebecca A, Henry, Gregory HR, and Lemay, Valerie. 2017. [Flower and seed biomass, and germination rate of arctic tundra plants in response to long term experimental warming. doi:10.1594/PANGAEA.812091. ](https://search.dataone.org/view/doi%3A10.1594%2FPANGAEA.812091)
 
 ---
-  
-## Column headers are values, not variable names
-  
-This table presents the number of tuberculosis cases documented by the World Health Organization in 1999 and 2000 for different countries.
+
+# How data is often structured
+
+One common mistake is that information (such as **species**) are contained within column names.
 
 ```{r}
-table4a %>%
-  kable() %>%
-  kable_styling(font_size = 22)
-```
-
---
-
-What is the problem with this table?
-  
----
-  
-## Column headers are values, not variable names
-
-To make this data **tidy**, .gradient-underline[we have to **pivot** it longer]. Two new columns (`year` and `number_of_cases`) are created.
-
-.pull-left[
-  Data **is not** tidy
-```{r}
-table4a %>%
-  kable() %>%
-  kable_styling(font_size = 22)
-```
-]
-.pull-right[
-  Data **is** tidy
-```{r}
-table4a %>%
-  pivot_longer(-country, names_to = "year", values_to = "number_of_cases") %>%
-  kable() %>%
-  kable_styling(font_size = 22)
-```
-]
-
----
-  
-# Multiple variables in one column
-  
-First problem: column headers are values, not variable names.
-
-```{r}
-df <- who %>%
-  slice(289:296) %>%
-  select(-c(2:3)) %>%
-  select(1:5)
-
-df %>%
-  kable() %>%
-  kable_styling(font_size = 22)
-```
-
----
-  
-# Multiple variables in one column
-  
-After pivoting the table, we realize that there is another problem. 
-
-```{r}
-df <- df %>%
-  pivot_longer(-c(country, year), names_to = "demographic", values_to = "number_of_cases") %>%
-  head(8)
-
-df %>%
-  kable() %>%
-  kable_styling(font_size = 22)
-```
-
---
-
-How would you visualize the temporal evolution of tuberculosis cases for men and women?
-
----
-  
-# Multiple variables in one column
-  
-Column demographic contains .gradient-underline[four types of information].
-
-<center>
-  <figure>
-      <img style="margin:0px auto;display:block" src="img/new_sp.png" width = "700"/>
-  </figure>
-</center>
-  
----
-  
-# Multiple variables in one column
-  
-The column `demographic` should be separated into four new columns (`new`, `type`, `sex`, `age`).
-
-```{r}
-df <- df %>%
-  separate(demographic, into = c("new", "type", "sexage")) %>%
-  separate(sexage, c("sex", "age"), sep = 1) %>%
-  mutate(age = str_replace_all(age, "(\\d+)(\\d{2}$)", "\\1-\\2"))
-
-df %>%
-  kable() %>%
-  kable_styling(font_size = 22)
-```
-
----
-  
-# Graphics are easier to make with tidy data
-  
-```{r plot_tuberculosis, out.width="85%", cache=TRUE}
-who %>%
-  select(-c(2:3)) %>%
-  pivot_longer(-c(country, year), names_to = "demographic", values_to = "count") %>%
-  filter(str_detect(demographic, "new_ep")) %>%
-  separate(demographic, into = c("new", "type", "sexage")) %>%
-  separate(sexage, c("sex", "age"), sep = 1) %>%
-  mutate(age = str_replace_all(age, "(\\d+)(\\d{2}$)", "\\1-\\2")) %>%
-  filter(country %in% c("Canada", "France")) %>%
-  drop_na(count) %>%
-  mutate(sex = ifelse(sex == "f", "Females", "Males")) %>%
-  ggplot(aes(x = year, y = count, color = age)) +
-  geom_line() +
-  facet_grid(country ~ sex) +
-  xlab(NULL) +
-  ylab("Number of tuberculosis cases") +
-  paletteer::scale_colour_paletteer_d(
-    "ggsci::default_nejm",
-    guide = guide_legend(
-      override.aes = list(size = 2)
-    )
-  ) +
-  labs(
-    title = str_wrap("Number of tuberculosis cases in Canada and France between 2006 and 2012", 40),
-    color = "Age group"
-  ) +
-  theme(
-    strip.background = element_blank(),
-    panel.border = element_blank(),
-    axis.ticks = element_blank(),
-    strip.text = element_text(face = "bold", size = 14),
-    plot.title = element_text(size = 18, hjust = 0.5, color = "#474448"),
-    panel.spacing = unit(1, "lines")
+# https://doi.pangaea.de/10.1594/PANGAEA.812091?format=zip
+df <- read_delim(
+    here::here("data", "Alexandra_Fiord_flower-biom.tab"),
+    skip = 19,
+    delim = "\t"
   )
+
+df %>% 
+  kable() %>%
+  kable_styling(font_size = 14)
 ```
 
 ---
 
-# Variables are in both rows and columns
+# How data should be structured
 
-> Daily weather data from the Global Historical Climatology Network for one weather station (MX17004) in Mexico for five months in 2010.  
-
-The first problem: column headers are values, not variable names.
+After proper transformations, the data is now tidy ([or in normal form](https://en.wikipedia.org/wiki/Database_normalization)). **Each column is a variable, each row is an observations.**
 
 ```{r}
-df <- read_csv("https://raw.githubusercontent.com/tidyverse/tidyr/master/vignettes/weather.csv")
+df_pivoted <- df %>%
+  janitor::clean_names() %>% 
+  pivot_longer(
+    c(ends_with("_g"), ends_with("_dev")),
+    names_to = c("species", ".value"),
+    names_pattern = "(.*)(_flower_biom_g|_std_dev$)",
+    values_drop_na = TRUE
+  ) %>%
+  rename(biomass_grams = contains("flower")) %>%
+  rename(standard_deviation_grams = contains("_std_dev"))
 
-df %>%
-  select(1:14) %>%
-  head(8) %>%
+df_pivoted %>%
+  head(10) %>% 
   kable() %>%
-  kable_styling(font_size = 22)
+  kable_styling(font_size = 16)
 ```
 
 ---
 
-# Variables are in both rows and columns
-  
-After pivoting `d1` to `d31` into a new column `day`, the data look like this.
+# Easier to work with tidy data
 
-```{r}
-df <- df %>%
-  pivot_longer(-c(id:element), names_to = "day", values_to = "temperature") %>%
-  drop_na() %>%
-  mutate(day = parse_number(day))
+Graphics, statistical analysis and models are easier to make with tidy data.
 
-df %>%
-  head(8) %>%
-  kable() %>%
-  kable_styling(font_size = 22)
-```
-
---
-
-What is still wrong with this structure?
-
----
-  
-# Variables are in both rows and columns
-  
-Now, we have to .gradient-underline[pivot the data wider] so the `element` column becomes `tmax` and `tmin` variables.
-
-```{r}
-df <- df %>%
-  pivot_wider(names_from = element, values_from = temperature)
-
-df %>%
-  head(8) %>%
-  kable() %>%
-  kable_styling(font_size = 22)
-```
-
----
-  
-# Visualization 
-
-Once again, visualizing data is easier with tidy data.
-
-```{r plot_temperature, out.width="75%", cache=TRUE}
-df %>%
-  pivot_longer(c(tmin, tmax), names_to = "type", values_to = "temperature") %>%
-  mutate(date = lubridate::make_date(year, month, day)) %>%
-  ggplot(aes(x = date, y = temperature, color = type)) +
-  geom_line() +
-  geom_point(size = 2, show.legend = FALSE) +
-  xlab(NULL) +
-  ylab("Temperature (°C)") +
-  scale_x_date(date_breaks = "2 months", date_labels = "%B") +
-  paletteer::scale_colour_paletteer_d(
-    breaks = c("tmin", "tmax"),
-    labels = c("Minimum temperature", "Maximum temperature"),
-    "ggthemes::wsj_colors6",
-    guide = guide_legend(
-      override.aes = list(size = 2),
-      label.position = "top",
-      keywidth = unit(5, "cm")
-    )
-  ) +
+```{r plot_plant_biomass, out.width="80%", cache=TRUE}
+df_pivoted %>% 
+  ggplot(aes(x = exp_treat, y = biomass_grams, fill = vegetation_type)) +
+  geom_boxplot(size = 0.1) +
   labs(
-    title = "Maximum and minimum daily temperature in 2010",
-    color = NULL
+    x = NULL,
+    y = "Plant biomass (g)"
   ) +
+  paletteer::scale_fill_paletteer_d("fishualize::Antennarius_commerson") +
   theme(
-    plot.title = element_text(color = "#474448", size = 16),
-    legend.position = "top"
+    legend.justification = c(0, 0),
+    legend.position = c(0.05, 0.7),
+    legend.title = element_blank(),
+    legend.text = element_text(family = "Montserrat Light")
   )
 ```
 
@@ -1204,7 +1030,15 @@ class: inverse, center, middle
 In this example, we see that there is an outlier in the data. Measuring device fault? Manual entry error?
   
 ```{r, fig.height=4, fig.asp=NA}
-df$tmin[12] <- 123
+df <- read_csv("https://raw.githubusercontent.com/tidyverse/tidyr/master/vignettes/weather.csv")
+
+df <- df %>% pivot_longer(-c(id:element), names_to = "day", values_to = "temperature") %>%
+  drop_na() %>%
+  mutate(day = parse_number(day)) %>% 
+  filter(element == "tmin")
+
+
+df$temperature[12] <- 123
 
 df_arrow <- tibble(
   x = 110,
@@ -1215,7 +1049,7 @@ df_arrow <- tibble(
 )
 
 df %>%
-  ggplot(aes(x = tmin)) +
+  ggplot(aes(x = temperature)) +
   geom_histogram(binwidth = 5) +
   labs(
     title = "Histogram of air temperature",

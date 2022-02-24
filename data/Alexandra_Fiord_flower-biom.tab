@@ -1,0 +1,28 @@
+/* DATA DESCRIPTION:
+Citation:	Klady, Rebecca A; Henry, Gregory HR; Lemay, Valerie (2011): (Table 3) Reproductive effort as flower biomass of arctic tundra plants in control and warming plots, Alexandra Fiord. PANGAEA, https://doi.org/10.1594/PANGAEA.812086, 
+	In supplement to: Klady, RA et al. (2011): Changes in high arctic tundra plant reproduction in response to long-term experimental warming. Global Change Biology, 17(4), 1611-1624, https://doi.org/10.1111/j.1365-2486.2010.02319.x
+Coverage:	LATITUDE: 78.883300 * LONGITUDE: -75.916700
+	DATE/TIME START: 2004-07-30T00:00:00 * DATE/TIME END: 2004-07-30T00:00:00
+Event(s):	Alexandra_Fiord_sites * LATITUDE: 78.883300 * LONGITUDE: -75.916700 * LOCATION: Ellesmere Island, Canadian Arctic Archipelago (URI: http://en.wikipedia.org/wiki/Ellesmere_island) * METHOD/DEVICE: Sampling by hand (HAND)
+Comment:	n = 26 plots per treatment/site.
+Parameter(s):	DATE/TIME (Date/Time) * GEOCODE
+	Vegetation type (Vegetation type) * PI: Klady, Rebecca A (rklady@gmail.com)
+	Experimental treatment (Exp treat) * PI: Klady, Rebecca A (rklady@gmail.com) * METHOD/DEVICE: Open-top chamber (OTC) warming experiment, in situ
+	Dryas integrifolia, flower biomass [g] (D. integrifolia flower biom) * PI: Klady, Rebecca A (rklady@gmail.com) * METHOD/DEVICE: Open-top chamber (OTC) warming experiment, in situ
+	Dryas integrifolia, standard deviation [±] (D. integrifolia std dev) * PI: Klady, Rebecca A (rklady@gmail.com) * METHOD/DEVICE: Open-top chamber (OTC) warming experiment, in situ
+	Festuca brachyphylla, flower biomass [g] (F. brachyphylla flower biom) * PI: Klady, Rebecca A (rklady@gmail.com) * METHOD/DEVICE: Open-top chamber (OTC) warming experiment, in situ
+	Festuca brachyphylla, standard deviation [±] (F. brachyphylla std dev) * PI: Klady, Rebecca A (rklady@gmail.com) * METHOD/DEVICE: Open-top chamber (OTC) warming experiment, in situ
+	Luzula arctica, flower biomass [g] (L. arctica flower biom) * PI: Klady, Rebecca A (rklady@gmail.com) * METHOD/DEVICE: Open-top chamber (OTC) warming experiment, in situ * COMMENT: including L. confusa
+	Luzula arctica, standard deviation [±] (L. arctica std dev) * PI: Klady, Rebecca A (rklady@gmail.com) * METHOD/DEVICE: Open-top chamber (OTC) warming experiment, in situ * COMMENT: including L. confusa
+License:	Creative Commons Attribution 3.0 Unported (CC-BY-3.0)
+Size:	48 data points
+*/
+Date/Time	Vegetation type	Exp treat	D. integrifolia flower biom [g]	D. integrifolia std dev [±]	F. brachyphylla flower biom [g]	F. brachyphylla std dev [±]	L. arctica flower biom [g]	L. arctica std dev [±]
+2004-07	Sedge Meadow	control (C)	0.033	0.010				
+2004-07	Sedge Meadow	warming (W)	0.015	0.004				
+2004-07	Cassiope Heath	control (C)	0.030	0.010			0.026	0.02
+2004-07	Cassiope Heath	warming (W)	0.023	0.010			0.030	0.01
+2004-07	Dryas Heath	control (C)	0.025	0.004			0.017	0.01
+2004-07	Dryas Heath	warming (W)	0.033	0.010			0.021	0.01
+2004-07	Dry Willow	control (C)	0.028	0.010	0.015	0.004	0.038	0.01
+2004-07	Dry Willow	warming (W)	0.026	0.004	0.023	0.006	0.061	0.01
