@@ -698,6 +698,8 @@ Data files were sorted differently depending on the operating system where the P
 
 .gradient-underline[Always use the ISO format:] <big>**YYYY**</big>-<medium>**MM**</medium>-<small>**DD**</small> (large `r fontawesome::fa("arrow-right", fill = "#d5695d")` small).
 
+  - For example: 2021-04-21 (21 January 2021)
+
 ---
   
 # File naming basic rules (examples)
@@ -844,17 +846,40 @@ The main idea is that data should be organized in columns with **each column rep
 
 # How data is often structured
 
-Many researchers structure their data in such a way that it is easily manipulated by a human, **but not so much programatically**.
+- Many researchers structure their data in such a way that it is easily manipulated by a human, **but not so much programatically**.
 
-!!!ADD THE THREE PLANT IMAGES HERE!!!
+- A common problem is that the columns values, not variable names.
 
+!!!ADD IMAGE SKETCH HERE!!!
+
+---
+
+# A typical example
+
+As an example, we will use a dataset where plant biomass of **three species** were measured under **two experimental treatments** in the Arctic Tundra.
+
+<small>
 Klady, Rebecca A, Henry, Gregory HR, and Lemay, Valerie. 2017. [Flower and seed biomass, and germination rate of arctic tundra plants in response to long term experimental warming. doi:10.1594/PANGAEA.812091. ](https://search.dataone.org/view/doi%3A10.1594%2FPANGAEA.812091)
+</small>
+
+<center>
+<div id = "container">
+
+<div><img src="img/plants/dryas_integrifolia.jpg" height="200"/>
+<figcaption>Dryas Integrifolia</figcaption></div>
+<div><img class="middle-img" src="img/plants/festuca_brachyphylla.jpg" height="200"/><figcaption>Festuca Brachyphylla</figcaption></div>
+<div><img src="img/plants/luzula_nivalis.jpg" height="200"/><figcaption>Luzula Nivalis</figcaption></div>
+
+</div>
+</center>
+
+Images from [Arctic Flora of Canada and Alaska](https://arcticplants.myspecies.info/)
 
 ---
 
 # How data is often structured
 
-One common mistake is that information (such as **species**) are contained within column names.
+One common mistake is that information (such as **species**) are contained within column names. Note the **spaces** and **special characters** (/, $\pm$ and []) in the column names.
 
 ```{r}
 # https://doi.pangaea.de/10.1594/PANGAEA.812091?format=zip
@@ -873,7 +898,9 @@ df %>%
 
 # How data should be structured
 
-After proper transformations, the data is now tidy ([or in normal form](https://en.wikipedia.org/wiki/Database_normalization)). **Each column is a variable, each row is an observations.**
+After proper transformations, the data is now tidy ([or in normal form](https://en.wikipedia.org/wiki/Database_normalization)). 
+
+**Each column is a variable, each row is an observations.**
 
 ```{r}
 df_pivoted <- df %>%
@@ -910,7 +937,7 @@ df_pivoted %>%
   paletteer::scale_fill_paletteer_d("fishualize::Antennarius_commerson") +
   theme(
     legend.justification = c(0, 0),
-    legend.position = c(0.05, 0.7),
+    legend.position = c(0.75, 0.7),
     legend.title = element_blank(),
     legend.text = element_text(family = "Montserrat Light")
   )
@@ -966,7 +993,7 @@ class: inverse, center, middle
 
 - Do not forget to provide information about abbreviations.
 
-    - `tmin` vs `temperature_maximum`
+    - `tmin` vs `temperature_minimum`
 
 --
 
@@ -1005,6 +1032,8 @@ class: inverse, center, middle
 - `r fontawesome::fa("exclamation-triangle", fill = "#ffb82a")` .gradient-underline[Do not use a numerical value (ex.: **-999**) to indicate missing values.]
 
     - This can create situations where missing values will be included in calculations.
+    
+    - Ex.: the average of `c(1, NA, 3)` is different than the average of `c(1, -999, 3)`. 
 
 ---
   

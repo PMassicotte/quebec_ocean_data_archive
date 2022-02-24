@@ -514,6 +514,8 @@ Data files were sorted differently depending on the operating system where the P
 
 .gradient-underline[Always use the ISO format:] &lt;big&gt;**YYYY**&lt;/big&gt;-&lt;medium&gt;**MM**&lt;/medium&gt;-&lt;small&gt;**DD**&lt;/small&gt; (large <svg aria-hidden="true" role="img" viewBox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#d5695d;overflow:visible;position:relative;"><path d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"/></svg> small).
 
+  - For example: 2021-04-21 (21 January 2021)
+
 ---
   
 # File naming basic rules (examples)
@@ -660,17 +662,40 @@ The main idea is that data should be organized in columns with **each column rep
 
 # How data is often structured
 
-Many researchers structure their data in such a way that it is easily manipulated by a human, **but not so much programatically**.
+- Many researchers structure their data in such a way that it is easily manipulated by a human, **but not so much programatically**.
 
-!!!ADD THE THREE PLANT IMAGES HERE!!!
+- A common problem is that the columns values, not variable names.
 
+!!!ADD IMAGE SKETCH HERE!!!
+
+---
+
+# A typical example
+
+As an example, we will use a dataset where plant biomass of **three species** were measured under **two experimental treatments** in the Arctic Tundra.
+
+&lt;small&gt;
 Klady, Rebecca A, Henry, Gregory HR, and Lemay, Valerie. 2017. [Flower and seed biomass, and germination rate of arctic tundra plants in response to long term experimental warming. doi:10.1594/PANGAEA.812091. ](https://search.dataone.org/view/doi%3A10.1594%2FPANGAEA.812091)
+&lt;/small&gt;
+
+&lt;center&gt;
+&lt;div id = "container"&gt;
+
+&lt;div&gt;&lt;img src="img/plants/dryas_integrifolia.jpg" height="200"/&gt;
+&lt;figcaption&gt;Dryas Integrifolia&lt;/figcaption&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img class="middle-img" src="img/plants/festuca_brachyphylla.jpg" height="200"/&gt;&lt;figcaption&gt;Festuca Brachyphylla&lt;/figcaption&gt;&lt;/div&gt;
+&lt;div&gt;&lt;img src="img/plants/luzula_nivalis.jpg" height="200"/&gt;&lt;figcaption&gt;Luzula Nivalis&lt;/figcaption&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/center&gt;
+
+Images from [Arctic Flora of Canada and Alaska](https://arcticplants.myspecies.info/)
 
 ---
 
 # How data is often structured
 
-One common mistake is that information (such as **species**) are contained within column names.
+One common mistake is that information (such as **species**) are contained within column names. Note the **spaces** and **special characters** (/, `\(\pm\)` and []) in the column names.
 
 &lt;table class="table" style="font-size: 14px; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
@@ -782,7 +807,9 @@ One common mistake is that information (such as **species**) are contained withi
 
 # How data should be structured
 
-After proper transformations, the data is now tidy ([or in normal form](https://en.wikipedia.org/wiki/Database_normalization)). **Each column is a variable, each row is an observations.**
+After proper transformations, the data is now tidy ([or in normal form](https://en.wikipedia.org/wiki/Database_normalization)). 
+
+**Each column is a variable, each row is an observations.**
 
 &lt;table class="table" style="font-size: 16px; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
@@ -937,7 +964,7 @@ class: inverse, center, middle
 
 - Do not forget to provide information about abbreviations.
 
-    - `tmin` vs `temperature_maximum`
+    - `tmin` vs `temperature_minimum`
 
 --
 
@@ -976,6 +1003,8 @@ class: inverse, center, middle
 - <svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#ffb82a;overflow:visible;position:relative;"><path d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/></svg> .gradient-underline[Do not use a numerical value (ex.: **-999**) to indicate missing values.]
 
     - This can create situations where missing values will be included in calculations.
+    
+    - Ex.: the average of `c(1, NA, 3)` is different than the average of `c(1, -999, 3)`. 
 
 ---
   
