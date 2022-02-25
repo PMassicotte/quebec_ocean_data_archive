@@ -760,7 +760,7 @@ If a script changes the content of a raw data file, it is likely that the same s
 
 <center>
   <figure>
-      <img src="img/keep_data_raw.png" width = "600"/>
+      <img src="img/keep_data_raw.png" width = "800"/>
   </figure>
 </center>
 
@@ -848,9 +848,14 @@ The main idea is that data should be organized in columns with **each column rep
 
 - Many researchers structure their data in such a way that it is easily manipulated by a human, **but not so much programatically**.
 
-- A common problem is that the columns values, not variable names.
+- A common problem is that the columns represent values, not variable names.
+  - **Often occurs with datasheets containing species abundance.**
 
-!!!ADD IMAGE SKETCH HERE!!!
+<center>
+  <figure>
+      <img src="img/table_species.png" width = "500"/>
+  </figure>
+</center>
 
 ---
 
