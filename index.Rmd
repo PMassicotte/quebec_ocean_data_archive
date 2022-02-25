@@ -172,7 +172,7 @@ class: inverse, center, middle
   
 # File formats
   
-Data file format has important implications:
+The data file format has important implications:
   
 --
   
@@ -241,7 +241,7 @@ These files contain information of geographic features such as **points**, **lin
 
 - ESRI shapefile (`.SHP`)
 
-  - Technically, the shalefile format is not open. It is however **widely used and often considered the standard**.
+  - Technically, the shapefile format is not open. It is however **widely used and often considered the standard**.
 
   - The GeoPackage format (`.gpkg`) [is an interesting open format](https://geocompr.robinlovelace.net/read-write.html?q=geopack#file-formats).
 
@@ -442,7 +442,7 @@ ggplot() +
   
 # The GeoTIFF format (SST)
 
-A closer look allows to better visualize the values (i.e. water temperature) within each pixel.
+A closer look allows us to better visualize the values (i.e. water temperature) within each pixel.
 
 ```{r geotiff4, cache=TRUE, fig.height=3, fig.asp=NA, dev='png', dpi=300}
 plot(
@@ -580,7 +580,7 @@ class: inverse, center, middle
   
 # File naming basic rules
   
-There are few rules to adopt when naming files:
+There are a few rules to adopt when naming files:
   
 --
   
@@ -756,7 +756,7 @@ Basic recommendations to preserve the raw data for future use:
 
 ## Preserve information: keep your raw data raw
 
-If a script changes the content of a raw data file, it is likely that the same script will not work again the second time you run it because the structure of the file has changed.
+If a script changes the content of a raw data file, there are chances that the same script will not work again the second time you run it because the structure of the file has changed.
 
 <center>
   <figure>
@@ -861,10 +861,10 @@ The main idea is that data should be organized in columns with **each column rep
 
 # A typical example
 
-As an example, we will use a dataset where plant biomass of **three species** were measured under **two experimental treatments** in the Arctic Tundra.
+As an example, we will use a dataset where plant biomasses of **three species** were measured under **two experimental treatments** in the Arctic Tundra.
 
 <small>
-Klady, Rebecca A, Henry, Gregory HR, and Lemay, Valerie. 2017. [Flower and seed biomass, and germination rate of arctic tundra plants in response to long term experimental warming. doi:10.1594/PANGAEA.812091. ](https://search.dataone.org/view/doi%3A10.1594%2FPANGAEA.812091)
+Klady, Rebecca A, Henry, Gregory HR, and Lemay, Valerie. 2017. [Flower and seed biomass, and germination rate of arctic tundra plants in response to long-term experimental warming. doi:10.1594/PANGAEA.812091. ](https://search.dataone.org/view/doi%3A10.1594%2FPANGAEA.812091)
 </small>
 
 <center>
@@ -905,7 +905,7 @@ df %>%
 
 After proper transformations, the data is now tidy ([or in normal form](https://en.wikipedia.org/wiki/Database_normalization)). 
 
-**Each column is a variable, each row is an observations.**
+**Each column is a variable, each row is an observation.**
 
 ```{r}
 df_pivoted <- df %>%
@@ -1166,7 +1166,7 @@ class: inverse, center, middle
   
 # Importance of backups
   
-- Use an incremental strategy to backup your data (.gradient-underline[ideally on a daily basis]).
+- Use an incremental strategy to backup your data (.gradient-underline[ideally daily]).
 
     - [rsync](https://fr.wikipedia.org/wiki/Rsync)
 
@@ -1214,7 +1214,7 @@ Many journals and [funding agencies](http://www.science.gc.ca/eic/site/063.nsf/f
   
 --
 
-- Makes your data shareable (do not forget that research if funded with public money).
+- Makes your data shareable (do not forget that research is funded with public money).
 
 --
 
@@ -1245,7 +1245,7 @@ There are at least two different ways to make your data available:
 1. In a dedicated data paper.
 
 2. In an appendix along with your paper (**assuming that your paper is published in an open-access journal**).
-  - [The Directory of Open Access Journals](https://www.doaj.org/) is useful to search for open access journal. 
+  - [The Directory of Open Access Journals](https://www.doaj.org/) is useful to search for open access journals. 
 
 <br>
 
