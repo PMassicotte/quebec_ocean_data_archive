@@ -35,6 +35,12 @@ options(htmltools.dir.version = FALSE)
 
 # renv::install("rstudio/fontawesome")
 # renv::install("gadenbuie/xaringanExtra")
+# renv::install("MilesMcBain/breakerofchains")
+# renv::install("mcguinlu/pathformatr")
+
+# renv::install("ropensci/rnaturalearthdata")
+# renv::install("ropensci/rnaturalearthhires")
+
 library(tidyverse)
 library(ggpmthemes)
 library(patchwork)
@@ -221,15 +227,30 @@ All these file formats can be opened using a simple text editor.
 
 ---
   
-# Example of a CSV file
-  
-This CSV file contains 11 variables (columns). **The first line generally contains the names of the variables.**
+# Examples of CSV and TSV file
 
-<center>
+<!-- Screenshots made using maim -->
+<!-- maim ~/Desktop/penguins_tsv_format.png -g 1300x725+4070+210 -->
+
+This dataset contains 8 variables (columns). **The first line generally contains the names of the variables.**
+
+.pull-left[
+A commas separated values file (`.csv`).
   <figure>
-      <img src="img/csv_format.png" height = "400"/>
+      <img src="img/penguins_csv_format.png"/>
   </figure>
-</center>
+]
+
+.pull-right[
+A tabs separated values file  (`.tsv`).
+  <figure>
+      <img src="img/penguins_tsv_format.png"/>
+  </figure>
+]
+
+<small>
+Horst AM, Hill AP, Gorman KB (2020). palmerpenguins: Palmer Archipelago (Antarctica) penguin data. R package version 0.1.0. https://allisonhorst.github.io/palmerpenguins/. doi: 10.5281/zenodo.3960218.
+</small>
 
 ---
   
@@ -387,11 +408,11 @@ poly <- read_sf('{
   ]
 }')
 
-r <- read_stars(here::here("data/sst_st_lawrence_river.tif"))
+r <- read_stars(here::here("data", "sst_st_lawrence_river.tif"))
 
 ggplot() +
   geom_stars(data = r) +
-  geom_sf(data = poly, fill = "red") +
+  geom_sf(data = poly, fill = "red", color = NA) +
   scale_fill_viridis_c(
     breaks = scales::breaks_pretty(n = 6),
     na.value = NA,
@@ -401,7 +422,7 @@ ggplot() +
       title.theme = element_text(family = "Montserrat", size = 8),
       label.theme = element_text(family = "Montserrat", size = 6),
       barwidth = unit(4, "cm"),
-      barheight = unit(0.25, "cm")
+      barheight = unit(0.2, "cm")
     )
   ) +
   annotate(
@@ -431,7 +452,7 @@ ggplot() +
   ) +
   theme(
     legend.justification = c(0, 0),
-    legend.position = c(0.05, 0.8),
+    legend.position = c(0.02, 0.75),
     legend.direction = "horizontal",
     legend.background = element_blank(),
     plot.title = element_text(size = 12)
@@ -744,7 +765,7 @@ Basic recommendations to preserve the raw data for future use:
 
 --
   
-- .gradient-underline[Use a scripted language to perform analysis or make corrections and save that information in a separate file.]
+- .gradient-underline[Use a scripted language (R, Python, Matlab, etc.) to perform analysis or make corrections and save that information in a separate file.]
 
 --
   
@@ -756,7 +777,7 @@ Basic recommendations to preserve the raw data for future use:
 
 ## Preserve information: keep your raw data raw
 
-If a script changes the content of a raw data file, there are chances that the same script will not work again the second time you run it because the structure of the file has changed.
+If a script changes the content of a raw data file, .gradient-underline[chances are that the same script will not work again the second time you run it because the structure of the file has changed].
 
 <center>
   <figure>
@@ -787,15 +808,13 @@ If a script changes the content of a raw data file, there are chances that the s
 ---
   
 # Project directory structure
-  
-The way I structure my `data` folder.
 
 <center>
   <figure>
-      <img src="img/project_data_structure.png" width = "500"/>
+      <img src="img/project_structure.png" height = "500"/>
   </figure>
 </center>
-  
+
 ---
 
 class: inverse, center, middle

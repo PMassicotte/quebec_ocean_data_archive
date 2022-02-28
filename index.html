@@ -46,7 +46,7 @@ class: title-slide, center, bottom
 
 &lt;img src="img/logo_quebec_ocean.png"/ height="150"/&gt;
 
-March 16, 2022 (updated: February 25, 2022)
+March 16, 2022 (updated: February 28, 2022)
 
 ## Philippe Massicotte
 
@@ -174,15 +174,30 @@ All these file formats can be opened using a simple text editor.
 
 ---
   
-# Example of a CSV file
-  
-This CSV file contains 11 variables (columns). **The first line generally contains the names of the variables.**
+# Examples of CSV and TSV file
 
-&lt;center&gt;
+&lt;!-- Screenshots made using maim --&gt;
+&lt;!-- maim ~/Desktop/penguins_tsv_format.png -g 1300x725+4070+210 --&gt;
+
+This dataset contains 8 variables (columns). **The first line generally contains the names of the variables.**
+
+.pull-left[
+A commas separated values file (`.csv`).
   &lt;figure&gt;
-      &lt;img src="img/csv_format.png" height = "400"/&gt;
+      &lt;img src="img/penguins_csv_format.png"/&gt;
   &lt;/figure&gt;
-&lt;/center&gt;
+]
+
+.pull-right[
+A tabs separated values file  (`.tsv`).
+  &lt;figure&gt;
+      &lt;img src="img/penguins_tsv_format.png"/&gt;
+  &lt;/figure&gt;
+]
+
+&lt;small&gt;
+Horst AM, Hill AP, Gorman KB (2020). palmerpenguins: Palmer Archipelago (Antarctica) penguin data. R package version 0.1.0. https://allisonhorst.github.io/palmerpenguins/. doi: 10.5281/zenodo.3960218.
+&lt;/small&gt;
 
 ---
   
@@ -560,7 +575,7 @@ Basic recommendations to preserve the raw data for future use:
 
 --
   
-- .gradient-underline[Use a scripted language to perform analysis or make corrections and save that information in a separate file.]
+- .gradient-underline[Use a scripted language (R, Python, Matlab, etc.) to perform analysis or make corrections and save that information in a separate file.]
 
 --
   
@@ -572,7 +587,7 @@ Basic recommendations to preserve the raw data for future use:
 
 ## Preserve information: keep your raw data raw
 
-If a script changes the content of a raw data file, there are chances that the same script will not work again the second time you run it because the structure of the file has changed.
+If a script changes the content of a raw data file, .gradient-underline[chances are that the same script will not work again the second time you run it because the structure of the file has changed].
 
 &lt;center&gt;
   &lt;figure&gt;
@@ -603,15 +618,13 @@ If a script changes the content of a raw data file, there are chances that the s
 ---
   
 # Project directory structure
-  
-The way I structure my `data` folder.
 
 &lt;center&gt;
   &lt;figure&gt;
-      &lt;img src="img/project_data_structure.png" width = "500"/&gt;
+      &lt;img src="img/project_structure.png" height = "500"/&gt;
   &lt;/figure&gt;
 &lt;/center&gt;
-  
+
 ---
 
 class: inverse, center, middle
