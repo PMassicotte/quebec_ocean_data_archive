@@ -178,7 +178,7 @@ class: inverse, center, middle
   
 # File formats
   
-The data file format has important implications:
+The file format used to store data has important implications:
   
 --
   
@@ -188,9 +188,17 @@ The data file format has important implications:
   
 2. Other people can read your data without fancy software that are often not cross platforms (Windows/Mac/Linux).
 
+<center>
+<div id="container">
+<div>`r fontawesome::fa("windows", fill = "#3c3c3c", height = "75px")`</div>
+<div>`r fontawesome::fa("apple", fill = "#3c3c3c", height = "75px")`</div>
+<div>`r fontawesome::fa("linux", fill = "#3c3c3c", height = "75px")`</div>
+</div>
+</center>
+
 --
-  
-.left-column[`r fontawesome::fa("file-excel", fill = "#3c3c3c", height = "150px")`]
+
+.left-column[`r fontawesome::fa("file-excel", fill = "#3c3c3c", height = "100px")`]
 .right-column[**Example**: `.xlsx` files can not be opened in older versions of Microsoft Excel.]
 
 ---
@@ -227,12 +235,12 @@ All these file formats can be opened using a simple text editor.
 
 ---
   
-# Examples of CSV and TSV file
+# Examples of CSV and TSV files
 
 <!-- Screenshots made using maim -->
 <!-- maim ~/Desktop/penguins_tsv_format.png -g 1300x725+4070+210 -->
 
-This dataset contains 8 variables (columns). **The first line generally contains the names of the variables.**
+This dataset contains 4 variables (columns). **The first line generally contains the names of the variables.**
 
 .pull-left[
 A commas separated values file (`.csv`).
@@ -492,7 +500,7 @@ class: inverse, center, middle
   
 # Efficient tools for reading large datasets
   
-Data science is an iterative process that can be time-consuming when working with large datasets.
+Data analysis is an iterative process that can be time-consuming when working with large datasets.
 
 <center>
 <figure>
@@ -516,7 +524,7 @@ Data science is an iterative process that can be time-consuming when working wit
 
 - However, you can easily read all these file formats in your preferred programming language.
 ]
-  
+
 ---
   
 # R data importation tools
@@ -850,7 +858,7 @@ Whatever the language used (R, Python, Matlab, etc.), there are several tools to
   
 # Tidy data
   
-The main idea is that data should be organized in columns with **each column representing only a single type of data** (character, numerical, etc.).
+The main idea is that data should be organized in columns with **each column representing only a single type of data** (character, numerical, date, etc.).
 
 <center>
 <figure>
@@ -867,7 +875,7 @@ The main idea is that data should be organized in columns with **each column rep
 
 - Many researchers structure their data in such a way that it is easily manipulated by a human, **but not so much programatically**.
 
-- A common problem is that the columns represent values, not variable names.
+- .gradient-underline[A common problem is that the columns represent values, not variable names.]
   - **Often occurs with datasheets containing species abundance.**
 
 <center>
@@ -897,7 +905,9 @@ Klady, Rebecca A, Henry, Gregory HR, and Lemay, Valerie. 2017. [Flower and seed 
 </div>
 </center>
 
+<small>
 Images from [Arctic Flora of Canada and Alaska](https://arcticplants.myspecies.info/)
+</small>
 
 ---
 
