@@ -46,7 +46,7 @@ class: title-slide, center, bottom
 
 &lt;img src="img/logo_quebec_ocean.png"/ height="150"/&gt;
 
-March 16, 2022 (updated: March 01, 2022)
+March 16, 2022 (updated: March 09, 2022)
 
 ## Philippe Massicotte
 
@@ -217,7 +217,7 @@ These files contain information of geographic features such as **points**, **lin
 
 - ESRI shapefile (`.SHP`)
 
-  - Technically, the shapefile format is not open. It is however **widely used and often considered the standard**.
+  - Technically, the shapefile format is not open. **It is however widely used and often considered the standard**.
 
   - The GeoPackage format (`.gpkg`) [is an interesting open format](https://geocompr.robinlovelace.net/read-write.html?q=geopack#file-formats).
 
@@ -348,7 +348,7 @@ Data analysis is an iterative process that can be time-consuming when working wi
 
 For tabular data (`.CSV`, `.TXT`, `.TAB`, `.DAT`):
   
-- `readr`, `data.table` and `vroom` packages (.gradient-underline[the last two are particularly fast]).
+- `readr` and `data.table` packages (.gradient-underline[the last one is particularly fast]).
 
 &lt;br&gt;
 
@@ -415,9 +415,22 @@ There are a few rules to adopt when naming files:
 - No spaces.
 
 --
-  
+
+.pull-left[
 - Not too long (can be problematic with older software).
+
   - **Not so true anymore**, it is better to have a good descriptive file name.
+]
+
+.pull-right[
+&lt;center&gt;
+    &lt;figure&gt;
+      &lt;img style="margin:0px auto;display:block" src="img/unsplash/hafidh-satyanto-1lDajtn_r7E-unsplash.jpg" alt="Photo made by Hafidh Satyanto showing old electrical wires pilled on a table." width = "400"/&gt;
+    &lt;/figure&gt;
+    &lt;figcaption&gt;Photo by &lt;a href="https://unsplash.com/@satyanto?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;Hafidh Satyanto&lt;/a&gt; on &lt;a href="https://unsplash.com/s/photos/old-tech?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;Unsplash&lt;/a&gt;
+  &lt;/figcaption&gt;  
+&lt;/center&gt;
+]
 
 ---
   
@@ -480,7 +493,7 @@ For sequential numbering, .gradient-underline[use leading zeros to ensure files 
 .pull-left[
 &lt;center&gt;
     &lt;figure&gt;
-      &lt;img style="margin:0px auto;display:block" src="img/python_file_naming.png" width = "500"/&gt;
+      &lt;img style="margin:0px auto;display:block" src="img/python_file_naming.png" alt="Image showing a scientist that looks confused over his experiment." width = "500"/&gt;
     &lt;/figure&gt;
     &lt;figcaption&gt;&lt;b&gt;Source:&lt;/b&gt; https://bit.ly/2M8cViI&lt;/figcaption&gt;  
 &lt;/center&gt;
@@ -946,15 +959,44 @@ Graphics, statistical analysis and models are easier to make with tidy data.
 
 # Keep your data as rectangle tables
   
-**One more note:** if you use a spreadsheet program, keep your data arranged as rectangular tables. Otherwise, .gradient-underline[it makes data importation difficult]. 
+If you use a spreadsheet program, **keep your data arranged as rectangular tables**. Otherwise, .gradient-underline[it makes data importation difficult]. 
   
+&lt;center&gt;
+
+&lt;img src="img/unsplash/lukas-blazek-mcSDtbWXUZU-unsplash.jpg" class="centerImage" height="400" alt="An open laptop with a spreadcheet program."&gt;
+
+&lt;figcaption&gt;
+Photo by &lt;a href="https://unsplash.com/@goumbik?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;Lukas Blazek&lt;/a&gt; on &lt;a href="https://unsplash.com/s/photos/spreadsheet?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;Unsplash&lt;/a&gt;
+  
+&lt;/figcaption&gt;
+
+&lt;/center&gt;
+
+---
+
+# Keep your data as rectangle tables
+
+&lt;center&gt;
 .pull-left[
-    &lt;center&gt;&lt;img src="https://exceljet.net/sites/default/files/styles/function_screen/public/images/formulas/join%20tables%20with%20INDEX%20and%20MATCH%202.png?itok=HK29obOJ" class="centerImage" height="300"&gt;&lt;/center&gt;
+This sheet has two tables.
+&lt;img src="img/data_rectangle_1.png" class="centerImage" width="700" alt="Data in a computer spreadsheet program."&gt;
 ]
 
 .pull-right[
-  &lt;center&gt;&lt;img src="https://www.excel-easy.com/examples/images/split/split-worksheet.png" class="centerImage" height="300"&gt;&lt;/center&gt;
+This sheet has one table.
+&lt;img src="img/data_rectangle_2.png" class="centerImage" width="250" alt="Data in a computer spreadsheet program."&gt;
 ]
+&lt;/center&gt;
+
+---
+
+# Keep your data as rectangle tables
+
+Do not be that person...
+
+&lt;center&gt;
+&lt;img src="img/data_rectangle_3.png" class="centerImage" width="800" alt="Data in a computer spreadsheet program."&gt;
+&lt;/center&gt;
 
 ---
 
@@ -1065,9 +1107,22 @@ class: inverse, center, middle
 
 # Backups
 
-## The question is not *if*, but *when* your hard drive will fail.
+## It is not *if*, but *when* your hard drive will fail.
 
-<svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:200px;width:225px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:white;overflow:visible;position:relative;"><path d="M576 304v96c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48v-96c0-26.51 21.49-48 48-48h480c26.51 0 48 21.49 48 48zm-48-80a79.557 79.557 0 0 1 30.777 6.165L462.25 85.374A48.003 48.003 0 0 0 422.311 64H153.689a48 48 0 0 0-39.938 21.374L17.223 230.165A79.557 79.557 0 0 1 48 224h480zm-48 96c-17.673 0-32 14.327-32 32s14.327 32 32 32 32-14.327 32-32-14.327-32-32-32zm-96 0c-17.673 0-32 14.327-32 32s14.327 32 32 32 32-14.327 32-32-14.327-32-32-32z"/></svg>
+&lt;br&gt;
+
+&lt;center&gt;
+
+&lt;img src="img/unsplash/art-wall-kittenprint-9Wq1HpghQ4A-unsplash.jpg" class="centerImage" height="300" alt="Open hard drive on a table."&gt;
+
+&lt;figcaption&gt;
+
+Photo by &lt;a href="https://unsplash.com/@artwall_hd?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;Art Wall - Kittenprint&lt;/a&gt; on &lt;a href="https://unsplash.com/s/photos/backup?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;Unsplash&lt;/a&gt;
+
+&lt;/figcaption&gt;
+
+&lt;/center&gt;
+
 
 ---
   
@@ -1155,6 +1210,20 @@ class: inverse, center, middle
 # Publishing your data
 
 ## Making your data available to the community
+
+&lt;br&gt;
+
+&lt;center&gt;
+
+&lt;img src="img/unsplash/tim-mossholder-ZYBl6VnUd_0-unsplash.jpg" class="centerImage" height="300" alt="A wooden door with an open sign."&gt;
+
+&lt;figcaption&gt;
+
+Photo by &lt;a href="https://unsplash.com/@timmossholder?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;Tim Mossholder&lt;/a&gt; on &lt;a href="https://unsplash.com/s/photos/open-data?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;Unsplash&lt;/a&gt;
+
+&lt;/figcaption&gt;
+
+&lt;/center&gt;
 
 ---
   
@@ -1290,6 +1359,20 @@ class: inverse, center, middle
 
 # Take home messages
 
+&lt;br&gt;
+
+&lt;center&gt;
+
+&lt;img src="img/unsplash/glenn-carstens-peters-RLw-UC03Gwc-unsplash.jpg" class="centerImage" height="400" alt="A hand with a pencil writing in a book."&gt;
+
+&lt;figcaption&gt;
+
+Photo by &lt;a href="https://unsplash.com/@glenncarstenspeters?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;Glenn Carstens-Peters&lt;/a&gt; on &lt;a href="https://unsplash.com/s/photos/hand-writing?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;Unsplash&lt;/a&gt;
+
+&lt;/figcaption&gt;
+
+&lt;/center&gt;
+
 ---
   
 # Take home messages
@@ -1318,6 +1401,22 @@ class: inverse, center, middle
 --
 
 - When possible, share the data and the scripts that were used in your research papers.
+
+---
+
+&lt;br&gt;
+
+&lt;center&gt;
+
+&lt;img src="img/unsplash/wilhelm-gunkel-AKQlYooS72w-unsplash.jpg" class="centerImage" height="500" alt="Paper sheet in a old typewriter with thank you written in different language."&gt;
+
+&lt;figcaption&gt;
+
+Photo by &lt;a href="https://unsplash.com/@wilhelmgunkel?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;Wilhelm Gunkel&lt;/a&gt; on &lt;a href="https://unsplash.com/s/photos/thank-you?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;Unsplash&lt;/a&gt;
+
+&lt;/figcaption&gt;
+
+&lt;/center&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
