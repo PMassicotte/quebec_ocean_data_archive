@@ -436,7 +436,7 @@ ggplot() +
   annotate(
     "text",
     x = -71,
-    y = 47.4,
+    y = 46.5,
     label = "Quebec",
     family = "Montserrat",
     fontface = "bold",
@@ -1032,6 +1032,8 @@ Photo by <a href="https://unsplash.com/@goumbik?utm_source=unsplash&utm_medium=r
 
 # Keep your data as rectangle tables
 
+These two examples show the same data. One is arranged as two tables whereas the other is correctly formatted into a single rectangle table.
+
 <center>
 .pull-left[
 This sheet has two tables.
@@ -1061,6 +1063,19 @@ class: inverse, center, middle
 # Variable names
 
 ## How to choose variable names when creating data files?
+
+<br>
+
+<center>
+
+<img src="img/unsplash/chris-ried-ieic5Tq8YMk-unsplash.jpg" class="centerImage" height="350" alt="An open laptop with a spreadcheet program.">
+
+<figcaption>
+Photo by <a href="https://unsplash.com/@cdr6934?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Chris Ried</a> on <a href="https://unsplash.com/s/photos/programming-python?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+
+</figcaption>
+
+</center>
 
 ---
   
@@ -1503,6 +1518,8 @@ Photo by <a href="https://unsplash.com/@glenncarstenspeters?utm_source=unsplash&
 - When possible, share the data and the scripts that were used in your research papers.
 
 ---
+
+class: inverse, center, middle
 
 <br>
 
