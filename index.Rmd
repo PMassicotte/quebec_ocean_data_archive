@@ -1,6 +1,6 @@
 ---
 title: "Québec-Océan Training Workshop<br>Data Management and Archiving"
-subtitle: "Good practices"
+subtitle: "Data Management Best Practices"
 author: "Philippe Massicotte"
 output:
   xaringan::moon_reader:
@@ -202,6 +202,58 @@ The file format used to store data has important implications:
 .right-column[**Example**: `.xlsx` files can not be opened in older versions of Microsoft Excel.]
 
 ---
+
+# File formats
+
+.pull-left[
+
+Laboratory computer programs often use proprietary file formats.
+
+This likely means that:
+
+1. You will be forced to buy a license.
+
+2. You depend on the commitment of the company to support the file format in the future.
+
+]
+
+.pull-right[
+
+<center>
+    <figure>
+      <img style="margin:0px auto;display:block" src="img/unsplash/cdc-p33DqVXhWvs-unsplash.jpg" alt="Photo made by Hafidh Satyanto showing old electrical wires pilled on a table." width = "500"/>
+    </figure>
+    <figcaption>Photo by <a href="https://unsplash.com/@cdc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">CDC</a> on <a href="https://unsplash.com/s/photos/lab-computer?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+    </figcaption> 
+]
+
+---
+
+# Old-school computing in laboratories
+
+<small>
+.pull-left[
+> At the Bodega Marine Laboratory at the University of California, Davis, some computers still run on **Microsoft Windows XP (released in 2001)**, because of the need to maintain compatibility with a scanning laser confocal microscope and other imaging equipment, says lab director Gary Cherr. 
+
+> **To work with current Windows versions, the team would have to replace the whole microscope. The marginal potential gains aren’t yet worth the US$400,000 expense**, Cherr reasons.
+
+Source: [Old-school computing: when your lab PC is ancient](https://www.nature.com/articles/d41586-021-01431-y)
+
+</small>
+]
+
+.pull-right[
+
+<center>
+    <figure>
+      <img style="margin:0px auto;display:block" src="img/unsplash/misael-moreno-fN6K30xtiKE-unsplash.jpg" alt="Photo showing a microscope" width = "250"/>
+    </figure>
+    <figcaption>Photo by <a href="https://unsplash.com/@moreno303?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Misael Moreno</a> on <a href="https://unsplash.com/s/photos/microscope?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+    </figcaption> 
+</center>
+]
+
+---
   
 # File formats
   
@@ -257,7 +309,7 @@ A tabs separated values file  (`.tsv`).
 ]
 
 <small>
-Horst AM, Hill AP, Gorman KB (2020). palmerpenguins: Palmer Archipelago (Antarctica) penguin data. R package version 0.1.0. https://allisonhorst.github.io/palmerpenguins/. doi: 10.5281/zenodo.3960218.
+Data source: Horst AM, Hill AP, Gorman KB (2020). palmerpenguins: Palmer Archipelago (Antarctica) penguin data. R package version 0.1.0. https://allisonhorst.github.io/palmerpenguins/. doi: 10.5281/zenodo.3960218.
 </small>
 
 ---
@@ -355,22 +407,18 @@ sf %>%
   
 # The GeoTIFF format
   
-.pull-left[
-> GeoTIFF is a public domain metadata standard that allows **georeferencing information to be embedded within a TIFF file.** The potential additional information includes map projection, coordinate systems, ellipsoids, datums, and everything else necessary to establish the exact spatial reference for the file.
+>GeoTIFF is a public domain metadata standard that allows **georeferencing information to be embedded within a TIFF file.** The potential additional information includes map projection, coordinate systems, ellipsoids, datums, and everything else necessary to establish the exact spatial reference for the file.
 >
 > Wikipedia
-]
 
-.pull-right[
-```{r geotiff1, cache=TRUE, fig.height=5, fig.asp=NA, dev='png', dpi=300}
-url <- "http://www.gisat.cz/data/mozaiky/MOS_EU_LAEA_2000.zip"
-file <- curl::curl_download(url, destfile = tempfile())
-file <- unzip(file, exdir = tempdir())
-r <- stars::read_stars(file[2])
 
-plot(r, rgb = c(1, 2, 3), main = NULL, downsample = TRUE)
-```
-]
+<center>
+    <figure>
+      <img style="margin:0px auto;display:block" src="img/unsplash/nasa-HWIOLU7_O6w-unsplash.jpg" alt="Photo showing a coastal view taken by satellite." width = "450"/>
+    </figure>
+    <figcaption>Photo by <a href="https://unsplash.com/@nasa?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">NASA</a> on <a href="https://unsplash.com/s/photos/satellite?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+    </figcaption> 
+</center>
 
 ---
   
