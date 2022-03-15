@@ -221,7 +221,7 @@ This likely means that:
 
 <center>
     <figure>
-      <img style="margin:0px auto;display:block" src="img/unsplash/cdc-p33DqVXhWvs-unsplash.jpg" alt="Photo made by Hafidh Satyanto showing old electrical wires pilled on a table." width = "500"/>
+      <img style="margin:0px auto;display:block" src="img/unsplash/cdc-p33DqVXhWvs-unsplash.jpg" alt="Image showing a woman working in a lab." width = "500"/>
     </figure>
     <figcaption>Photo by <a href="https://unsplash.com/@cdc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">CDC</a> on <a href="https://unsplash.com/s/photos/lab-computer?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
     </figcaption> 
@@ -246,7 +246,7 @@ Source: [Old-school computing: when your lab PC is ancient](https://www.nature.c
 
 <center>
     <figure>
-      <img style="margin:0px auto;display:block" src="img/unsplash/misael-moreno-fN6K30xtiKE-unsplash.jpg" alt="Photo showing a microscope" width = "250"/>
+      <img style="margin:0px auto;display:block" src="img/unsplash/misael-moreno-fN6K30xtiKE-unsplash.jpg" alt="Photo showing a microscope." width = "250"/>
     </figure>
     <figcaption>Photo by <a href="https://unsplash.com/@moreno303?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Misael Moreno</a> on <a href="https://unsplash.com/s/photos/microscope?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
     </figcaption> 
@@ -297,14 +297,14 @@ This dataset contains 4 variables (columns). **The first line generally contains
 .pull-left[
 A commas separated values file (`.csv`).
   <figure>
-      <img src="img/penguins_csv_format.png"/>
+      <img src="img/penguins_csv_format.png" alt="Image showing a commas separated values file."/>
   </figure>
 ]
 
 .pull-right[
 A tabs separated values file  (`.tsv`).
   <figure>
-      <img src="img/penguins_tsv_format.png"/>
+      <img src="img/penguins_tsv_format.png" alt="Image showing a tabs separated values file."/>
   </figure>
 ]
 
@@ -668,7 +668,7 @@ class: inverse, center, middle
 
 <center>
   <figure>
-      <img style="margin:0px auto;display:block" src="http://phdcomics.com/comics/archive/phd052810s.gif" width = "500"/>
+      <img style="margin:0px auto;display:block" src="http://phdcomics.com/comics/archive/phd052810s.gif" width = "500" alt="Screenshot of a messy file names in a folder."/>
   </figure>
   <figcaption><b>Image from:</b> https://phdcomics.com/</figcaption>
 </center>
@@ -771,7 +771,7 @@ Data files were sorted differently depending on the operating system where the P
 
 <center>
     <figure>
-      <img style="margin:0px auto;display:block" src="https://www.ncbi.nlm.nih.gov/corecgi/tileshop/tileshop.fcgi?p=PMC3&id=475246&s=95&r=1&c=1" width = "500"/>
+      <img style="margin:0px auto;display:block" src="https://www.ncbi.nlm.nih.gov/corecgi/tileshop/tileshop.fcgi?p=PMC3&id=475246&s=95&r=1&c=1" width = "500" alt="Screenshot showing how the same file names are sorted differently on Windows and on Linux."/>
     </figure>
     <figcaption><b>Image from:</b> Bhandari Neupane, J. et al. Characterization of Leptazolines A–D, Polar Oxazolines from the Cyanobacterium Leptolyngbya sp., Reveals a Glitch with the “Willoughby–Hoye” Scripts for Calculating NMR Chemical Shifts. Org. Lett. 21, 8449–8453 (2019).</figcaption>  
 </center>
@@ -870,7 +870,7 @@ If a script changes the content of a raw data file, .gradient-underline[chances 
 
 <center>
   <figure>
-      <img src="img/keep_data_raw.png" width = "800"/>
+      <img src="img/keep_data_raw.png" width = "800" alt="Drawning showing that data can change after the data is cleaned."/>
   </figure>
 </center>
 
@@ -900,7 +900,7 @@ If a script changes the content of a raw data file, .gradient-underline[chances 
 
 <center>
   <figure>
-      <img src="img/project_structure.png" height = "500"/>
+      <img src="img/project_structure.png" height = "500" alt="Image showing how I do organize my files in a data project."/>
   </figure>
 </center>
 
@@ -961,7 +961,7 @@ The main idea is that data should be organized in columns with **each column rep
 
 <center>
   <figure>
-      <img src="img/table_species.png" width = "500"/>
+      <img src="img/table_species.png" width = "500" alt="Image showing a frequent method to enter count data in spreadsheet softwares."/>
   </figure>
 </center>
 
@@ -1067,7 +1067,7 @@ If you use a spreadsheet program, **keep your data arranged as rectangular table
   
 <center>
 
-<img src="img/unsplash/lukas-blazek-mcSDtbWXUZU-unsplash.jpg" class="centerImage" height="400" alt="An open laptop with a spreadcheet program.">
+<img src="img/unsplash/lukas-blazek-mcSDtbWXUZU-unsplash.jpg" class="centerImage" height="400" alt="An open laptop with a spreadsheet program.">
 
 <figcaption>
 Photo by <a href="https://unsplash.com/@goumbik?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Lukas Blazek</a> on <a href="https://unsplash.com/s/photos/spreadsheet?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
@@ -1116,7 +1116,7 @@ class: inverse, center, middle
 
 <center>
 
-<img src="img/unsplash/chris-ried-ieic5Tq8YMk-unsplash.jpg" class="centerImage" height="350" alt="An open laptop with a spreadcheet program.">
+<img src="img/unsplash/chris-ried-ieic5Tq8YMk-unsplash.jpg" class="centerImage" height="350" alt="Image of a laptop screen displaying python code.">
 
 <figcaption>
 Photo by <a href="https://unsplash.com/@cdr6934?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Chris Ried</a> on <a href="https://unsplash.com/s/photos/programming-python?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
@@ -1276,7 +1276,7 @@ class: inverse, center, middle
 
 <center>
 
-<img src="img/unsplash/art-wall-kittenprint-9Wq1HpghQ4A-unsplash.jpg" class="centerImage" height="300" alt="Open hard drive on a table.">
+<img src="img/unsplash/art-wall-kittenprint-9Wq1HpghQ4A-unsplash.jpg" class="centerImage" height="300" alt="An open hard drive on a table.">
 
 <figcaption>
 
