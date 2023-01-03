@@ -9,9 +9,10 @@ stringr
 forcats
 ggpmthemes
 patchwork
-flipbookr
 fontawesome
 kableExtra
 abind
 sf
 stars
+microbenchmark
+pins

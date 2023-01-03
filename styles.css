@@ -1,8 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;300;400&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kreon:wght@300;700&display=swap');
 
 .remark-inline-code {
@@ -112,7 +111,7 @@ a:hover {
 
 
 .title-slide h1 {
-  font-family: 'Paytone One', sans-serif;
+  font-family: 'Baloo', sans-serif;
   font-size: 3.5em;
   word-wrap: break-word;
   font-weight: 400;
@@ -121,7 +120,7 @@ a:hover {
 }
 
 .title-slide h2 {
-  font-family: 'Titillium Web', sans-serif;
+  font-family: 'Baloo', sans-serif;
   font-weight: 600;
   font-size: 2em;
   color: #FFFFFF;
@@ -129,7 +128,7 @@ a:hover {
 }
 
 .title-slide h3 {
-  font-family: 'Titillium Web', sans-serif;
+  font-family: 'Baloo', sans-serif;
   font-weight: 400;
   font-size: 2.5em;
   color: #C1C9D0;
@@ -163,7 +162,7 @@ a:hover {
 }
 
 .inverse h1 {
-  font-family: 'Paytone One', sans-serif;
+  font-family: 'Baloo', sans-serif;
   font-size: 3em;
   word-wrap: break-word;
   font-weight: 400;
@@ -181,7 +180,7 @@ a:hover {
 }
 
 .inverse-two h1 {
-  font-family: 'Paytone One', sans-serif;
+  font-family: 'Baloo', sans-serif;
   font-size: 3em;
   word-wrap: break-word;
   font-weight: 400;
@@ -262,4 +261,8 @@ blockquote {
 
 b, strong {
   font-weight: 600;
+}
+
+h1, h2, h3 {
+  font-family: 'Baloo', sans-serif;
 }

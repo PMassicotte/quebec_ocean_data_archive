@@ -7,7 +7,7 @@ output:
     yolo: false
     seal: false
     lib_dir: libs
-    css: [default, default, robot-fonts, styles.css]
+    css: [default, styles.css]
     nature:
       highlightStyle: github
       highlightLines: true
@@ -18,7 +18,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-<!-- https://evamaerey.github.io/flipbooks/flipbook_recipes#49 -->
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
@@ -44,7 +43,6 @@ options(htmltools.dir.version = FALSE)
 library(tidyverse)
 library(ggpmthemes)
 library(patchwork)
-library(flipbookr)
 library(fontawesome)
 library(kableExtra)
 library(stars)
@@ -99,7 +97,7 @@ class: title-slide, center, bottom
 
 <img src="img/logo_quebec_ocean.png"/ height="150"/>
 
-March 16, 2022 (updated: `r format(Sys.Date(), "%B %d, %Y")`)
+March 15, 2023 (updated: `r format(Sys.Date(), "%B %d, %Y")`)
 
 ## `r rmarkdown::metadata$author`
 
@@ -122,6 +120,8 @@ March 16, 2022 (updated: `r format(Sys.Date(), "%B %d, %Y")`)
 `r fontawesome::fa("envelope", fill = "#3C3C3C", height = "25px")` <small>philippe.massicotte@takuvik.ulaval.ca</small> <br>
 
 `r fontawesome::fa("twitter", fill = "#3C3C3C", height = "25px")` <small>@philmassicotte</small> <br>
+
+`r fontawesome::fa("mastodon", fill = "#3C3C3C", height = "25px")` <small>https://fosstodon.org/@philmassicotte</small> <br>
 
 `r fontawesome::fa("blog", fill = "#3C3C3C", height = "25px")` <small>www.pmassicotte.com</small>
 
@@ -233,7 +233,6 @@ This likely means that:
 
 This is also true for **open source software**.
 
-<small>
 .pull-left[
 > At the Bodega Marine Laboratory at the University of California, Davis, some computers still run on **Microsoft Windows XP (released in 2001)**, because of the need to maintain compatibility with a scanning laser confocal microscope and other imaging equipment, says lab director Gary Cherr. 
 
@@ -241,7 +240,6 @@ This is also true for **open source software**.
 
 Source: [Old-school computing: when your lab PC is ancient](https://www.nature.com/articles/d41586-021-01431-y)
 
-</small>
 ]
 
 .pull-right[
@@ -311,7 +309,7 @@ A tabs separated values file  (`.tsv`).
 ]
 
 <small>
-Data source: Horst AM, Hill AP, Gorman KB (2020). palmerpenguins: Palmer Archipelago (Antarctica) penguin data. R package version 0.1.0. https://allisonhorst.github.io/palmerpenguins/. doi: 10.5281/zenodo.3960218.
+Data source: Horst AM, Hill AP, Gorman KB (2020). palmerpenguins: Palmer Archipelago (Antarctica) penguin data. R package version 0.1.0. https://allisonhorst.github.io/palmerpenguins/.
 </small>
 
 ---
@@ -326,7 +324,9 @@ These files contain information of geographic features such as **points**, **lin
 
   - Technically, the shapefile format is not open. **It is however widely used and often considered the standard**.
 
-  - The GeoPackage format (`.gpkg`) [is an interesting open format](https://geocompr.robinlovelace.net/read-write.html?q=geopack#file-formats).
+--
+
+- The GeoPackage format (`.gpkg`) [is an interesting open format](https://geocompr.robinlovelace.net/read-write.html?q=geopack#file-formats).
 
 --
 
@@ -366,16 +366,16 @@ This is a simple GeoJSON file defining 3 points that form a polygon.
 .pull-right[
 
 ```{r, message=FALSE, fig.height=6, fig.asp=NA}
-sf_polygon <- sf::st_read('{ "type": "Polygon", 
+sf_polygon <- sf::st_read('{ "type": "Polygon",
     "coordinates": [
         [[30, 10], [10, 30], [40, 40], [30, 10]]
   ]
 }', quiet = TRUE)
 
-sf_point <- sf_polygon %>% 
+sf_point <- sf_polygon |>
   st_cast("POINT")
 
-sf_polygon %>%
+sf_polygon |>
   ggplot() +
   geom_sf(size = 3, color = "#3c3c3c") +
   geom_sf(data = sf_point, size = 8, color = "red") +
@@ -391,10 +391,10 @@ sf_polygon %>%
 ```{r geojson, out.width="85%"}
 url <-
   "https://github.com/Robinlovelace/Creating-maps-in-R/raw/master/data/test-multifeature.geojson"
-sf <- geojsonsf::geojson_sf(url)
-sf %>%
+sf <- sf::st_read(url, quiet = TRUE)
+sf |>
   ggplot() +
-  geom_sf(size = 0.25) +
+  geom_sf(linewidth = 0.25) +
   labs(
     title = str_wrap(
       "The Colosseum amphitheatre in the centre of the city of Rome", 30
@@ -411,7 +411,7 @@ sf %>%
   
 >GeoTIFF is a public domain metadata standard that allows **georeferencing information to be embedded within a TIFF file.** The potential additional information includes map projection, coordinate systems, ellipsoids, datums, and everything else necessary to establish the exact spatial reference for the file.
 >
-> Wikipedia
+> [Wikipedia](https://en.wikipedia.org/wiki/GeoTIFF)
 
 
 <center>
@@ -524,8 +524,8 @@ ggplot() +
 A closer look allows us to better visualize the values (i.e. water temperature) within each pixel.
 
 ```{r geotiff4, cache=TRUE, fig.height=3, fig.asp=NA, dev='png', dpi=300}
-pixel_values <- r[poly] %>%
-  as_tibble() %>%
+pixel_values <- r[poly] |>
+  as_tibble() |>
   rename(sst = 3)
 
 ggplot() +
@@ -543,7 +543,7 @@ ggplot() +
     size = 3
   ) +
   scale_fill_viridis_c() +
-  scale_x_continuous(breaks = seq(-70,-65, by = 0.1)) +
+  scale_x_continuous(breaks = seq(-70, -65, by = 0.1)) +
   labs(
     x = NULL,
     y = NULL
@@ -600,15 +600,21 @@ Data analysis is an iterative process that can be time-consuming when working wi
   
 # R data importation tools
 
---
-
 For tabular data (`.CSV`, `.TXT`, `.TAB`, `.DAT`):
   
-- `readr` and `data.table` packages (.gradient-underline[the last one is particularly fast]).
+- `readr`: https://readr.tidyverse.org/index.html 
+  
+- `data.table`: https://rdatatable.gitlab.io/data.table/
 
-<br>
+- `arrow`: https://arrow.apache.org/
+  
+  - Very fast, optimized for columnar memory format for flat and hierarchical data.
+  
+  - Available for: R, C, C++, Java, Python, Go, Julia, MATLAB, Ruby, Rust.
 
---
+---
+
+# R data importation tools
 
 For geographic data:
   
@@ -624,29 +630,39 @@ For geographic data:
   
 # Efficient reading tools
   
-```{r benchmark, cache = TRUE, results='hide'}
-file <- curl::curl_download("http://eforexcel.com/wp/wp-content/uploads/2017/07/500000-Sales-Records.zip", destfile = tempfile())
-file <- unzip(file, exdir = tempdir())
+```{r benchmark, results='hide'}
+library(pins)
+
+file <- pin("http://eforexcel.com/wp/wp-content/uploads/2017/07/500000-Sales-Records.zip")
 
 bm <- microbenchmark::microbenchmark(
-  read.csv(file),
-  readr::read_csv(file),
-  data.table::fread(file),
-  times = 10
+  "read.csv" = read.csv(file),
+  "readr::read_csv" = readr::read_csv(file),
+  "data.table::fread" = data.table::fread(file),
+  "arrow::read_csv_arrow" = arrow::read_csv_arrow(file),
+  times = 1,
+  unit = "milliseconds"
 )
 ```
 
 ```{r, fig.height=5, fig.width=10}
-autoplot(bm) +
+bm |>
+  summary() |>
+  as_tibble() |>
+  mutate(expr = fct_reorder(expr, mean)) |>
+  ggplot(aes(x = mean, y = expr)) +
+  geom_col() +
+  scale_x_continuous(breaks = scales::breaks_pretty()) +
   labs(
-    title = str_wrap("Benchmarks of various R functions to read a simple CSV file", 70),
-    subtitle = "Time to read a CSV file with 500 000 rows and 14 columns (7 000 000 entries)."
+    title = str_wrap("Benchmarks of various R functions to read a CSV file", 70),
+    subtitle = "Time to read a CSV file with 500 000 rows and 14 columns (7 000 000 entries).",
+    y = NULL,
+    x = "Time (milliseconds)"
   ) +
   theme(
     plot.title = element_text(hjust = 0)
   )
 ```
-
 
 ---
 
@@ -672,7 +688,7 @@ class: inverse, center, middle
   <figure>
       <img style="margin:0px auto;display:block" src="http://phdcomics.com/comics/archive/phd052810s.gif" width = "500" alt="Screenshot of a messy file names in a folder."/>
   </figure>
-  <figcaption><b>Image from:</b> https://phdcomics.com/</figcaption>
+  <figcaption>Image from: https://phdcomics.com/</figcaption>
 </center>
   
 ---
@@ -691,7 +707,7 @@ This will ensure that the files will be recognized on most operating systems and
     <figure>
       <img style="margin:0px auto;display:block" src="img/unsplash/hafidh-satyanto-1lDajtn_r7E-unsplash.jpg" alt="Photo made by Hafidh Satyanto showing old electrical wires pilled on a table." width = "400"/>
     </figure>
-    <figcaption>Photo by <a href="https://unsplash.com/@satyanto?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Hafidh Satyanto</a> on <a href="https://unsplash.com/s/photos/old-tech?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+    <figcaption>Photo by: <a href="https://unsplash.com/@satyanto?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Hafidh Satyanto</a> on <a href="https://unsplash.com/s/photos/old-tech?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   </figcaption>  
 </center>
 
@@ -708,9 +724,9 @@ For sequential numbering, .gradient-underline[use leading zeros to ensure files 
     
 ```{r, results='asis'}
 files <- paste0("file", c(1, 10, 2), ".csv")
-sort(files) %>%
-  tibble(filename = .) %>%
-  knitr::kable() %>%
+sort(files) |>
+  tibble(filename = _) |>
+  knitr::kable() |>
   kable_styling(font_size = 36)
 ```
 ]
@@ -727,9 +743,9 @@ files <-
     pad = "0"
   ), ".csv")
 
-sort(files) %>%
-  tibble(filename = .) %>%
-  knitr::kable() %>%
+sort(files) |>
+  tibble(filename = _) |>
+  knitr::kable() |>
   kable_styling(font_size = 36)
 ```
 ]
@@ -999,13 +1015,13 @@ One common mistake is that information (such as **species**) are contained withi
 ```{r}
 # https://doi.pangaea.de/10.1594/PANGAEA.812091?format=zip
 df <- read_delim(
-    here::here("data", "Alexandra_Fiord_flower-biom.tab"),
-    skip = 19,
-    delim = "\t"
-  )
+  here::here("data", "Alexandra_Fiord_flower-biom.tab"),
+  skip = 19,
+  delim = "\t"
+)
 
-df %>% 
-  kable() %>%
+df |>
+  kable() |>
   kable_styling(font_size = 14)
 ```
 
@@ -1018,20 +1034,20 @@ After proper transformations, the data is now tidy ([or in normal form](https://
 **Each column is a variable, each row is an observation.**
 
 ```{r}
-df_pivoted <- df %>%
-  janitor::clean_names() %>% 
+df_pivoted <- df |>
+  janitor::clean_names() |>
   pivot_longer(
     c(ends_with("_g"), ends_with("_dev")),
     names_to = c("species", ".value"),
     names_pattern = "(.*)(_flower_biom_g|_std_dev$)",
     values_drop_na = TRUE
-  ) %>%
-  rename(biomass_grams = contains("flower")) %>%
+  ) |>
+  rename(biomass_grams = contains("flower")) |>
   rename(standard_deviation_grams = contains("_std_dev"))
 
-df_pivoted %>%
-  head(10) %>% 
-  kable() %>%
+df_pivoted |>
+  head(10) |>
+  kable() |>
   kable_styling(font_size = 16)
 ```
 
@@ -1042,8 +1058,8 @@ df_pivoted %>%
 Graphics, statistical analysis and models are easier to make with tidy data.
 
 ```{r plot_plant_biomass, out.width="80%", cache=TRUE}
-df_pivoted %>% 
-  filter(!str_detect(vegetation_type, "Sedge")) %>% 
+df_pivoted |>
+  filter(!str_detect(vegetation_type, "Sedge")) |>
   ggplot(aes(x = exp_treat, y = biomass_grams, fill = vegetation_type)) +
   geom_boxplot(size = 0.1) +
   labs(
@@ -1085,7 +1101,7 @@ These two examples show the same data. One is arranged as two tables whereas the
 <center>
 .pull-left[
 This sheet has two tables.
-<img src="img/data_rectangle_1.png" class="centerImage" width="700" alt="Data in a computer spreadsheet program.">
+<img src="img/data_rectangle_1.png" class="centerImage" width="850" alt="Data in a computer spreadsheet program.">
 ]
 
 .pull-right[
@@ -1098,7 +1114,7 @@ This sheet has one table.
 
 # Keep your data as rectangle tables
 
-Do not be that person...
+Do not be that person 😩😖😠😤💢😣🤦‍♀️🤦‍♂️😑😓
 
 <center>
 <img src="img/data_rectangle_3.png" class="centerImage" width="800" alt="Data in a computer spreadsheet program.">
@@ -1221,9 +1237,10 @@ In this example, we see that there is an outlier in the data. Measuring device f
 ```{r, fig.height=4, fig.asp=NA}
 df <- read_csv("https://raw.githubusercontent.com/tidyverse/tidyr/master/vignettes/weather.csv")
 
-df <- df %>% pivot_longer(-c(id:element), names_to = "day", values_to = "temperature") %>%
-  drop_na() %>%
-  mutate(day = parse_number(day)) %>% 
+df <- df |>
+  pivot_longer(-c(id:element), names_to = "day", values_to = "temperature") |>
+  drop_na() |>
+  mutate(day = parse_number(day)) |>
   filter(element == "tmin")
 
 
@@ -1237,7 +1254,7 @@ df_arrow <- tibble(
   label = "Outlier?"
 )
 
-df %>%
+df |>
   ggplot(aes(x = temperature)) +
   geom_histogram(binwidth = 5) +
   labs(
@@ -1362,7 +1379,7 @@ Photo by <a href="https://unsplash.com/@artwall_hd?utm_source=unsplash&utm_mediu
 
 <div id = "container">
 <div><img src="https://miro.medium.com/max/1812/1*pXPseZOkwPqHGKaBXGS3sQ.png" height="100"/></div>
-<div><img class="middle-img" src="https://seesparkbox.com/uploads/article_uploads/cat-_gitlab.jpg"/ height="100"/></div>
+<div><img class="middle-img" src="https://about.gitlab.com/images/press/logo/png/old-logo-no-bkgrd.png"/ height="100"/></div>
 <div><img src="https://i2.wp.com/wptavern.com/wp-content/uploads/2016/10/bitbucket-logo.png?ssl=1"/ height="100"/></div>
 </div>
 
