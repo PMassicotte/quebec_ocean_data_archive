@@ -47,6 +47,14 @@ library(fontawesome)
 library(kableExtra)
 library(stars)
 
+library("fontawesome")
+library("xaringanExtra")
+library("breakerofchains")
+library("pathformatr")
+
+library("rnaturalearthdata")
+library("rnaturalearthhires")
+
 theme_set(theme_light_modified(base_family = "Montserrat"))
 theme_update(
   strip.background = element_blank(),
@@ -231,7 +239,7 @@ This likely means that:
 
 # Old-school computing in laboratories
 
-This is also true for **open source software**.
+When you depend on profit companies.
 
 .pull-left[
 > At the Bodega Marine Laboratory at the University of California, Davis, some computers still run on **Microsoft Windows XP (released in 2001)**, because of the need to maintain compatibility with a scanning laser confocal microscope and other imaging equipment, says lab director Gary Cherr. 
@@ -877,7 +885,7 @@ If a script changes the content of a raw data file, .gradient-underline[chances 
 
 <center>
   <figure>
-      <img src="img/keep_data_raw.png" width = "800" alt="Drawning showing that data can change after the data is cleaned."/>
+      <img src="img/keep_data_raw.png" width = "750" alt="Drawning showing that data can change after the data is cleaned."/>
   </figure>
 </center>
 
