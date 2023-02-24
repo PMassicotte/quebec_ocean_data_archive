@@ -583,7 +583,7 @@ Data analysis is an iterative process that can be time-consuming when working wi
 
 <center>
 <figure>
-  <img src="https://blog.rstudio.com/2019/11/18/artist-in-residence/horst-eco-r4ds.png" width="700">
+  <img src="https://blog.rstudio.com/2019/11/18/artist-in-residence/horst-eco-r4ds.png" width="600">
 <figcaption><b>Artwork by</b> <a href="https://twitter.com/allison_horst?s=20">@allison_horst</a></figcaption>
 </figure>
 </center>
@@ -881,11 +881,11 @@ Basic recommendations to preserve the raw data for future use:
 
 ## Preserve information: keep your raw data raw
 
-If a script changes the content of a raw data file, .gradient-underline[chances are that the same script will not work again the second time you run it because the structure of the file has changed].
+If a script changes the content of a raw data file and **save it in the same file**, .gradient-underline[it is likely that the script will not work the second time because the structure of the file has changed].
 
 <center>
   <figure>
-      <img src="img/keep_data_raw.png" width = "750" alt="Drawning showing that data can change after the data is cleaned."/>
+      <img src="img/keep_raw_data_raw_01.png" width = "950" alt="Drawning showing that data can change after the data is cleaned."/>
   </figure>
 </center>
 
@@ -915,7 +915,7 @@ If a script changes the content of a raw data file, .gradient-underline[chances 
 
 <center>
   <figure>
-      <img src="img/project_structure.png" height = "500" alt="Image showing how I do organize my files in a data project."/>
+      <img src="img/project_structure.png" height = "450" alt="Image showing how I do organize my files in a data project."/>
   </figure>
 </center>
 
@@ -986,103 +986,21 @@ The main idea is that data should be organized in columns with **each column rep
 
 <center>
   <figure>
-      <img src="img/table_species.png" width = "500" alt="Image showing a frequent method to enter count data in spreadsheet softwares."/>
+      <img src="img/species_wide.png" width = "800" alt="Image showing a frequent method to enter count data in spreadsheet softwares."/>
   </figure>
 </center>
 
 ---
 
-# A typical example
-
-As an example, we will use a dataset where plant biomasses of **three species** were measured under **two experimental treatments** in the Arctic Tundra.
-
-<small>
-Klady, Rebecca A, Henry, Gregory HR, and Lemay, Valerie. 2017. [Flower and seed biomass, and germination rate of arctic tundra plants in response to long-term experimental warming. doi:10.1594/PANGAEA.812091. ](https://search.dataone.org/view/doi%3A10.1594%2FPANGAEA.812091)
-</small>
-
-<center>
-<div id = "container">
-
-<div><img src="img/plants/dryas_integrifolia.jpg" height="200"/>
-<figcaption>Dryas Integrifolia</figcaption></div>
-<div><img class="middle-img" src="img/plants/festuca_brachyphylla.jpg" height="200"/><figcaption>Festuca Brachyphylla</figcaption></div>
-<div><img src="img/plants/luzula_nivalis.jpg" height="200"/><figcaption>Luzula Nivalis</figcaption></div>
-
-</div>
-</center>
-
-<small>
-Images from [Arctic Flora of Canada and Alaska](https://arcticplants.myspecies.info/)
-</small>
-
----
-
-# How data is often structured
-
-One common mistake is that information (such as **species**) are contained within column names. Note the **spaces** and **special characters** (/, $\pm$ and []) in the column names.
-
-```{r}
-# https://doi.pangaea.de/10.1594/PANGAEA.812091?format=zip
-df <- read_delim(
-  here::here("data", "Alexandra_Fiord_flower-biom.tab"),
-  skip = 19,
-  delim = "\t"
-)
-
-df |>
-  kable() |>
-  kable_styling(font_size = 14)
-```
-
----
-
 # How data should be structured
 
-After proper transformations, the data is now tidy ([or in normal form](https://en.wikipedia.org/wiki/Database_normalization)). 
+After proper transformations, the data is now tidy ([or in normal form](https://en.wikipedia.org/wiki/Database_normalization)). **Each column is a variable, each row is an observation.**
 
-**Each column is a variable, each row is an observation.**
-
-```{r}
-df_pivoted <- df |>
-  janitor::clean_names() |>
-  pivot_longer(
-    c(ends_with("_g"), ends_with("_dev")),
-    names_to = c("species", ".value"),
-    names_pattern = "(.*)(_flower_biom_g|_std_dev$)",
-    values_drop_na = TRUE
-  ) |>
-  rename(biomass_grams = contains("flower")) |>
-  rename(standard_deviation_grams = contains("_std_dev"))
-
-df_pivoted |>
-  head(10) |>
-  kable() |>
-  kable_styling(font_size = 16)
-```
-
----
-
-# Easier to work with tidy data
-
-Graphics, statistical analysis and models are easier to make with tidy data.
-
-```{r plot_plant_biomass, out.width="80%", cache=TRUE}
-df_pivoted |>
-  filter(!str_detect(vegetation_type, "Sedge")) |>
-  ggplot(aes(x = exp_treat, y = biomass_grams, fill = vegetation_type)) +
-  geom_boxplot(size = 0.1) +
-  labs(
-    x = NULL,
-    y = "Plant biomass (g)"
-  ) +
-  paletteer::scale_fill_paletteer_d("fishualize::Antennarius_commerson") +
-  theme(
-    legend.justification = c(0, 0),
-    legend.position = c(0.75, 0.7),
-    legend.title = element_blank(),
-    legend.text = element_text(family = "Montserrat Light")
-  )
-```
+<center>
+  <figure>
+      <img src="img/species_wide_to_long.png" style="max-width: 1024px; height: auto; " alt="Image showing a frequent method to enter count data in spreadsheet softwares."/>
+  </figure>
+</center>
 
 ---
 
