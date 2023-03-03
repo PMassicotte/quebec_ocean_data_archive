@@ -266,3 +266,11 @@ b, strong {
 h1, h2, h3 {
   font-family: 'Baloo', sans-serif;
 }
+
+
+.background-highlight {
+  background-color: #ffae00;
+  border-radius: 5px;
+  padding: 2px 2px 2px 2px;
+  font-weight: bold;
+}

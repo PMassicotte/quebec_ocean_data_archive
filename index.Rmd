@@ -190,11 +190,11 @@ The file format used to store data has important implications:
   
 --
   
-1. Allows to **re-open** and **re-use** your data in the future.
+1. Allows to .background-highlight[re-open] and .background-highlight[re-use] your data in the future.
 
 --
   
-2. Other people can read your data without fancy software that are often not cross platforms (Windows/Mac/Linux).
+2. Other people can read your data without fancy software that are often not cross-platforms (Windows/Mac/Linux).
 
 <center>
 <div id="container">
@@ -269,27 +269,27 @@ Ideally, the chosen file format should be:
   
 --
   
-1. **Non-proprietary**: open source.
+1. .background-highlight[Non-proprietary]: open source.
 
 --
   
-2. **Unencrypted**: unless it contains personal or sensitive data.
+2. .background-highlight[Unencrypted]: unless it contains personal or sensitive data.
 
 --
   
-3. **Uncompressed**: your time is more valuable than disk space.
+3. .background-highlight[Uncompressed]: your time is more valuable than disk space.
 
 ---
   
 # Common open-source text file formats
   
-Tabular plain text file formats (.gradient-underline[standard text documents that contain unformatted text]):
+Tabular plain text file formats (.background-highlight[standard text documents that contain unformatted text]):
   
 - `.CSV`: Comma (or semicolon) separated values.
 
 - `.TAB`: Tab separated values.
 
-- `.TXT` and `.DAT`: Plain text files (.gradient-underline[data delimiter is not known]).
+- `.TXT` and `.DAT`: Plain text files (.background-highlight[data delimiter is not known]).
 
 All these file formats can be opened using a simple text editor.
 
@@ -300,10 +300,10 @@ All these file formats can be opened using a simple text editor.
 <!-- Screenshots made using maim -->
 <!-- maim ~/Desktop/penguins_tsv_format.png -g 1300x725+4070+210 -->
 
-This dataset contains 4 variables (columns). **The first line generally contains the names of the variables.**
+This dataset contains 4 variables (columns). .background-highlight[The first line generally contains the names of the variables.]
 
 .pull-left[
-A commas separated values file (`.csv`).
+A commas-separated values file (`.csv`).
   <figure>
       <img src="img/penguins_csv_format.png" alt="Image showing a commas separated values file."/>
   </figure>
@@ -324,13 +324,13 @@ Data source: Horst AM, Hill AP, Gorman KB (2020). palmerpenguins: Palmer Archipe
   
 ## Common open-source geographic file formats
   
-These files contain information of geographic features such as **points**, **lines** or **polygons**. There are a ton of [geographical file formats](https://gisgeography.com/gis-formats/), but here are some that are particularly popular.
+These files contain information on geographic features such as .background-highlight[points], .background-highlight[lines] or .background-highlight[polygons]. There are a ton of [geographical file formats](https://gisgeography.com/gis-formats/), but here are some that are particularly popular.
 
 --
 
 - ESRI shapefile (`.SHP`)
 
-  - Technically, the shapefile format is not open. **It is however widely used and often considered the standard**.
+  - Technically, the shapefile format is not open. .background-highlight[It is however widely used and often considered the standard].
 
 --
 
@@ -562,7 +562,6 @@ ggplot() +
   )
 ```
 
-
 ---
 
 class: inverse, center, middle
@@ -691,11 +690,11 @@ class: inverse, center, middle
   
 # File naming
   
-.gradient-underline[File naming can be a nightmare for the future you and your colleagues.]
+.background-highlight[File naming can be a nightmare for the future you and your colleagues.]
 
 <center>
   <figure>
-      <img style="margin:0px auto;display:block" src="http://phdcomics.com/comics/archive/phd052810s.gif" width = "500" alt="Screenshot of a messy file names in a folder."/>
+      <img style="margin:0px auto;display:block" src="http://phdcomics.com/comics/archive/phd052810s.gif" width = "500" alt="Screenshot of messy file names in a folder."/>
   </figure>
   <figcaption>Image from: https://phdcomics.com/</figcaption>
 </center>
@@ -724,7 +723,7 @@ This will ensure that the files will be recognized on most operating systems and
   
 # File naming basic rules
   
-For sequential numbering, .gradient-underline[use leading zeros to ensure files sort properly].
+For sequential numbering, .background-highlight[use leading zeros to ensure files sort properly].
 
 - For example, use `0001`, `0002`, `1001` instead of  `1`, `2`, `1001`.
 
@@ -821,9 +820,9 @@ Data files were sorted differently depending on the operating system where the P
 
 --
 
-.gradient-underline[Always use the ISO format:] <big>**YYYY**</big>-<medium>**MM**</medium>-<small>**DD**</small> (large `r fontawesome::fa("arrow-right", fill = "#d5695d")` small).
+.background-highlight[Always use the ISO format:] <big>**YYYY**</big>-<medium>**MM**</medium>-<small>**DD**</small> (large `r fontawesome::fa("arrow-right", fill = "#d5695d")` small).
 
-  - For example: 2021-04-21 (21 January 2021)
+  - For example 2021-04-21 (21 January 2021)
 
 ---
   
@@ -869,7 +868,7 @@ Basic recommendations to preserve the raw data for future use:
 
 --
   
-- .gradient-underline[Use a scripted language (R, Python, Matlab, etc.) to perform analysis or make corrections and save that information in a separate file.]
+- .background-highlight[Use a scripted language (R, Python, Matlab, etc.) to perform analysis or make corrections and save that information in a separate file.]
 
 --
   
@@ -881,7 +880,7 @@ Basic recommendations to preserve the raw data for future use:
 
 ## Preserve information: keep your raw data raw
 
-If a script changes the content of a raw data file and **save it in the same file**, .gradient-underline[it is likely that the script will not work the second time because the structure of the file has changed].
+If a script changes the content of a raw data file and **saves it in the same file**, .background-highlight[it is likely that the script will not work the second time because the structure of the file has changed].
 
 <center>
   <figure>
@@ -903,7 +902,7 @@ If a script changes the content of a raw data file and **save it in the same fil
 
 --
 
-- In my workflow, I use a folder named `raw` in which I consider files as **read-only**.
+- In my workflow, I use a folder named `raw` in which I consider files as .background-highlight[read-only].
 
 --
 
@@ -945,11 +944,11 @@ Photo by <a href="https://unsplash.com/@alevisionco?utm_source=unsplash&utm_medi
 
 --
 
-- Often said that **80% of the data analysis is dedicated to cleaning and data preparation!**
+- Often said that .background-highlight[80% of the data analysis is dedicated to cleaning and data preparation!]
 
 --
 
-- Well-formatted data allows for quicker **visualization**, **modeling**, **manipulation** and **archiving**.
+- Well-formatted data allows for quicker .background-highlight[visualization], .background-highlight[modeling], .background-highlight[manipulation] and .background-highlight[archiving].
 
 <center>
 <figure>
@@ -964,7 +963,7 @@ Photo by <a href="https://unsplash.com/@alevisionco?utm_source=unsplash&utm_medi
   
 # Tidy data
   
-The main idea is that data should be organized in columns with **each column representing only a single type of data** (character, numerical, date, etc.).
+The main idea is that data should be organized in columns with .background-highlight[each column representing only a single type of data] (character, numerical, date, etc.).
 
 <center>
 <figure>
@@ -979,14 +978,14 @@ The main idea is that data should be organized in columns with **each column rep
 
 # How data is often structured
 
-- Many researchers structure their data in such a way that it is easily manipulated by a human, **but not so much programatically**.
+- Many researchers structure their data in such a way that it is easily manipulated by a human, .background-highlight[but not so much programatically].
 
-- .gradient-underline[A common problem is that the columns represent values, not variable names.]
-  - **Often occurs with datasheets containing species abundance.**
+- A common problem is that the columns represent values, not variable names.
+  - Often occurs with datasheets containing species abundance.
 
 <center>
   <figure>
-      <img src="img/species_wide.png" width = "800" alt="Image showing a frequent method to enter count data in spreadsheet softwares."/>
+      <img src="img/species_wide.png" width = "800" alt="Image showing a frequent method to enter count data in spreadsheet software."/>
   </figure>
 </center>
 
@@ -994,11 +993,11 @@ The main idea is that data should be organized in columns with **each column rep
 
 # How data should be structured
 
-After proper transformations, the data is now tidy ([or in normal form](https://en.wikipedia.org/wiki/Database_normalization)). **Each column is a variable, each row is an observation.**
+After proper transformations, the data is now tidy ([or in normal form](https://en.wikipedia.org/wiki/Database_normalization)). .background-highlight[Each column is a variable, each row is an observation.]
 
 <center>
   <figure>
-      <img src="img/species_wide_to_long.png" style="max-width: 1024px; height: auto; " alt="Image showing a frequent method to enter count data in spreadsheet softwares."/>
+      <img src="img/species_wide_to_long.png" style="max-width: 1024px; height: auto; " alt="Image showing a frequent method to enter count data in spreadsheet software."/>
   </figure>
 </center>
 
@@ -1006,7 +1005,7 @@ After proper transformations, the data is now tidy ([or in normal form](https://
 
 # Keep your data as rectangle tables
   
-If you use a spreadsheet program, **keep your data arranged as rectangular tables**. Otherwise, .gradient-underline[it makes data importation difficult]. 
+If you use a spreadsheet program, .background-highlight[keep your data arranged as rectangular tables]. Otherwise, .background-highlight[it makes data importation difficult]. 
   
 <center>
 
@@ -1074,7 +1073,7 @@ Photo by <a href="https://unsplash.com/@cdr6934?utm_source=unsplash&utm_medium=r
   
 --
 
-.gradient-underline[Be consistent with variable name capitalization:]
+.background-highlight[Be consistent with variable name capitalization:]
 
 `r fontawesome::fa("check", fill = "#34A74BFF")` `temperature`, `precipitation`
 
@@ -1082,7 +1081,7 @@ Photo by <a href="https://unsplash.com/@cdr6934?utm_source=unsplash&utm_medium=r
 
 --
 
-.gradient-underline[Avoid mixing name capitalization:]
+.background-highlight[Avoid mixing name capitalization:]
 
 `r fontawesome::fa("times", fill = "#E6352FFF")` `temperature`, `Precipitation`
 
@@ -1110,7 +1109,7 @@ Photo by <a href="https://unsplash.com/@cdr6934?utm_source=unsplash&utm_medium=r
   
 --
 
-- Be consistent with variable names .gradient-underline[across files]:
+- Be consistent with variable names .background-highlight[across files]:
   - `temp` vs `temperature`
   
 ---
@@ -1119,7 +1118,7 @@ Photo by <a href="https://unsplash.com/@cdr6934?utm_source=unsplash&utm_medium=r
   
 --
 
-- Missing values should be simply represented by **space** in your data files.
+- Missing values should be simply represented by .background-highlight[space] in your data files.
 
 --
 
@@ -1132,7 +1131,7 @@ Photo by <a href="https://unsplash.com/@cdr6934?utm_source=unsplash&utm_medium=r
 
 --
 
-- `r fontawesome::fa("exclamation-triangle", fill = "#ffb82a")` .gradient-underline[Do not use a numerical value (ex.: **-999**) to indicate missing values.]
+- `r fontawesome::fa("exclamation-triangle", fill = "#ffb82a")` .background-highlight[Do not use a numerical value (ex.: **-999**) to indicate missing values.]
 
     - This can create situations where missing values will be included in calculations.
     
@@ -1144,12 +1143,12 @@ Photo by <a href="https://unsplash.com/@cdr6934?utm_source=unsplash&utm_medium=r
   
 --
 
-- Once data is tidy, .gradient-underline[**perform a visual inspection**] to make sure there are no obvious errors in your data.
+- Once data is tidy, .background-blue[perform a visual inspection] to make sure there are no obvious errors in your data.
 
 --
 
 - A picture is worth a thousand words.
-    - <span class = "gradient-underline">**Always, always, always plot the data!**</span>
+    - <span class = "background-blue">Always, always, always plot the data!</span>
   
 --
 
@@ -1255,11 +1254,11 @@ Photo by <a href="https://unsplash.com/@artwall_hd?utm_source=unsplash&utm_mediu
   
 --
 
-- .gradient-underline[**Disk space is much cheaper than the time you invested in collecting, cleaning and analyzing your data.**]
+- .background-highlight[**Disk space is much cheaper than the time you invested in collecting, cleaning and analyzing your data.**]
 
 --
 
-- It is important to have **redundancy** in your data.
+- It is important to have .background-highlight[redundancy] in your data.
     - `r fontawesome::fa("exclamation-triangle", fill = "#ffb82a")` <span class = "gradient-underline">A copy of your working directory in another directory on the same hard drive is not redundancy!</span>
 
 --
@@ -1278,7 +1277,7 @@ Photo by <a href="https://unsplash.com/@artwall_hd?utm_source=unsplash&utm_mediu
   
 # Importance of backups
   
-- Use an incremental strategy to backup your data (.gradient-underline[ideally daily]).
+- Use an incremental strategy to backup your data (.background-highlight[ideally daily]).
 
     - [rsync](https://fr.wikipedia.org/wiki/Rsync)
 
@@ -1360,7 +1359,7 @@ Many journals and [funding agencies](http://www.science.gc.ca/eic/site/063.nsf/f
 
 --
 
-- Data can be re-used in other studies to build up knowledge.
+- Data can be reused in other studies to build up knowledge.
 
 ---
 
@@ -1370,7 +1369,7 @@ There are at least two different ways to make your data available:
   
 1. In a dedicated data paper.
 
-2. In an appendix along with your paper (**assuming that your paper is published in an open-access journal**).
+2. In an appendix along with your paper (.background-highlight[assuming that your paper is published in an open-access journal]).
   - [The Directory of Open Access Journals](https://www.doaj.org/) is useful to search for open access journals. 
 
 <br>
@@ -1388,7 +1387,7 @@ There are at least two different ways to make your data available:
 
 --
 
-<p style="font-size:38px">.gradient-underline[**Summary tables in an PDF article are not very useful!**]</p>
+<p style="font-size:38px">.background-highlight[**Summary tables in an PDF article are not very useful!**]</p>
 
 <center>
   <figure>
@@ -1404,7 +1403,7 @@ You should rather provide the data in a way that is easily importable into a pro
   
 # What is a data paper?
   
-- .gradient-underline[Data presented in an appendix are rarely reviewed by peers.]
+- .background-highlight[Data presented in an appendix are rarely reviewed by peers.]
   
 - Data papers are interesting alternatives to publish data:
   
@@ -1498,7 +1497,7 @@ Photo by <a href="https://unsplash.com/@glenncarstenspeters?utm_source=unsplash&
 
 --
 
-- .gradient-underline[**Backups your data externally as often as possible.**]
+- .background-highlight[**Backups your data externally as often as possible.**]
     - Your hard drive will eventually crash, for sure!
 
 --
@@ -1517,7 +1516,7 @@ class: inverse, center, middle
 
 <center>
 
-<img src="img/unsplash/wilhelm-gunkel-AKQlYooS72w-unsplash.jpg" class="centerImage" height="500" alt="Paper sheet in a old typewriter with thank you written in different language.">
+<img src="img/unsplash/wilhelm-gunkel-AKQlYooS72w-unsplash.jpg" class="centerImage" height="500" alt="Paper sheet in an old typewriter with thank you written in a different language.">
 
 <figcaption>
 
