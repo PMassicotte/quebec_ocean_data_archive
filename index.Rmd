@@ -1109,7 +1109,7 @@ Photo by <a href="https://unsplash.com/@cdr6934?utm_source=unsplash&utm_medium=r
   
 --
 
-- Be consistent with variable names .background-highlight[across files]:
+- Be consistent with variable names across files:
   - `temp` vs `temperature`
   
 ---
@@ -1118,7 +1118,7 @@ Photo by <a href="https://unsplash.com/@cdr6934?utm_source=unsplash&utm_medium=r
   
 --
 
-- Missing values should be simply represented by .background-highlight[space] in your data files.
+- .background-highlight[Missing values should be simply represented by space in your data files.]
 
 --
 
@@ -1131,7 +1131,7 @@ Photo by <a href="https://unsplash.com/@cdr6934?utm_source=unsplash&utm_medium=r
 
 --
 
-- `r fontawesome::fa("exclamation-triangle", fill = "#ffb82a")` .background-highlight[Do not use a numerical value (ex.: **-999**) to indicate missing values.]
+- `r fontawesome::fa("exclamation-triangle", fill = "#ffae00")` .background-highlight[Do not use a numerical value (ex.: **-999**) to indicate missing values.]
 
     - This can create situations where missing values will be included in calculations.
     
