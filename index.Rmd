@@ -44,8 +44,8 @@ library(tidyverse)
 library(ggpmthemes)
 library(patchwork)
 library(fontawesome)
-library(kableExtra)
 library(stars)
+library(gt)
 
 library("fontawesome")
 library("xaringanExtra")
@@ -194,7 +194,7 @@ The file format used to store data has important implications:
 
 --
   
-2. Other people can read your data without fancy software that are often not cross-platforms (Windows/Mac/Linux).
+2. Other people can read your data without fancy softwares that are often not cross-platform (Windows/Mac/Linux).
 
 <center>
 <div id="container">
@@ -219,7 +219,7 @@ Laboratory computer programs often use proprietary file formats.
 
 This likely means that:
 
-1. You will be forced to buy a license.
+1. You will be forced to buy a license .background-highlight[which can be expensive].
 
 2. You depend on the commitment of the company to support the file format in the future.
 
@@ -303,7 +303,7 @@ All these file formats can be opened using a simple text editor.
 This dataset contains 4 variables (columns). .background-highlight[The first line generally contains the names of the variables.]
 
 .pull-left[
-A commas-separated values file (`.csv`).
+A comma-separated values file (`.csv`).
   <figure>
       <img src="img/penguins_csv_format.png" alt="Image showing a commas separated values file."/>
   </figure>
@@ -564,6 +564,52 @@ ggplot() +
 
 ---
 
+# A note on geospatial data
+
+.background-highlight[It is usually a better idea to work with spatial objects rather than tabular data.]
+
+<br>
+
+.column-left[
+```{r echo=FALSE}
+pixel_values |>
+  head() |>
+  rename(
+    longitude = x,
+    latitude = y
+  ) |>
+  gt() |>
+  tab_options(
+    table.width = pct(50),
+    table.font.size = 20,
+    column_labels.font.weight = "cold"
+  ) |>
+  fmt_number(
+    columns = "sst",
+    decimals = 2
+  )
+```
+]
+
+<br>
+
+.column-right[
+
+**It is much easier to do:**
+
+- Geometric operations
+
+- Geographic Projection
+
+- Data extraction
+
+- Joining
+
+- And much more!
+]
+
+---
+
 class: inverse, center, middle
 
 # Efficient tools for reading large datasets in R
@@ -734,8 +780,12 @@ For sequential numbering, .background-highlight[use leading zeros to ensure file
 files <- paste0("file", c(1, 10, 2), ".csv")
 sort(files) |>
   tibble(filename = _) |>
-  knitr::kable() |>
-  kable_styling(font_size = 36)
+  gt() |>
+  tab_options(
+    table.width = pct(50),
+    table.font.size = 30,
+    column_labels.font.weight = "cold"
+  )
 ```
 ]
 
@@ -753,8 +803,12 @@ files <-
 
 sort(files) |>
   tibble(filename = _) |>
-  knitr::kable() |>
-  kable_styling(font_size = 36)
+  gt() |>
+  tab_options(
+    table.width = pct(50),
+    table.font.size = 30,
+    column_labels.font.weight = "cold"
+  )
 ```
 ]
 
@@ -822,7 +876,7 @@ Data files were sorted differently depending on the operating system where the P
 
 .background-highlight[Always use the ISO format:] <big>**YYYY**</big>-<medium>**MM**</medium>-<small>**DD**</small> (large `r fontawesome::fa("arrow-right", fill = "#d5695d")` small).
 
-  - For example 2021-04-21 (21 January 2021)
+  - For example 2021-04-21 (21 April 2021)
 
 ---
   
@@ -843,7 +897,16 @@ Data files were sorted differently depending on the operating system where the P
 --
 
 `r fontawesome::fa("check", fill = "#34A74BFF")` `station01_temperature_20160708.csv`
-  
+
+--
+
+**Interesting ressources**
+
+[How to name files - Jennifer Bryan (YouTube)](https://www.youtube.com/watch?v=ES1LTlnpLMk)
+
+[How to name files - Jennifer Bryan (Slides)](https://speakerdeck.com/jennybc/how-to-name-files-the-sequel)
+
+
 ---
 
 class: inverse, center, middle
@@ -880,7 +943,7 @@ Basic recommendations to preserve the raw data for future use:
 
 ## Preserve information: keep your raw data raw
 
-If a script changes the content of a raw data file and **saves it in the same file**, .background-highlight[it is likely that the script will not work the second time because the structure of the file has changed].
+If a script changes the content of a raw data file and **saves it in the same file**, .background-highlight[likely, the script will not work the second time because the structure of the file has changed].
 
 <center>
   <figure>
