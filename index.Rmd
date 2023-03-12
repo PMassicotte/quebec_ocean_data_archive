@@ -29,6 +29,7 @@ knitr::opts_chunk$set(
   fig.align = "center",
   fig.height = 4
 )
+
 options(htmltools.dir.version = FALSE)
 # names(xaringan:::list_css())
 
@@ -46,14 +47,12 @@ library(patchwork)
 library(fontawesome)
 library(stars)
 library(gt)
-
-library("fontawesome")
-library("xaringanExtra")
-library("breakerofchains")
-library("pathformatr")
-
-library("rnaturalearthdata")
-library("rnaturalearthhires")
+library(fontawesome)
+library(xaringanExtra)
+library(breakerofchains)
+library(pathformatr)
+library(rnaturalearthdata)
+library(rnaturalearthhires)
 
 theme_set(theme_light_modified(base_family = "Montserrat"))
 theme_update(
@@ -105,9 +104,9 @@ class: title-slide, center, bottom
 
 <img src="img/logo_quebec_ocean.png"/ height="150"/>
 
-March 15, 2023 (updated: `r format(Sys.Date(), "%B %d, %Y")`)
-
 ## `r rmarkdown::metadata$author`
+
+March 15, 2023 (updated: `r format(Sys.Date(), "%B %d, %Y")`)
 
 ---
 
@@ -369,6 +368,9 @@ This is a simple GeoJSON file defining 3 points that form a polygon.
 }
 ```
 </small>
+
+**Create your own GeoJSON file online:** 
+  - [https://geojson.io/](https://geojson.io/)
 ]
 
 .pull-right[
@@ -742,7 +744,7 @@ class: inverse, center, middle
   <figure>
       <img style="margin:0px auto;display:block" src="http://phdcomics.com/comics/archive/phd052810s.gif" width = "500" alt="Screenshot of messy file names in a folder."/>
   </figure>
-  <figcaption>Image from: https://phdcomics.com/</figcaption>
+  <figcaption><figcaption>Image from: <a href="https://phdcomics.com/">https://phdcomics.com/</a></figcaption> </figcaption>
 </center>
   
 ---
@@ -821,7 +823,7 @@ sort(files) |>
     <figure>
       <img style="margin:0px auto;display:block" src="img/python_file_naming.png" alt="Image showing a scientist that looks confused over his experiment." width = "500"/>
     </figure>
-    <figcaption><b>Source:</b> https://bit.ly/2M8cViI</figcaption>  
+    <figcaption>Source: <a href="https://bit.ly/2M8cViI">https://bit.ly/2M8cViI</a></figcaption>  
 </center>
 ]
 
@@ -900,7 +902,7 @@ Data files were sorted differently depending on the operating system where the P
 
 --
 
-**Interesting ressources**
+**Interesting ressources:**
 
 [How to name files - Jennifer Bryan (YouTube)](https://www.youtube.com/watch?v=ES1LTlnpLMk)
 
@@ -937,7 +939,7 @@ Basic recommendations to preserve the raw data for future use:
   
 - If you want to do some analyses in Excel, make a copy of the file and do your calculations and graphs in the copy.
 
-<small>Source: https://www.dataone.org/best-practices/preserve-information-keep-your-raw-data-raw</small>
+<small>Source: https://dataoneorg.github.io/Education/bestpractices/preserve-information-keep</small>
 
 ---
 
@@ -1206,12 +1208,12 @@ Photo by <a href="https://unsplash.com/@cdr6934?utm_source=unsplash&utm_medium=r
   
 --
 
-- Once data is tidy, .background-blue[perform a visual inspection] to make sure there are no obvious errors in your data.
+- Once data is tidy, .background-highlight[perform a visual inspection] to make sure there are no obvious errors in your data.
 
 --
 
 - A picture is worth a thousand words.
-    - <span class = "background-blue">Always, always, always plot the data!</span>
+    - <span class = "background-highlight">Always, always, always plot the data!</span>
   
 --
 
@@ -1309,7 +1311,7 @@ Photo by <a href="https://unsplash.com/@artwall_hd?utm_source=unsplash&utm_mediu
 
 > An archive is a copy of data created for reference purposes. **Although not required, the original is often deleted after an archive is made.**
 
-<credit><b>Source:</b> https://www.networkworld.com/article/3285652/backup-vs-archive-why-its-important-to-know-the-difference.html</credit>
+<credit>Source: <a href="https://www.networkworld.com/article/3285652/backup-vs-archive-why-its-important-to-know-the-difference.html">https://www.networkworld.com/article/3285652/backup-vs-archive-why-its-important-to-know-the-difference.html</a></credit>
 
 ---
   
@@ -1322,7 +1324,7 @@ Photo by <a href="https://unsplash.com/@artwall_hd?utm_source=unsplash&utm_mediu
 --
 
 - It is important to have .background-highlight[redundancy] in your data.
-    - `r fontawesome::fa("exclamation-triangle", fill = "#ffb82a")` <span class = "gradient-underline">A copy of your working directory in another directory on the same hard drive is not redundancy!</span>
+    - `r fontawesome::fa("exclamation-triangle", fill = "#ffb82a")` **A copy of your working directory in another directory on the same hard drive is not redundancy!**
 
 --
 
@@ -1450,7 +1452,7 @@ There are at least two different ways to make your data available:
 
 --
 
-<p style="font-size:38px">.background-highlight[**Summary tables in an PDF article are not very useful!**]</p>
+<p style="font-size:32px">.background-highlight[**Summary tables in a PDF article are not very useful!**]</p>
 
 <center>
   <figure>
