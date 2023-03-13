@@ -625,19 +625,10 @@ class: inverse, center, middle
 ---
   
 # Efficient tools for reading large datasets
-  
-Data analysis is an iterative process that can be time-consuming when working with large datasets.
 
-<center>
-<figure>
-  <img src="https://blog.rstudio.com/2019/11/18/artist-in-residence/horst-eco-r4ds.png" width="600">
-<figcaption><b>Artwork by</b> <a href="https://twitter.com/allison_horst?s=20">@allison_horst</a></figcaption>
-</figure>
-</center>
+- .background-highlight[Data analysis is an iterative process that can be time-consuming when working with large dataset.]
 
----
-  
-# Efficient tools for reading large datasets
+- It is worth spending some time to find efficient tools to work with such large data.
 
 .left-column[
 <center>
@@ -646,6 +637,7 @@ Data analysis is an iterative process that can be time-consuming when working wi
 ]
 
 .right-column[
+
 - R is my main programming environment, so here are some recommendations to be efficient when reading files. 
 
 - However, you can easily read all these file formats in your preferred programming language.
