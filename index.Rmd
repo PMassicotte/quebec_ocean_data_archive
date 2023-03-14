@@ -570,9 +570,10 @@ ggplot() +
 
 .background-highlight[It is usually a better idea to work with spatial objects rather than tabular data.]
 
-<br>
+.pull-left[
 
-.column-left[
+**Geographic data presented in a tabular form:**
+
 ```{r echo=FALSE}
 pixel_values |>
   head() |>
@@ -593,11 +594,9 @@ pixel_values |>
 ```
 ]
 
-<br>
+.pull-right[
 
-.column-right[
-
-**It is much easier to do:**
+**It is much easier to work with *spatial* data:**
 
 - Geometric operations
 
@@ -671,7 +670,7 @@ For geographic data:
   
 - GeoTIFF: `terra` and `stars`
   
-- For NetCDF: `ncdf4`, `tidync` and `stars`
+- For NetCDF: `terra`, `ncdf4`, `tidync` and `stars`
   
 ---
   
@@ -728,15 +727,12 @@ class: inverse, center, middle
 
 ---
   
-# File naming
+# File naming: who can relate to this?
   
-.background-highlight[File naming can be a nightmare for the future you and your colleagues.]
-
 <center>
   <figure>
-      <img style="margin:0px auto;display:block" src="http://phdcomics.com/comics/archive/phd052810s.gif" width = "500" alt="Screenshot of messy file names in a folder."/>
+      <img style="margin:0px auto;display:block" src="img/files_naming.png" width = "700" alt="Laptop showing a file explorer with files badly named."/>
   </figure>
-  <figcaption><figcaption>Image from: <a href="https://phdcomics.com/">https://phdcomics.com/</a></figcaption> </figcaption>
 </center>
   
 ---
@@ -767,44 +763,13 @@ For sequential numbering, .background-highlight[use leading zeros to ensure file
 
 - For example, use `0001`, `0002`, `1001` instead of  `1`, `2`, `1001`.
 
-.pull-left[
-  **Not sorted correctly**
-    
-```{r, results='asis'}
-files <- paste0("file", c(1, 10, 2), ".csv")
-sort(files) |>
-  tibble(filename = _) |>
-  gt() |>
-  tab_options(
-    table.width = pct(50),
-    table.font.size = 30,
-    column_labels.font.weight = "cold"
-  )
-```
-]
+<br>
 
-.pull-right[
-**Sorted correctly**
-    
-```{r}
-files <-
-  paste0("file", str_pad(
-    c(1, 10, 2),
-    width = 2,
-    side = "left",
-    pad = "0"
-  ), ".csv")
-
-sort(files) |>
-  tibble(filename = _) |>
-  gt() |>
-  tab_options(
-    table.width = pct(50),
-    table.font.size = 30,
-    column_labels.font.weight = "cold"
-  )
-```
-]
+<center>
+  <figure>
+      <img style="margin:0px auto;display:block" src="img/files_sorting.png" width = "800" alt="Laptop showing a file explorer with files badly named."/>
+  </figure>
+</center>
 
 ---
   
@@ -833,9 +798,9 @@ Data files were sorted differently depending on the operating system where the P
 
 <center>
     <figure>
-      <img style="margin:0px auto;display:block" src="https://www.ncbi.nlm.nih.gov/corecgi/tileshop/tileshop.fcgi?p=PMC3&id=475246&s=95&r=1&c=1" width = "500" alt="Screenshot showing how the same file names are sorted differently on Windows and on Linux."/>
+      <img style="margin:0px auto;display:block" src="img/files_sorting2.png" width = "500" alt="Screenshot showing how the same file names are sorted differently on Windows and on Linux."/>
     </figure>
-    <figcaption><b>Image from:</b> Bhandari Neupane, J. et al. Characterization of Leptazolines A–D, Polar Oxazolines from the Cyanobacterium Leptolyngbya sp., Reveals a Glitch with the “Willoughby–Hoye” Scripts for Calculating NMR Chemical Shifts. Org. Lett. 21, 8449–8453 (2019).</figcaption>  
+    <figcaption><b>Original image from:</b> Bhandari Neupane, J. et al. Characterization of Leptazolines A-D, Polar Oxazolines from the Cyanobacterium Leptolyngbya sp., Reveals a Glitch with the “Willoughby-Hoye” Scripts for Calculating NMR Chemical Shifts. Org. Lett. 21, 8449-8453 (2019).</figcaption>  
 </center>
 
 
@@ -870,7 +835,13 @@ Data files were sorted differently depending on the operating system where the P
 
 .background-highlight[Always use the ISO format:] <big>**YYYY**</big>-<medium>**MM**</medium>-<small>**DD**</small> (large `r fontawesome::fa("arrow-right", fill = "#d5695d")` small).
 
-  - For example 2021-04-21 (21 April 2021)
+--
+
+`r fontawesome::fa("times", fill = "#E6352FFF")` 12-04-09 (2012-04-09 *or* 2004-12-09 or 2009-04-12, or ...)
+ 
+--
+
+`r fontawesome::fa("check", fill = "#34A74BFF")` 2012-04-09 (2012 April 9th)
 
 ---
   

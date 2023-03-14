@@ -11,14 +11,13 @@ lubridate
 ggpmthemes
 patchwork
 fontawesome
-kableExtra
 abind
 sf
 stars
+gt
 xaringanExtra
 breakerofchains
 pathformatr
 rnaturalearthdata
 rnaturalearthhires
 pins
-gt
