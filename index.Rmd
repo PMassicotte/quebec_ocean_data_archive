@@ -53,6 +53,8 @@ library(breakerofchains)
 library(pathformatr)
 library(rnaturalearthdata)
 library(rnaturalearthhires)
+library(tidytext)
+library(janitor)
 
 theme_set(theme_light_modified(base_family = "Montserrat"))
 theme_update(
@@ -1468,7 +1470,49 @@ The data associated with the paper is available online.
       <img src="img/seanoe.png" width = "450"/>
   </figure>
 </center>
-  
+
+---
+
+```{r, echo=FALSE, fig.width=12, fig.height=7}
+url <- pins::board_url(list(seanoe = "https://www.seanoe.org/html/stat/2022/uj4mfvvquq-philippemassicottetakuvikulavalca.xls"))
+
+df <- url |>
+  pins::pin_download(name = "seanoe") |>
+  readxl::read_excel(skip = 2) |>
+  janitor::clean_names()
+
+df_viz <- df |>
+  mutate(country = fct_na_value_to_level(country, level = "Unknown")) |>
+  mutate(country = fct_lump(country, n = 9)) |>
+  count(dataset_title, country) |>
+  mutate(dataset_title = str_wrap(dataset_title, 60)) |>
+  mutate(country2 = country) |>
+  mutate(country = reorder_within(country, n, dataset_title))
+
+df_viz |>
+  ggplot(aes(x = n, y = country, fill = country2)) +
+  geom_col(position = "dodge") +
+  scale_y_reordered() +
+  ggthemes::scale_fill_tableau() +
+  labs(
+    x = "Total number of downloads",
+    y = NULL
+  ) +
+  facet_wrap(~dataset_title, scales = "free_y") +
+  theme(
+    legend.position = "none",
+    strip.background = element_blank(),
+    strip.text = element_text(size = 10, face = "bold", color = "white"),
+    axis.text = element_text(size = 10, face = "bold", color = "white"),
+    text = element_text(color = "white"),
+    panel.border = element_blank(),
+    axis.ticks = element_blank(),
+    panel.grid = element_line(color = "grey65"),
+    panel.background = element_rect(fill = "#3c3c3c"),
+    plot.background = element_rect(fill = "#3c3c3c")
+  )
+```
+
 ---
   
 # Open repositories
