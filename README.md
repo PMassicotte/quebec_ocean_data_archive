@@ -6,14 +6,12 @@ Slides for the [Québec Océan](https://www.quebec-ocean.ulaval.ca/) data archiv
 
 - Pascal took 60 min and not 30 min as expected. Allow him more time.
 
-
 - My presentation:
   - Better drawning on why to keep data raw (hand drawning).
   - Change the section title called "working with others data."
   - Slide #9: add .tab and also .tsv.
   - Think if I should keep the geoJSON format?
-  - Add more examples in the *file naming basic rules* section.
+  - Add more examples in the _file naming basic rules_ section.
     - Add a vertical space between the bad and good examples.
-  - Better explain what is *tidy* data witht the flower biomass example.
-  - Add an example (with a red cross) of a bad file name in the *variable name* section (slide #48).
-
+  - Better explain what is _tidy_ data witht the flower biomass example.
+  - Add an example (with a red cross) of a bad file name in the _variable name_ section (slide #48).

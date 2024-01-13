@@ -1,7 +1,7 @@
 ---
-title: "Québec-Océan Training Workshop<br>Data Management and Archiving"
-subtitle: "Data Management Best Practices"
-author: "Philippe Massicotte"
+title: 'Québec-Océan Training Workshop<br>Data Management and Archiving'
+subtitle: 'Data Management Best Practices'
+author: 'Philippe Massicotte'
 output:
   xaringan::moon_reader:
     yolo: false
@@ -14,33 +14,25 @@ output:
       highlightSpans: true
       countIncrementalSlides: false
       ratio: '16:9'
-editor_options: 
+editor_options:
   chunk_output_type: console
 ---
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
   echo = FALSE,
   dev = "svg",
   message = FALSE,
-  cache = TRUE,
+  cache = FALSE,
   warning = FALSE,
   fig.align = "center",
   fig.height = 4
 )
 
 options(htmltools.dir.version = FALSE)
-# names(xaringan:::list_css())
-
-# renv::install("rstudio/fontawesome")
-# renv::install("gadenbuie/xaringanExtra")
-# renv::install("MilesMcBain/breakerofchains")
-# renv::install("mcguinlu/pathformatr")
 
 # renv::install("ropensci/rnaturalearthdata")
 # renv::install("ropensci/rnaturalearthhires")
-
 library(tidyverse)
 library(ggpmthemes)
 library(patchwork)
@@ -93,22 +85,20 @@ htmltools::tagList(
 ```
 
 ```{r xaringan-animate-all, echo=FALSE}
-# xaringanExtra::use_animate_all("fade")
 xaringanExtra::use_tachyons()
-# xaringanExtra::use_text_poster()
 ```
 
 class: title-slide, center, bottom
 
 # `r rmarkdown::metadata$title`
 
-### *`r rmarkdown::metadata$subtitle`*
+### _`r rmarkdown::metadata$subtitle`_
 
 <img src="img/logo_quebec_ocean.png"/ height="150"/>
 
 ## `r rmarkdown::metadata$author`
 
-March 15, 2023 (updated: `r format(Sys.Date(), "%B %d, %Y")`)
+January 31, 2024 (updated: `r format(Sys.Date(), "%B %d, %Y")`)
 
 ---
 
@@ -143,10 +133,9 @@ March 15, 2023 (updated: `r format(Sys.Date(), "%B %d, %Y")`)
 --
 
 - Open file formats for your data.
-    
-    - Tabular data.
-    
-    - Geographical data.
+
+  - Tabular data.
+  - Geographical data.
 
 --
 
@@ -184,17 +173,17 @@ class: inverse, center, middle
 </div>
 
 ---
-  
+
 # File formats
-  
+
 The file format used to store data has important implications:
-  
+
 --
-  
+
 1. Allows to .background-highlight[re-open] and .background-highlight[re-use] your data in the future.
 
 --
-  
+
 2. Other people can read your data without fancy softwares that are often not cross-platform (Windows/Mac/Linux).
 
 <center>
@@ -243,7 +232,8 @@ This likely means that:
 When you depend on profit companies.
 
 .pull-left[
-> At the Bodega Marine Laboratory at the University of California, Davis, some computers still run on **Microsoft Windows XP (released in 2001)**, because of the need to maintain compatibility with a scanning laser confocal microscope and other imaging equipment, says lab director Gary Cherr. 
+
+> At the Bodega Marine Laboratory at the University of California, Davis, some computers still run on **Microsoft Windows XP (released in 2001)**, because of the need to maintain compatibility with a scanning laser confocal microscope and other imaging equipment, says lab director Gary Cherr.
 
 > **To work with current Windows versions, the team would have to replace the whole microscope. The marginal potential gains aren’t yet worth the US$400,000 expense**, Cherr reasons.
 
@@ -263,29 +253,33 @@ Source: [Old-school computing: when your lab PC is ancient](https://www.nature.c
 ]
 
 ---
-  
+
 # File formats
-  
-Ideally, the chosen file format should be:
-  
+
+Ideally, the chosen file format should have these characteristics:
+
 --
-  
+
 1. .background-highlight[Non-proprietary]: open source.
 
 --
-  
+
 2. .background-highlight[Unencrypted]: unless it contains personal or sensitive data.
 
 --
-  
-3. .background-highlight[Uncompressed]: your time is more valuable than disk space.
+
+3. .background-highlight[human-readable]: the file should be human-readable or have tools available for easy interpretation and debugging.
+
+--
+
+4. .background-highlight[Performance]: consideration for efficient read and write operations, especially for large datasets, is crucial for optimal performance.
 
 ---
-  
+
 # Common open-source text file formats
-  
+
 Tabular plain text file formats (.background-highlight[standard text documents that contain unformatted text]):
-  
+
 - `.CSV`: Comma (or semicolon) separated values.
 
 - `.TAB`: Tab separated values.
@@ -295,7 +289,7 @@ Tabular plain text file formats (.background-highlight[standard text documents t
 All these file formats can be opened using a simple text editor.
 
 ---
-  
+
 # Examples of CSV and TSV files
 
 <!-- Screenshots made using maim -->
@@ -305,13 +299,15 @@ This dataset contains 4 variables (columns). .background-highlight[The first lin
 
 .pull-left[
 A comma-separated values file (`.csv`).
+
   <figure>
       <img src="img/penguins_csv_format.png" alt="Image showing a commas separated values file."/>
   </figure>
 ]
 
 .pull-right[
-A tabs separated values file  (`.tsv`).
+A tabs separated values file (`.tsv`).
+
   <figure>
       <img src="img/penguins_tsv_format.png" alt="Image showing a tabs separated values file."/>
   </figure>
@@ -322,9 +318,9 @@ Data source: Horst AM, Hill AP, Gorman KB (2020). palmerpenguins: Palmer Archipe
 </small>
 
 ---
-  
+
 ## Common open-source geographic file formats
-  
+
 These files contain information on geographic features such as .background-highlight[points], .background-highlight[lines] or .background-highlight[polygons]. There are a ton of [geographical file formats](https://gisgeography.com/gis-formats/), but here are some that are particularly popular.
 
 --
@@ -339,20 +335,20 @@ These files contain information on geographic features such as .background-highl
 
 --
 
+- GeoParquet (`.parquet`) is an incubating [Open Geospatial Consortium (OGC) standard](https://geoparquet.org/) standard that adds interoperable geospatial types (Point, Line, Polygon) to [Apache Parquet](https://parquet.apache.org/).
+
+--
+
 - GeoJSON (`.json`, `.geojson`, JSON variant with simple geographical features)
 
 --
 
 - GeoTIFF (`.tif`, `.tiff`, TIFF variant enriched with GIS relevant metadata)
 
---
-
-- Google Earth (`.xml`, `.kmz`, `.kml`)
-
 ---
-  
+
 # The GeoJSON format (Polygons)
-  
+
 .pull-left[
 
 This is a simple GeoJSON file defining 3 points that form a polygon.
@@ -371,9 +367,10 @@ This is a simple GeoJSON file defining 3 points that form a polygon.
 ```
 </small>
 
-**Create your own GeoJSON file online:** 
-  - [https://geojson.io/](https://geojson.io/)
-]
+**Create your own GeoJSON file online:**
+
+- [https://geojson.io/](https://geojson.io/)
+  ]
 
 .pull-right[
 
@@ -393,13 +390,13 @@ sf_polygon |>
   geom_sf(data = sf_point, size = 8, color = "red") +
   coord_sf()
 ```
-  
+
 ]
 
 ---
-  
+
 # The GeoJSON format
-  
+
 ```{r geojson, out.width="85%"}
 url <-
   "https://github.com/Robinlovelace/Creating-maps-in-R/raw/master/data/test-multifeature.geojson"
@@ -418,13 +415,12 @@ sf |>
 ```
 
 ---
-  
+
 # The GeoTIFF format
-  
->GeoTIFF is a public domain metadata standard that allows **georeferencing information to be embedded within a TIFF file.** The potential additional information includes map projection, coordinate systems, ellipsoids, datums, and everything else necessary to establish the exact spatial reference for the file.
+
+> GeoTIFF is a public domain metadata standard that allows **georeferencing information to be embedded within a TIFF file.** The potential additional information includes map projection, coordinate systems, ellipsoids, datums, and everything else necessary to establish the exact spatial reference for the file.
 >
 > [Wikipedia](https://en.wikipedia.org/wiki/GeoTIFF)
-
 
 <center>
     <figure>
@@ -435,7 +431,7 @@ sf |>
 </center>
 
 ---
-  
+
 # The GeoTIFF format (SST)
 
 A GeoTIFF can contain information such as the Sea Surface Temperature (SST).
@@ -530,7 +526,7 @@ ggplot() +
 ```
 
 ---
-  
+
 # The GeoTIFF format (SST)
 
 A closer look allows us to better visualize the values (i.e. water temperature) within each pixel.
@@ -570,7 +566,7 @@ ggplot() +
 
 # A note on geospatial data
 
-.background-highlight[It is usually a better idea to work with spatial objects rather than tabular data.]
+.background-highlight[It is usually a better idea to work with spatial objects (ex.: GeoTIFF) rather than tabular data.]
 
 .pull-left[
 
@@ -594,11 +590,12 @@ pixel_values |>
     decimals = 2
   )
 ```
+
 ]
 
 .pull-right[
 
-**It is much easier to work with *spatial* data:**
+**It is much easier to work with _spatial_ data:**
 
 - Geometric operations
 
@@ -609,6 +606,24 @@ pixel_values |>
 - Joining
 
 - And much more!
+  ]
+
+---
+
+# Suggested readings
+
+.pull-left[
+
+  <figure>
+      <img src="img/geocomputation_with_r.png" alt="Book cover of geocomputation with R.", height="450">
+  </figure>
+]
+
+.pull-right[
+
+  <figure>
+      <img src="img/spatial_data_science_with_r.jpg" alt="Book cover of spatial data science with R.", height="450">
+  </figure>
 ]
 
 ---
@@ -624,7 +639,7 @@ class: inverse, center, middle
 </center>
 
 ---
-  
+
 # Efficient tools for reading large datasets
 
 - .background-highlight[Data analysis is an iterative process that can be time-consuming when working with large dataset.]
@@ -632,6 +647,7 @@ class: inverse, center, middle
 - It is worth spending some time to find efficient tools to work with such large data.
 
 .left-column[
+
 <center>
   `r fontawesome::fa("r-project", fill = "#3c3c3c", height = "200px")`
 </center>
@@ -639,25 +655,23 @@ class: inverse, center, middle
 
 .right-column[
 
-- R is my main programming environment, so here are some recommendations to be efficient when reading files. 
+- R is my main programming environment, so here are some recommendations to be efficient when reading files.
 
 - However, you can easily read all these file formats in your preferred programming language.
-]
+  ]
 
 ---
-  
+
 # R data importation tools
 
 For tabular data (`.CSV`, `.TXT`, `.TAB`, `.DAT`):
-  
-- `readr`: https://readr.tidyverse.org/index.html 
-  
+
+- `readr`: https://readr.tidyverse.org/index.html
 - `data.table`: https://rdatatable.gitlab.io/data.table/
 
 - `arrow`: https://arrow.apache.org/
-  
+
   - Very fast, optimized for columnar memory format for flat and hierarchical data.
-  
   - Available for: R, C, C++, Java, Python, Go, Julia, MATLAB, Ruby, Rust.
 
 ---
@@ -665,19 +679,16 @@ For tabular data (`.CSV`, `.TXT`, `.TAB`, `.DAT`):
 # R data importation tools
 
 For geographic data:
-  
-- Shapefiles, KMZ and KML: `sf`
-  
+
+- Shapefiles, gpkg, KMZ and KML: `sf`
 - GeoJSON: `jsonlite`, `sf`, `geojson` and `geojsonsf`
-  
 - GeoTIFF: `terra` and `stars`
-  
 - For NetCDF: `terra`, `ncdf4`, `tidync` and `stars`
-  
+
 ---
-  
+
 # Efficient reading tools
-  
+
 ```{r benchmark, results='hide'}
 library(pins)
 
@@ -728,9 +739,9 @@ class: inverse, center, middle
 </div>
 
 ---
-  
+
 # File naming: who can relate to this?
-  
+
 <center>
   <figure>
       <img style="margin:0px auto;display:block" src="img/files_naming.png" width = "700" alt="Laptop showing a file explorer with files badly named."/>
@@ -758,12 +769,26 @@ This will ensure that the files will be recognized on most operating systems and
 </center>
 
 ---
-  
+
 # File naming basic rules
-  
+
+<img src="img/invalid_multibyte_string.png" alt="Screenshot of an Excel file with invalid code characters.", width="650">
+
+<small>
+```r
+r$> read_csv("myfile.csv")
+Rows: 104937 Columns: 1
+Error in nchar(x, "width") : invalid multibyte string, element 1
+```
+</small>
+
+---
+
+# File naming basic rules
+
 For sequential numbering, .background-highlight[use leading zeros to ensure files sort properly].
 
-- For example, use `0001`, `0002`, `1001` instead of  `1`, `2`, `1001`.
+- For example, use `0001`, `0002`, `1001` instead of `1`, `2`, `1001`.
 
 <br>
 
@@ -774,10 +799,11 @@ For sequential numbering, .background-highlight[use leading zeros to ensure file
 </center>
 
 ---
-  
+
 # When file naming goes wrong!
 
 .pull-left[
+
 <center>
     <figure>
       <img style="margin:0px auto;display:block" src="img/python_file_naming.png" alt="Image showing a scientist that looks confused over his experiment." width = "500"/>
@@ -787,13 +813,14 @@ For sequential numbering, .background-highlight[use leading zeros to ensure file
 ]
 
 .pull-right[
+
 > The glitch caused results of a common chemistry computation to vary depending on the operating system used, causing discrepancies among **Mac**, **Windows**, and **Linux** systems.
 
 > ...the glitch, had to do with how different operating systems sort files.
-]
+> ]
 
 ---
-  
+
 # When file naming goes wrong!
 
 Data files were sorted differently depending on the operating system where the Python scripts were executed.
@@ -805,9 +832,8 @@ Data files were sorted differently depending on the operating system where the P
     <figcaption><b>Original image from:</b> Bhandari Neupane, J. et al. Characterization of Leptazolines A-D, Polar Oxazolines from the Cyanobacterium Leptolyngbya sp., Reveals a Glitch with the “Willoughby-Hoye” Scripts for Calculating NMR Chemical Shifts. Org. Lett. 21, 8449-8453 (2019).</figcaption>  
 </center>
 
-
 ---
-  
+
 # File naming basic rules
 
 --
@@ -816,22 +842,23 @@ Data files were sorted differently depending on the operating system where the P
 
 --
 
-- Separate file names with `_`  or `-` to add useful information about the data:  
---
-
-  - Project name.
+- Separate file names with `_` or `-` to add useful information about the data:
 
 --
 
-  - The sampling locations.
+- Project name.
 
 --
 
-  - Type of data/variable.
+- The sampling locations.
 
 --
 
-  - Date (YYYY-MM-DD).
+- Type of data/variable.
+
+--
+
+- Date (YYYY-MM-DD).
 
 --
 
@@ -839,14 +866,14 @@ Data files were sorted differently depending on the operating system where the P
 
 --
 
-`r fontawesome::fa("times", fill = "#E6352FFF")` 12-04-09 (2012-04-09 *or* 2004-12-09 or 2009-04-12, or ...)
- 
+`r fontawesome::fa("times", fill = "#E6352FFF")` 12-04-09 (2012-04-09 _or_ 2004-12-09 or 2009-04-12, or ...)
+
 --
 
 `r fontawesome::fa("check", fill = "#34A74BFF")` 2012-04-09 (2012 April 9th)
 
 ---
-  
+
 # File naming basic rules (examples)
 
 --
@@ -873,7 +900,6 @@ Data files were sorted differently depending on the operating system where the P
 
 [How to name files - Jennifer Bryan (Slides)](https://speakerdeck.com/jennybc/how-to-name-files-the-sequel)
 
-
 ---
 
 class: inverse, center, middle
@@ -897,11 +923,11 @@ Basic recommendations to preserve the raw data for future use:
 - Do not make any changes or corrections to the original raw data file.
 
 --
-  
+
 - .background-highlight[Use a scripted language (R, Python, Matlab, etc.) to perform analysis or make corrections and save that information in a separate file.]
 
 --
-  
+
 - If you want to do some analyses in Excel, make a copy of the file and do your calculations and graphs in the copy.
 
 <small>Source: https://dataoneorg.github.io/Education/bestpractices/preserve-information-keep</small>
@@ -919,7 +945,7 @@ If a script changes the content of a raw data file and **saves it in the same fi
 </center>
 
 ---
-  
+
 # Project directory structure
 
 --
@@ -928,7 +954,7 @@ If a script changes the content of a raw data file and **saves it in the same fi
 
 --
 
-- Consider using a specific folder to store raw data files. 
+- Consider using a specific folder to store raw data files.
 
 --
 
@@ -939,7 +965,7 @@ If a script changes the content of a raw data file and **saves it in the same fi
 - Data files produced by code are placed in a folder named `clean`.
 
 ---
-  
+
 # Project directory structure
 
 <center>
@@ -969,7 +995,7 @@ Photo by <a href="https://unsplash.com/@alevisionco?utm_source=unsplash&utm_medi
 </center>
 
 ---
-  
+
 # Why do we want tidy data?
 
 --
@@ -990,9 +1016,9 @@ Photo by <a href="https://unsplash.com/@alevisionco?utm_source=unsplash&utm_medi
 </center>
 
 ---
-  
+
 # Tidy data
-  
+
 The main idea is that data should be organized in columns with .background-highlight[each column representing only a single type of data] (character, numerical, date, etc.).
 
 <center>
@@ -1034,9 +1060,9 @@ After proper transformations, the data is now tidy ([or in normal form](https://
 ---
 
 # Keep your data as rectangle tables
-  
-If you use a spreadsheet program, .background-highlight[keep your data arranged as rectangular tables]. Otherwise, .background-highlight[it makes data importation difficult]. 
-  
+
+If you use a spreadsheet program, .background-highlight[keep your data arranged as rectangular tables]. Otherwise, .background-highlight[it makes data importation difficult].
+
 <center>
 
 <img src="img/unsplash/lukas-blazek-mcSDtbWXUZU-unsplash.jpg" class="centerImage" height="400" alt="An open laptop with a spreadsheet program.">
@@ -1064,6 +1090,7 @@ This sheet has two tables.
 This sheet has one table.
 <img src="img/data_rectangle_2.png" class="centerImage" width="250" alt="Data in a computer spreadsheet program.">
 ]
+
 </center>
 
 ---
@@ -1098,9 +1125,9 @@ Photo by <a href="https://unsplash.com/@cdr6934?utm_source=unsplash&utm_medium=r
 </center>
 
 ---
-  
+
 # Variable names
-  
+
 --
 
 .background-highlight[Be consistent with variable name capitalization:]
@@ -1118,14 +1145,14 @@ Photo by <a href="https://unsplash.com/@cdr6934?utm_source=unsplash&utm_medium=r
 `r fontawesome::fa("times", fill = "#E6352FFF")` `temperature_min`, `TemperatureMax`
 
 ---
-  
+
 # Variable names
 
 --
 
 - Do not forget to provide information about abbreviations.
 
-    - `tmin` vs `temperature_minimum`
+  - `tmin` vs `temperature_minimum`
 
 --
 
@@ -1135,17 +1162,17 @@ Photo by <a href="https://unsplash.com/@cdr6934?utm_source=unsplash&utm_medium=r
 
 - Explicitly state the unit of each variable:
 
-    - `depth_m`, `chla_mg_m2`
-  
+  - `depth_m`, `chla_mg_m2`
+
 --
 
 - Be consistent with variable names across files:
   - `temp` vs `temperature`
-  
+
 ---
-  
+
 # Missing values
-  
+
 --
 
 - .background-highlight[Missing values should be simply represented by space in your data files.]
@@ -1157,20 +1184,19 @@ Photo by <a href="https://unsplash.com/@cdr6934?utm_source=unsplash&utm_medium=r
 --
 
 - If not possible, use a standardized code to represent missing values:
-    - `NA`, `NaN`
+  - `NA`, `NaN`
 
 --
 
 - `r fontawesome::fa("exclamation-triangle", fill = "#ffae00")` .background-highlight[Do not use a numerical value (ex.: **-999**) to indicate missing values.]
 
-    - This can create situations where missing values will be included in calculations.
-    
-    - Ex.: the average of `c(1, NA, 3)` is different than the average of `c(1, -999, 3)`. 
+  - This can create situations where missing values will be included in calculations.
+  - Ex.: the average of `c(1, NA, 3)` is different than the average of `c(1, -999, 3)`.
 
 ---
-  
+
 # Visualization
-  
+
 --
 
 - Once data is tidy, .background-highlight[perform a visual inspection] to make sure there are no obvious errors in your data.
@@ -1178,18 +1204,18 @@ Photo by <a href="https://unsplash.com/@cdr6934?utm_source=unsplash&utm_medium=r
 --
 
 - A picture is worth a thousand words.
-    - <span class = "background-highlight">Always, always, always plot the data!</span>
-  
+  - <span class = "background-highlight">Always, always, always plot the data!</span>
+
 --
 
 - A histogram can be used to represent the distribution of numerical data.
 
 ---
-  
+
 # Visualization
 
 In this example, we see that there is an outlier in the data. Measuring device fault? Manual entry error?
-  
+
 ```{r, fig.height=4, fig.asp=NA}
 df <- read_csv("https://raw.githubusercontent.com/tidyverse/tidyr/master/vignettes/weather.csv")
 
@@ -1243,7 +1269,7 @@ class: inverse, center, middle
 
 # Backups
 
-## It is not *if*, but *when* your hard drive will fail.
+## It is not _if_, but _when_ your hard drive will fail.
 
 <br>
 
@@ -1259,9 +1285,8 @@ Photo by <a href="https://unsplash.com/@artwall_hd?utm_source=unsplash&utm_mediu
 
 </center>
 
-
 ---
-  
+
 # Backups vs Archives
 
 --
@@ -1279,9 +1304,9 @@ Photo by <a href="https://unsplash.com/@artwall_hd?utm_source=unsplash&utm_mediu
 <credit>Source: <a href="https://www.networkworld.com/article/3285652/backup-vs-archive-why-its-important-to-know-the-difference.html">https://www.networkworld.com/article/3285652/backup-vs-archive-why-its-important-to-know-the-difference.html</a></credit>
 
 ---
-  
+
 # Importance of backups
-  
+
 --
 
 - .background-highlight[**Disk space is much cheaper than the time you invested in collecting, cleaning and analyzing your data.**]
@@ -1289,49 +1314,42 @@ Photo by <a href="https://unsplash.com/@artwall_hd?utm_source=unsplash&utm_mediu
 --
 
 - It is important to have .background-highlight[redundancy] in your data.
-    - `r fontawesome::fa("exclamation-triangle", fill = "#ffb82a")` **A copy of your working directory in another directory on the same hard drive is not redundancy!**
+  - `r fontawesome::fa("exclamation-triangle", fill = "#ffb82a")` **A copy of your working directory in another directory on the same hard drive is not redundancy!**
 
 --
 
 - Backups should not be only done on your computer (use cloud services)
-    
-    - Google Drive
-    
-    - Microsoft OneDrive (1TB of space if a student at Université Laval)
-  
-    - Dropbox
-    
-    - MEGA
+
+  - Google Drive
+  - Microsoft OneDrive (1TB of space if a student at Université Laval)
+  - Dropbox
+  - MEGA
 
 ---
-  
+
 # Importance of backups
-  
+
 - Use an incremental strategy to backup your data (.background-highlight[ideally daily]).
 
-    - [rsync](https://fr.wikipedia.org/wiki/Rsync)
+  - [rsync](https://fr.wikipedia.org/wiki/Rsync)
 
-    - [SyncBack](https://www.2brightsparks.com/syncback/syncback-hub.html)
+  - [SyncBack](https://www.2brightsparks.com/syncback/syncback-hub.html)
 
-    - [Duplicati](https://www.duplicati.com/)
+  - [Duplicati](https://www.duplicati.com/)
 
-    - [Syncthing](https://syncthing.net/)
+  - [Syncthing](https://syncthing.net/)
 
 - I keep 3 months of data.
 
-
 ---
-  
-# Version control
-  
+
+# Source code management
+
 - Backups of the source code used to generate data are also important.
 
 - Git is a version control system used to keep track of changes in computer files.
-    
-    - Primarily used for source code management in software development.
-    
-    - Coordinating work on those files among multiple people.
-
+  - Primarily used for source code management in software development.
+  - Coordinating work on those files among multiple peoples.
 
 <div id = "container">
 <div><img src="https://miro.medium.com/max/1812/1*pXPseZOkwPqHGKaBXGS3sQ.png" height="100"/></div>
@@ -1362,11 +1380,11 @@ Photo by <a href="https://unsplash.com/@timmossholder?utm_source=unsplash&utm_me
 </center>
 
 ---
-  
+
 # Publishing your data
-  
+
 Many journals and [funding agencies](http://www.science.gc.ca/eic/site/063.nsf/fra/h_97610.html) now require to have archiving strategies. Why?
-  
+
 --
 
 - Makes your data shareable (do not forget that research is funded with public money).
@@ -1377,11 +1395,9 @@ Many journals and [funding agencies](http://www.science.gc.ca/eic/site/063.nsf/f
 
 --
 
-- Makes your data citable (DOI, Digital Object Identifier).
-    
-    - Collecting and producing data is difficult and requires a lot of resources (technical and financial). 
-    
-    - Publishing your data allows other people to credit you for your hard work.
+- Makes your data citable (.background-highlight[DOI, Digital Object Identifier]).
+  - Collecting and producing data is difficult and requires a lot of resources (technical and financial).
+  - Publishing your data allows other people to credit you for your hard work.
 
 --
 
@@ -1394,13 +1410,14 @@ Many journals and [funding agencies](http://www.science.gc.ca/eic/site/063.nsf/f
 ---
 
 # Publishing your data
-  
+
 There are at least two different ways to make your data available:
-  
+
 1. In a dedicated data paper.
 
 2. In an appendix along with your paper (.background-highlight[assuming that your paper is published in an open-access journal]).
-  - [The Directory of Open Access Journals](https://www.doaj.org/) is useful to search for open access journals. 
+
+- [The Directory of Open Access Journals](https://www.doaj.org/) is useful to search for open access journals.
 
 <br>
 
@@ -1430,17 +1447,14 @@ There are at least two different ways to make your data available:
 You should rather provide the data in a way that is easily importable into a programming language as supplementary information (for example, a `CSV` file).
 
 ---
-  
+
 # What is a data paper?
-  
+
 - .background-highlight[Data presented in an appendix are rarely reviewed by peers.]
-  
 - Data papers are interesting alternatives to publish data:
-  
+
   - **Peer-reviewed** (high-quality data).
-  
   - Generally open access (obliviously!).
-  
   - Data are citable with a DOI.
 
 > A data paper is a **peer-reviewed document** describing a dataset, published in a peer-reviewed journal. It takes effort to prepare, curate and describe data. Data papers provide recognition for this effort by means of a scholarly article.
@@ -1450,7 +1464,7 @@ You should rather provide the data in a way that is easily importable into a pro
 ---
 
 # What is a data paper?
-  
+
 A data paper is similar to a traditional scientific paper.
 
 <center>
@@ -1474,7 +1488,9 @@ The data associated with the paper is available online.
 ---
 
 ```{r, echo=FALSE, fig.width=12, fig.height=7}
-url <- pins::board_url(list(seanoe = "https://www.seanoe.org/html/stat/2022/uj4mfvvquq-philippemassicottetakuvikulavalca.xls"))
+url <- pins::board_url(
+  list(seanoe = "https://www.seanoe.org/html/stat/2022/uj4mfvvquq-philippemassicottetakuvikulavalca.xls")
+)
 
 df <- url |>
   pins::pin_download(name = "seanoe") |>
@@ -1507,18 +1523,18 @@ df_viz |>
     text = element_text(color = "white"),
     panel.border = element_blank(),
     axis.ticks = element_blank(),
-    panel.grid = element_line(color = "grey65"),
+    panel.grid = element_blank(),
     panel.background = element_rect(fill = "#3c3c3c"),
     plot.background = element_rect(fill = "#3c3c3c")
   )
 ```
 
 ---
-  
+
 # Open repositories
 
 There are many options available to publish your data.
-  
+
 - Polar Data Catalogue (https://www.polardata.ca/)
 - Scholars Portal Dataverse (https://dataverse.scholarsportal.info/)
 - Federated Research Data Repository (https://www.frdr-dfdr.ca/repo/?locale=fr)
@@ -1552,9 +1568,9 @@ Photo by <a href="https://unsplash.com/@glenncarstenspeters?utm_source=unsplash&
 </center>
 
 ---
-  
+
 # Take home messages
-  
+
 --
 
 - Choose non-proprietary file formats (ex.: `CSV`).
@@ -1570,7 +1586,7 @@ Photo by <a href="https://unsplash.com/@glenncarstenspeters?utm_source=unsplash&
 --
 
 - .background-highlight[**Backups your data externally as often as possible.**]
-    - Your hard drive will eventually crash, for sure!
+  - Your hard drive will eventually crash, for sure!
 
 --
 

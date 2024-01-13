@@ -1,3 +1,5 @@
+nvimcom
+rmarkdown
 tidyverse
 ggplot2
 tibble
@@ -20,6 +22,6 @@ breakerofchains
 pathformatr
 rnaturalearthdata
 rnaturalearthhires
-pins
 tidytext
 janitor
+pins

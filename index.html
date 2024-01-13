@@ -6,8 +6,12 @@
     <meta name="author" content="Philippe Massicotte" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
-    <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
-    <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <link href="libs/animate.css/animate.xaringan.css" rel="stylesheet" />
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
     <script src="libs/js-cookie/js.cookie.js"></script>
     <script src="libs/peerjs/peerjs.min.js"></script>
     <script src="libs/tiny.toast/toast.min.js"></script>
@@ -17,7 +21,6 @@
     <link href="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
     <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
     <script>window.xaringanExtraClipboard(null, {"button":"Copy<\/i>","success":"<i class=\"fa fa-check\" style=\"color: #90BE6D\"><\/i>","error":"<i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
-    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" type="text/css" />
   </head>
   <body>
@@ -32,18 +35,17 @@
 
 
 
-
 class: title-slide, center, bottom
 
 # Québec-Océan Training Workshop&lt;br&gt;Data Management and Archiving
 
-### *Data Management Best Practices*
+### _Data Management Best Practices_
 
 &lt;img src="img/logo_quebec_ocean.png"/ height="150"/&gt;
 
 ## Philippe Massicotte
 
-March 15, 2023 (updated: March 15, 2023)
+January 31, 2024 (updated: January 13, 2024)
 
 ---
 
@@ -78,10 +80,9 @@ March 15, 2023 (updated: March 15, 2023)
 --
 
 - Open file formats for your data.
-    
-    - Tabular data.
-    
-    - Geographical data.
+
+  - Tabular data.
+  - Geographical data.
 
 --
 
@@ -112,24 +113,24 @@ class: inverse, center, middle
 ## Open file formats for your data.
 
 &lt;div id="container"&gt;
-&lt;div&gt;<svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:150px;width:112.5px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:white;overflow:visible;position:relative;"><path d="M365.3 93.38l-74.63-74.64C278.6 6.742 262.3 0 245.4 0H64C28.65 0 0 28.65 0 64l.0065 384c0 35.34 28.65 64 64 64H320c35.2 0 64-28.8 64-64V138.6C384 121.7 377.3 105.4 365.3 93.38zM336 448c0 8.836-7.164 16-16 16H64.02c-8.838 0-16-7.164-16-16L48 64.13c0-8.836 7.164-16 16-16h160L224 128c0 17.67 14.33 32 32 32h79.1V448zM229.1 233.3L192 280.9L154.9 233.3C146.8 222.8 131.8 220.9 121.3 229.1C110.8 237.2 108.9 252.3 117.1 262.8L161.6 320l-44.53 57.25c-8.156 10.47-6.25 25.56 4.188 33.69C125.7 414.3 130.8 416 135.1 416c7.156 0 14.25-3.188 18.97-9.25L192 359.1l37.06 47.65C233.8 412.8 240.9 416 248 416c5.125 0 10.31-1.656 14.72-5.062c10.44-8.125 12.34-23.22 4.188-33.69L222.4 320l44.53-57.25c8.156-10.47 6.25-25.56-4.188-33.69C252.2 220.9 237.2 222.8 229.1 233.3z"/></svg>&lt;/div&gt;
-&lt;div&gt;<svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:150px;width:112.5px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:white;overflow:visible;position:relative;"><path d="M365.3 93.38l-74.63-74.64C278.6 6.742 262.3 0 245.4 0L64-.0001c-35.35 0-64 28.65-64 64l.0065 384c0 35.34 28.65 64 64 64H320c35.2 0 64-28.8 64-64V138.6C384 121.7 377.3 105.4 365.3 93.38zM336 448c0 8.836-7.164 16-16 16H64.02c-8.838 0-16-7.164-16-16L48 64.13c0-8.836 7.164-16 16-16h160L224 128c0 17.67 14.33 32 32 32h79.1V448zM96 280C96 293.3 106.8 304 120 304h144C277.3 304 288 293.3 288 280S277.3 256 264 256h-144C106.8 256 96 266.8 96 280zM264 352h-144C106.8 352 96 362.8 96 376s10.75 24 24 24h144c13.25 0 24-10.75 24-24S277.3 352 264 352z"/></svg>&lt;/div&gt;
-&lt;div&gt;<svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:150px;width:112.5px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:white;overflow:visible;position:relative;"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM80 224H96c22.1 0 40 17.9 40 40v8c0 8.8-7.2 16-16 16s-16-7.2-16-16v-8c0-4.4-3.6-8-8-8H80c-4.4 0-8 3.6-8 8v80c0 4.4 3.6 8 8 8H96c4.4 0 8-3.6 8-8v-8c0-8.8 7.2-16 16-16s16 7.2 16 16v8c0 22.1-17.9 40-40 40H80c-22.1 0-40-17.9-40-40V264c0-22.1 17.9-40 40-40zm72 46.4c0-25.6 20.8-46.4 46.4-46.4H216c8.8 0 16 7.2 16 16s-7.2 16-16 16H198.4c-7.9 0-14.4 6.4-14.4 14.4c0 5.2 2.8 9.9 7.2 12.5l25.4 14.5c14.4 8.3 23.4 23.6 23.4 40.3c0 25.6-20.8 46.4-46.4 46.4H168c-8.8 0-16-7.2-16-16s7.2-16 16-16h25.6c7.9 0 14.4-6.4 14.4-14.4c0-5.2-2.8-9.9-7.2-12.5l-25.4-14.5C160.9 302.4 152 287 152 270.4zM280 240v31.6c0 23 5.5 45.6 16 66c10.5-20.3 16-42.9 16-66V240c0-8.8 7.2-16 16-16s16 7.2 16 16v31.6c0 34.7-10.3 68.7-29.6 97.6l-5.1 7.7c-3 4.5-8 7.1-13.3 7.1s-10.3-2.7-13.3-7.1l-5.1-7.7c-19.3-28.9-29.6-62.9-29.6-97.6V240c0-8.8 7.2-16 16-16s16 7.2 16 16z"/></svg>&lt;/div&gt;
-&lt;div&gt;<svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:150px;width:112.5px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:white;overflow:visible;position:relative;"><path d="M365.3 93.38l-74.63-74.64C278.6 6.742 262.3 0 245.4 0L64-.0001c-35.35 0-64 28.65-64 64l.0065 384c0 35.34 28.65 64 64 64H320c35.2 0 64-28.8 64-64V138.6C384 121.7 377.3 105.4 365.3 93.38zM336 448c0 8.836-7.164 16-16 16H64.02c-8.838 0-16-7.164-16-16L48 64.13c0-8.836 7.164-16 16-16h48V64h64V48.13h48.01L224 128c0 17.67 14.33 32 32 32h79.1V448zM176 96h-64v32h64V96zM176 160h-64v32h64V160zM176 224h-64l-30.56 116.5C73.51 379.5 103.7 416 144.3 416c40.26 0 70.45-36.3 62.68-75.15L176 224zM160 368H128c-8.836 0-16-7.164-16-16s7.164-16 16-16h32c8.836 0 16 7.164 16 16S168.8 368 160 368z"/></svg>&lt;/div&gt;
+&lt;div&gt;<svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:150px;width:112.5px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:white;overflow:visible;position:relative;"><path d="M48 448V64c0-8.8 7.2-16 16-16H224v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm90.9 233.3c-8.1-10.5-23.2-12.3-33.7-4.2s-12.3 23.2-4.2 33.7L161.6 320l-44.5 57.3c-8.1 10.5-6.3 25.5 4.2 33.7s25.5 6.3 33.7-4.2L192 359.1l37.1 47.6c8.1 10.5 23.2 12.3 33.7 4.2s12.3-23.2 4.2-33.7L222.4 320l44.5-57.3c8.1-10.5 6.3-25.5-4.2-33.7s-25.5-6.3-33.7 4.2L192 280.9l-37.1-47.6z"/></svg>&lt;/div&gt;
+&lt;div&gt;<svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:150px;width:112.5px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:white;overflow:visible;position:relative;"><path d="M64 464c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16H224v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm56 256c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120z"/></svg>&lt;/div&gt;
+&lt;div&gt;<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:150px;width:150px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:white;overflow:visible;position:relative;"><path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V304H176c-35.3 0-64 28.7-64 64V512H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128zM200 352h16c22.1 0 40 17.9 40 40v8c0 8.8-7.2 16-16 16s-16-7.2-16-16v-8c0-4.4-3.6-8-8-8H200c-4.4 0-8 3.6-8 8v80c0 4.4 3.6 8 8 8h16c4.4 0 8-3.6 8-8v-8c0-8.8 7.2-16 16-16s16 7.2 16 16v8c0 22.1-17.9 40-40 40H200c-22.1 0-40-17.9-40-40V392c0-22.1 17.9-40 40-40zm133.1 0H368c8.8 0 16 7.2 16 16s-7.2 16-16 16H333.1c-7.2 0-13.1 5.9-13.1 13.1c0 5.2 3 9.9 7.8 12l37.4 16.6c16.3 7.2 26.8 23.4 26.8 41.2c0 24.9-20.2 45.1-45.1 45.1H304c-8.8 0-16-7.2-16-16s7.2-16 16-16h42.9c7.2 0 13.1-5.9 13.1-13.1c0-5.2-3-9.9-7.8-12l-37.4-16.6c-16.3-7.2-26.8-23.4-26.8-41.2c0-24.9 20.2-45.1 45.1-45.1zm98.9 0c8.8 0 16 7.2 16 16v31.6c0 23 5.5 45.6 16 66c10.5-20.3 16-42.9 16-66V368c0-8.8 7.2-16 16-16s16 7.2 16 16v31.6c0 34.7-10.3 68.7-29.6 97.6l-5.1 7.7c-3 4.5-8 7.1-13.3 7.1s-10.3-2.7-13.3-7.1l-5.1-7.7c-19.3-28.9-29.6-62.9-29.6-97.6V368c0-8.8 7.2-16 16-16z"/></svg>&lt;/div&gt;
+&lt;div&gt;<svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:150px;width:112.5px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:white;overflow:visible;position:relative;"><path d="M64 464c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16h48c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16h48v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm48 112c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H128c-8.8 0-16 7.2-16 16zm0 64c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H128c-8.8 0-16 7.2-16 16zm-6.3 71.8L82.1 335.9c-1.4 5.4-2.1 10.9-2.1 16.4c0 35.2 28.8 63.7 64 63.7s64-28.5 64-63.7c0-5.5-.7-11.1-2.1-16.4l-23.5-88.2c-3.7-14-16.4-23.8-30.9-23.8H136.6c-14.5 0-27.2 9.7-30.9 23.8zM128 336h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H128c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg>&lt;/div&gt;
 &lt;/div&gt;
 
 ---
-  
+
 # File formats
-  
+
 The file format used to store data has important implications:
-  
+
 --
-  
+
 1. Allows to .background-highlight[re-open] and .background-highlight[re-use] your data in the future.
 
 --
-  
+
 2. Other people can read your data without fancy softwares that are often not cross-platform (Windows/Mac/Linux).
 
 &lt;center&gt;
@@ -142,7 +143,7 @@ The file format used to store data has important implications:
 
 --
 
-.left-column[<svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:100px;width:75px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#3c3c3c;overflow:visible;position:relative;"><path d="M365.3 93.38l-74.63-74.64C278.6 6.742 262.3 0 245.4 0H64C28.65 0 0 28.65 0 64l.0065 384c0 35.34 28.65 64 64 64H320c35.2 0 64-28.8 64-64V138.6C384 121.7 377.3 105.4 365.3 93.38zM336 448c0 8.836-7.164 16-16 16H64.02c-8.838 0-16-7.164-16-16L48 64.13c0-8.836 7.164-16 16-16h160L224 128c0 17.67 14.33 32 32 32h79.1V448zM229.1 233.3L192 280.9L154.9 233.3C146.8 222.8 131.8 220.9 121.3 229.1C110.8 237.2 108.9 252.3 117.1 262.8L161.6 320l-44.53 57.25c-8.156 10.47-6.25 25.56 4.188 33.69C125.7 414.3 130.8 416 135.1 416c7.156 0 14.25-3.188 18.97-9.25L192 359.1l37.06 47.65C233.8 412.8 240.9 416 248 416c5.125 0 10.31-1.656 14.72-5.062c10.44-8.125 12.34-23.22 4.188-33.69L222.4 320l44.53-57.25c8.156-10.47 6.25-25.56-4.188-33.69C252.2 220.9 237.2 222.8 229.1 233.3z"/></svg>]
+.left-column[<svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:100px;width:75px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#3c3c3c;overflow:visible;position:relative;"><path d="M48 448V64c0-8.8 7.2-16 16-16H224v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm90.9 233.3c-8.1-10.5-23.2-12.3-33.7-4.2s-12.3 23.2-4.2 33.7L161.6 320l-44.5 57.3c-8.1 10.5-6.3 25.5 4.2 33.7s25.5 6.3 33.7-4.2L192 359.1l37.1 47.6c8.1 10.5 23.2 12.3 33.7 4.2s12.3-23.2 4.2-33.7L222.4 320l44.5-57.3c8.1-10.5 6.3-25.5-4.2-33.7s-25.5-6.3-33.7 4.2L192 280.9l-37.1-47.6z"/></svg>]
 .right-column[**Example**: `.xlsx` files can not be opened in older versions of Microsoft Excel.]
 
 ---
@@ -178,7 +179,8 @@ This likely means that:
 When you depend on profit companies.
 
 .pull-left[
-&gt; At the Bodega Marine Laboratory at the University of California, Davis, some computers still run on **Microsoft Windows XP (released in 2001)**, because of the need to maintain compatibility with a scanning laser confocal microscope and other imaging equipment, says lab director Gary Cherr. 
+
+&gt; At the Bodega Marine Laboratory at the University of California, Davis, some computers still run on **Microsoft Windows XP (released in 2001)**, because of the need to maintain compatibility with a scanning laser confocal microscope and other imaging equipment, says lab director Gary Cherr.
 
 &gt; **To work with current Windows versions, the team would have to replace the whole microscope. The marginal potential gains aren’t yet worth the US$400,000 expense**, Cherr reasons.
 
@@ -198,29 +200,33 @@ Source: [Old-school computing: when your lab PC is ancient](https://www.nature.c
 ]
 
 ---
-  
+
 # File formats
-  
-Ideally, the chosen file format should be:
-  
+
+Ideally, the chosen file format should have these characteristics:
+
 --
-  
+
 1. .background-highlight[Non-proprietary]: open source.
 
 --
-  
+
 2. .background-highlight[Unencrypted]: unless it contains personal or sensitive data.
 
 --
-  
-3. .background-highlight[Uncompressed]: your time is more valuable than disk space.
+
+3. .background-highlight[human-readable]: the file should be human-readable or have tools available for easy interpretation and debugging.
+
+--
+
+4. .background-highlight[Performance]: consideration for efficient read and write operations, especially for large datasets, is crucial for optimal performance.
 
 ---
-  
+
 # Common open-source text file formats
-  
+
 Tabular plain text file formats (.background-highlight[standard text documents that contain unformatted text]):
-  
+
 - `.CSV`: Comma (or semicolon) separated values.
 
 - `.TAB`: Tab separated values.
@@ -230,7 +236,7 @@ Tabular plain text file formats (.background-highlight[standard text documents t
 All these file formats can be opened using a simple text editor.
 
 ---
-  
+
 # Examples of CSV and TSV files
 
 &lt;!-- Screenshots made using maim --&gt;
@@ -240,13 +246,15 @@ This dataset contains 4 variables (columns). .background-highlight[The first lin
 
 .pull-left[
 A comma-separated values file (`.csv`).
+
   &lt;figure&gt;
       &lt;img src="img/penguins_csv_format.png" alt="Image showing a commas separated values file."/&gt;
   &lt;/figure&gt;
 ]
 
 .pull-right[
-A tabs separated values file  (`.tsv`).
+A tabs separated values file (`.tsv`).
+
   &lt;figure&gt;
       &lt;img src="img/penguins_tsv_format.png" alt="Image showing a tabs separated values file."/&gt;
   &lt;/figure&gt;
@@ -257,9 +265,9 @@ Data source: Horst AM, Hill AP, Gorman KB (2020). palmerpenguins: Palmer Archipe
 &lt;/small&gt;
 
 ---
-  
+
 ## Common open-source geographic file formats
-  
+
 These files contain information on geographic features such as .background-highlight[points], .background-highlight[lines] or .background-highlight[polygons]. There are a ton of [geographical file formats](https://gisgeography.com/gis-formats/), but here are some that are particularly popular.
 
 --
@@ -274,20 +282,20 @@ These files contain information on geographic features such as .background-highl
 
 --
 
+- GeoParquet (`.parquet`) is an incubating [Open Geospatial Consortium (OGC) standard](https://geoparquet.org/) standard that adds interoperable geospatial types (Point, Line, Polygon) to [Apache Parquet](https://parquet.apache.org/).
+
+--
+
 - GeoJSON (`.json`, `.geojson`, JSON variant with simple geographical features)
 
 --
 
 - GeoTIFF (`.tif`, `.tiff`, TIFF variant enriched with GIS relevant metadata)
 
---
-
-- Google Earth (`.xml`, `.kmz`, `.kml`)
-
 ---
-  
+
 # The GeoJSON format (Polygons)
-  
+
 .pull-left[
 
 This is a simple GeoJSON file defining 3 points that form a polygon.
@@ -306,30 +314,30 @@ This is a simple GeoJSON file defining 3 points that form a polygon.
 ```
 &lt;/small&gt;
 
-**Create your own GeoJSON file online:** 
-  - [https://geojson.io/](https://geojson.io/)
-]
+**Create your own GeoJSON file online:**
+
+- [https://geojson.io/](https://geojson.io/)
+  ]
 
 .pull-right[
 
 &lt;img src="index_files/figure-html/unnamed-chunk-1-1.svg" style="display: block; margin: auto;" /&gt;
-  
+
 ]
 
 ---
-  
+
 # The GeoJSON format
-  
+
 &lt;img src="index_files/figure-html/geojson-1.svg" width="85%" style="display: block; margin: auto;" /&gt;
 
 ---
-  
+
 # The GeoTIFF format
-  
-&gt;GeoTIFF is a public domain metadata standard that allows **georeferencing information to be embedded within a TIFF file.** The potential additional information includes map projection, coordinate systems, ellipsoids, datums, and everything else necessary to establish the exact spatial reference for the file.
+
+&gt; GeoTIFF is a public domain metadata standard that allows **georeferencing information to be embedded within a TIFF file.** The potential additional information includes map projection, coordinate systems, ellipsoids, datums, and everything else necessary to establish the exact spatial reference for the file.
 &gt;
 &gt; [Wikipedia](https://en.wikipedia.org/wiki/GeoTIFF)
-
 
 &lt;center&gt;
     &lt;figure&gt;
@@ -340,7 +348,7 @@ This is a simple GeoJSON file defining 3 points that form a polygon.
 &lt;/center&gt;
 
 ---
-  
+
 # The GeoTIFF format (SST)
 
 A GeoTIFF can contain information such as the Sea Surface Temperature (SST).
@@ -348,7 +356,7 @@ A GeoTIFF can contain information such as the Sea Surface Temperature (SST).
 &lt;img src="index_files/figure-html/geotiff3-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
-  
+
 # The GeoTIFF format (SST)
 
 A closer look allows us to better visualize the values (i.e. water temperature) within each pixel.
@@ -359,20 +367,32 @@ A closer look allows us to better visualize the values (i.e. water temperature) 
 
 # A note on geospatial data
 
-.background-highlight[It is usually a better idea to work with spatial objects rather than tabular data.]
+.background-highlight[It is usually a better idea to work with spatial objects (ex.: GeoTIFF) rather than tabular data.]
 
 .pull-left[
 
 **Geographic data presented in a tabular form:**
 
-<div id="qqwglqkxzm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+<div id="hxuzubnuiy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hxuzubnuiy table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-#qqwglqkxzm .gt_table {
+#hxuzubnuiy thead, #hxuzubnuiy tbody, #hxuzubnuiy tfoot, #hxuzubnuiy tr, #hxuzubnuiy td, #hxuzubnuiy th {
+  border-style: none;
+}
+
+#hxuzubnuiy p {
+  margin: 0;
+  padding: 0;
+}
+
+#hxuzubnuiy .gt_table {
   display: table;
   border-collapse: collapse;
+  line-height: normal;
   margin-left: auto;
   margin-right: auto;
   color: #333333;
@@ -395,24 +415,12 @@ A closer look allows us to better visualize the values (i.e. water temperature) 
   border-left-color: #D3D3D3;
 }
 
-#qqwglqkxzm .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#qqwglqkxzm .gt_caption {
+#hxuzubnuiy .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qqwglqkxzm .gt_title {
+#hxuzubnuiy .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -424,25 +432,37 @@ A closer look allows us to better visualize the values (i.e. water temperature) 
   border-bottom-width: 0;
 }
 
-#qqwglqkxzm .gt_subtitle {
+#hxuzubnuiy .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
+  padding-top: 3px;
+  padding-bottom: 5px;
   padding-left: 5px;
   padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
 
-#qqwglqkxzm .gt_bottom_border {
+#hxuzubnuiy .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hxuzubnuiy .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qqwglqkxzm .gt_col_headings {
+#hxuzubnuiy .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -457,7 +477,7 @@ A closer look allows us to better visualize the values (i.e. water temperature) 
   border-right-color: #D3D3D3;
 }
 
-#qqwglqkxzm .gt_col_heading {
+#hxuzubnuiy .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -477,7 +497,7 @@ A closer look allows us to better visualize the values (i.e. water temperature) 
   overflow-x: hidden;
 }
 
-#qqwglqkxzm .gt_column_spanner_outer {
+#hxuzubnuiy .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -489,15 +509,15 @@ A closer look allows us to better visualize the values (i.e. water temperature) 
   padding-right: 4px;
 }
 
-#qqwglqkxzm .gt_column_spanner_outer:first-child {
+#hxuzubnuiy .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qqwglqkxzm .gt_column_spanner_outer:last-child {
+#hxuzubnuiy .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qqwglqkxzm .gt_column_spanner {
+#hxuzubnuiy .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -509,7 +529,11 @@ A closer look allows us to better visualize the values (i.e. water temperature) 
   width: 100%;
 }
 
-#qqwglqkxzm .gt_group_heading {
+#hxuzubnuiy .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#hxuzubnuiy .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -535,7 +559,7 @@ A closer look allows us to better visualize the values (i.e. water temperature) 
   text-align: left;
 }
 
-#qqwglqkxzm .gt_empty_group_heading {
+#hxuzubnuiy .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -550,15 +574,15 @@ A closer look allows us to better visualize the values (i.e. water temperature) 
   vertical-align: middle;
 }
 
-#qqwglqkxzm .gt_from_md > :first-child {
+#hxuzubnuiy .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qqwglqkxzm .gt_from_md > :last-child {
+#hxuzubnuiy .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qqwglqkxzm .gt_row {
+#hxuzubnuiy .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -577,7 +601,7 @@ A closer look allows us to better visualize the values (i.e. water temperature) 
   overflow-x: hidden;
 }
 
-#qqwglqkxzm .gt_stub {
+#hxuzubnuiy .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -590,7 +614,7 @@ A closer look allows us to better visualize the values (i.e. water temperature) 
   padding-right: 5px;
 }
 
-#qqwglqkxzm .gt_stub_row_group {
+#hxuzubnuiy .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -604,11 +628,15 @@ A closer look allows us to better visualize the values (i.e. water temperature) 
   vertical-align: top;
 }
 
-#qqwglqkxzm .gt_row_group_first td {
+#hxuzubnuiy .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qqwglqkxzm .gt_summary_row {
+#hxuzubnuiy .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#hxuzubnuiy .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -618,16 +646,16 @@ A closer look allows us to better visualize the values (i.e. water temperature) 
   padding-right: 5px;
 }
 
-#qqwglqkxzm .gt_first_summary_row {
+#hxuzubnuiy .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qqwglqkxzm .gt_first_summary_row.thick {
+#hxuzubnuiy .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qqwglqkxzm .gt_last_summary_row {
+#hxuzubnuiy .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -637,7 +665,7 @@ A closer look allows us to better visualize the values (i.e. water temperature) 
   border-bottom-color: #D3D3D3;
 }
 
-#qqwglqkxzm .gt_grand_summary_row {
+#hxuzubnuiy .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -647,7 +675,7 @@ A closer look allows us to better visualize the values (i.e. water temperature) 
   padding-right: 5px;
 }
 
-#qqwglqkxzm .gt_first_grand_summary_row {
+#hxuzubnuiy .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -657,11 +685,21 @@ A closer look allows us to better visualize the values (i.e. water temperature) 
   border-top-color: #D3D3D3;
 }
 
-#qqwglqkxzm .gt_striped {
+#hxuzubnuiy .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hxuzubnuiy .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qqwglqkxzm .gt_table_body {
+#hxuzubnuiy .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -670,7 +708,7 @@ A closer look allows us to better visualize the values (i.e. water temperature) 
   border-bottom-color: #D3D3D3;
 }
 
-#qqwglqkxzm .gt_footnotes {
+#hxuzubnuiy .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -684,30 +722,8 @@ A closer look allows us to better visualize the values (i.e. water temperature) 
   border-right-color: #D3D3D3;
 }
 
-#qqwglqkxzm .gt_footnote {
+#hxuzubnuiy .gt_footnote {
   margin: 0px;
-  font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#qqwglqkxzm .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#qqwglqkxzm .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -715,71 +731,92 @@ A closer look allows us to better visualize the values (i.e. water temperature) 
   padding-right: 5px;
 }
 
-#qqwglqkxzm .gt_left {
+#hxuzubnuiy .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hxuzubnuiy .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hxuzubnuiy .gt_left {
   text-align: left;
 }
 
-#qqwglqkxzm .gt_center {
+#hxuzubnuiy .gt_center {
   text-align: center;
 }
 
-#qqwglqkxzm .gt_right {
+#hxuzubnuiy .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qqwglqkxzm .gt_font_normal {
+#hxuzubnuiy .gt_font_normal {
   font-weight: normal;
 }
 
-#qqwglqkxzm .gt_font_bold {
+#hxuzubnuiy .gt_font_bold {
   font-weight: bold;
 }
 
-#qqwglqkxzm .gt_font_italic {
+#hxuzubnuiy .gt_font_italic {
   font-style: italic;
 }
 
-#qqwglqkxzm .gt_super {
+#hxuzubnuiy .gt_super {
   font-size: 65%;
 }
 
-#qqwglqkxzm .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
+#hxuzubnuiy .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
+  position: initial;
 }
 
-#qqwglqkxzm .gt_asterisk {
+#hxuzubnuiy .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qqwglqkxzm .gt_indent_1 {
+#hxuzubnuiy .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qqwglqkxzm .gt_indent_2 {
+#hxuzubnuiy .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qqwglqkxzm .gt_indent_3 {
+#hxuzubnuiy .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qqwglqkxzm .gt_indent_4 {
+#hxuzubnuiy .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qqwglqkxzm .gt_indent_5 {
+#hxuzubnuiy .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table">
-  
-  <thead class="gt_col_headings">
-    <tr>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    
+    <tr class="gt_col_headings">
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="longitude">longitude</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="latitude">latitude</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="sst">sst</th>
@@ -809,11 +846,12 @@ A closer look allows us to better visualize the values (i.e. water temperature) 
   
 </table>
 </div>
+
 ]
 
 .pull-right[
 
-**It is much easier to work with *spatial* data:**
+**It is much easier to work with _spatial_ data:**
 
 - Geometric operations
 
@@ -824,6 +862,24 @@ A closer look allows us to better visualize the values (i.e. water temperature) 
 - Joining
 
 - And much more!
+  ]
+
+---
+
+# Suggested readings
+
+.pull-left[
+
+  &lt;figure&gt;
+      &lt;img src="img/geocomputation_with_r.png" alt="Book cover of geocomputation with R.", height="450"&gt;
+  &lt;/figure&gt;
+]
+
+.pull-right[
+
+  &lt;figure&gt;
+      &lt;img src="img/spatial_data_science_with_r.jpg" alt="Book cover of spatial data science with R.", height="450"&gt;
+  &lt;/figure&gt;
 ]
 
 ---
@@ -839,7 +895,7 @@ class: inverse, center, middle
 &lt;/center&gt;
 
 ---
-  
+
 # Efficient tools for reading large datasets
 
 - .background-highlight[Data analysis is an iterative process that can be time-consuming when working with large dataset.]
@@ -847,6 +903,7 @@ class: inverse, center, middle
 - It is worth spending some time to find efficient tools to work with such large data.
 
 .left-column[
+
 &lt;center&gt;
   <svg aria-hidden="true" role="img" viewBox="0 0 581 512" style="height:200px;width:226.95px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#3c3c3c;overflow:visible;position:relative;"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/></svg>
 &lt;/center&gt;
@@ -854,25 +911,23 @@ class: inverse, center, middle
 
 .right-column[
 
-- R is my main programming environment, so here are some recommendations to be efficient when reading files. 
+- R is my main programming environment, so here are some recommendations to be efficient when reading files.
 
 - However, you can easily read all these file formats in your preferred programming language.
-]
+  ]
 
 ---
-  
+
 # R data importation tools
 
 For tabular data (`.CSV`, `.TXT`, `.TAB`, `.DAT`):
-  
-- `readr`: https://readr.tidyverse.org/index.html 
-  
+
+- `readr`: https://readr.tidyverse.org/index.html
 - `data.table`: https://rdatatable.gitlab.io/data.table/
 
 - `arrow`: https://arrow.apache.org/
-  
+
   - Very fast, optimized for columnar memory format for flat and hierarchical data.
-  
   - Available for: R, C, C++, Java, Python, Go, Julia, MATLAB, Ruby, Rust.
 
 ---
@@ -880,19 +935,16 @@ For tabular data (`.CSV`, `.TXT`, `.TAB`, `.DAT`):
 # R data importation tools
 
 For geographic data:
-  
-- Shapefiles, KMZ and KML: `sf`
-  
+
+- Shapefiles, gpkg, KMZ and KML: `sf`
 - GeoJSON: `jsonlite`, `sf`, `geojson` and `geojsonsf`
-  
 - GeoTIFF: `terra` and `stars`
-  
 - For NetCDF: `terra`, `ncdf4`, `tidync` and `stars`
-  
+
 ---
-  
+
 # Efficient reading tools
-  
+
 
 
 &lt;img src="index_files/figure-html/unnamed-chunk-3-1.svg" style="display: block; margin: auto;" /&gt;
@@ -906,15 +958,15 @@ class: inverse, center, middle
 &lt;br&gt;
 
 &lt;div id="container"&gt;
-&lt;div&gt;<svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:150px;width:168.75px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:white;overflow:visible;position:relative;"><path d="M572.6 270.3l-96 192C471.2 473.2 460.1 480 447.1 480H64c-35.35 0-64-28.66-64-64V96c0-35.34 28.65-64 64-64h117.5c16.97 0 33.25 6.742 45.26 18.75L275.9 96H416c35.35 0 64 28.66 64 64v32h-48V160c0-8.824-7.178-16-16-16H256L192.8 84.69C189.8 81.66 185.8 80 181.5 80H64C55.18 80 48 87.18 48 96v288l71.16-142.3C124.6 230.8 135.7 224 147.8 224h396.2C567.7 224 583.2 249 572.6 270.3z"/></svg>&lt;/div&gt;
-&lt;div&gt;<svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:150px;width:112.5px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:white;overflow:visible;position:relative;"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM80 224H96c22.1 0 40 17.9 40 40v8c0 8.8-7.2 16-16 16s-16-7.2-16-16v-8c0-4.4-3.6-8-8-8H80c-4.4 0-8 3.6-8 8v80c0 4.4 3.6 8 8 8H96c4.4 0 8-3.6 8-8v-8c0-8.8 7.2-16 16-16s16 7.2 16 16v8c0 22.1-17.9 40-40 40H80c-22.1 0-40-17.9-40-40V264c0-22.1 17.9-40 40-40zm72 46.4c0-25.6 20.8-46.4 46.4-46.4H216c8.8 0 16 7.2 16 16s-7.2 16-16 16H198.4c-7.9 0-14.4 6.4-14.4 14.4c0 5.2 2.8 9.9 7.2 12.5l25.4 14.5c14.4 8.3 23.4 23.6 23.4 40.3c0 25.6-20.8 46.4-46.4 46.4H168c-8.8 0-16-7.2-16-16s7.2-16 16-16h25.6c7.9 0 14.4-6.4 14.4-14.4c0-5.2-2.8-9.9-7.2-12.5l-25.4-14.5C160.9 302.4 152 287 152 270.4zM280 240v31.6c0 23 5.5 45.6 16 66c10.5-20.3 16-42.9 16-66V240c0-8.8 7.2-16 16-16s16 7.2 16 16v31.6c0 34.7-10.3 68.7-29.6 97.6l-5.1 7.7c-3 4.5-8 7.1-13.3 7.1s-10.3-2.7-13.3-7.1l-5.1-7.7c-19.3-28.9-29.6-62.9-29.6-97.6V240c0-8.8 7.2-16 16-16s16 7.2 16 16z"/></svg>&lt;/div&gt;
-&lt;div&gt;<svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:150px;width:112.5px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:white;overflow:visible;position:relative;"><path d="M365.3 93.38l-74.63-74.64C278.6 6.742 262.3 0 245.4 0L64-.0001c-35.35 0-64 28.65-64 64l.0065 384c0 35.34 28.65 64 64 64H320c35.2 0 64-28.8 64-64V138.6C384 121.7 377.3 105.4 365.3 93.38zM336 448c0 8.836-7.164 16-16 16H64.02c-8.838 0-16-7.164-16-16L48 64.13c0-8.836 7.164-16 16-16h160L224 128c0 17.67 14.33 32 32 32h79.1V448zM96 280C96 293.3 106.8 304 120 304h144C277.3 304 288 293.3 288 280S277.3 256 264 256h-144C106.8 256 96 266.8 96 280zM264 352h-144C106.8 352 96 362.8 96 376s10.75 24 24 24h144c13.25 0 24-10.75 24-24S277.3 352 264 352z"/></svg>&lt;/div&gt;
+&lt;div&gt;<svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:150px;width:168.75px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:white;overflow:visible;position:relative;"><path d="M384 480h48c11.4 0 21.9-6 27.6-15.9l112-192c5.8-9.9 5.8-22.1 .1-32.1S555.5 224 544 224H144c-11.4 0-21.9 6-27.6 15.9L48 357.1V96c0-8.8 7.2-16 16-16H181.5c4.2 0 8.3 1.7 11.3 4.7l26.5 26.5c21 21 49.5 32.8 79.2 32.8H416c8.8 0 16 7.2 16 16v32h48V160c0-35.3-28.7-64-64-64H298.5c-17 0-33.3-6.7-45.3-18.7L226.7 50.7c-12-12-28.3-18.7-45.3-18.7H64C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H87.7 384z"/></svg>&lt;/div&gt;
+&lt;div&gt;<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:150px;width:150px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:white;overflow:visible;position:relative;"><path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V304H176c-35.3 0-64 28.7-64 64V512H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128zM200 352h16c22.1 0 40 17.9 40 40v8c0 8.8-7.2 16-16 16s-16-7.2-16-16v-8c0-4.4-3.6-8-8-8H200c-4.4 0-8 3.6-8 8v80c0 4.4 3.6 8 8 8h16c4.4 0 8-3.6 8-8v-8c0-8.8 7.2-16 16-16s16 7.2 16 16v8c0 22.1-17.9 40-40 40H200c-22.1 0-40-17.9-40-40V392c0-22.1 17.9-40 40-40zm133.1 0H368c8.8 0 16 7.2 16 16s-7.2 16-16 16H333.1c-7.2 0-13.1 5.9-13.1 13.1c0 5.2 3 9.9 7.8 12l37.4 16.6c16.3 7.2 26.8 23.4 26.8 41.2c0 24.9-20.2 45.1-45.1 45.1H304c-8.8 0-16-7.2-16-16s7.2-16 16-16h42.9c7.2 0 13.1-5.9 13.1-13.1c0-5.2-3-9.9-7.8-12l-37.4-16.6c-16.3-7.2-26.8-23.4-26.8-41.2c0-24.9 20.2-45.1 45.1-45.1zm98.9 0c8.8 0 16 7.2 16 16v31.6c0 23 5.5 45.6 16 66c10.5-20.3 16-42.9 16-66V368c0-8.8 7.2-16 16-16s16 7.2 16 16v31.6c0 34.7-10.3 68.7-29.6 97.6l-5.1 7.7c-3 4.5-8 7.1-13.3 7.1s-10.3-2.7-13.3-7.1l-5.1-7.7c-19.3-28.9-29.6-62.9-29.6-97.6V368c0-8.8 7.2-16 16-16z"/></svg>&lt;/div&gt;
+&lt;div&gt;<svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:150px;width:112.5px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:white;overflow:visible;position:relative;"><path d="M64 464c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16H224v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm56 256c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120z"/></svg>&lt;/div&gt;
 &lt;/div&gt;
 
 ---
-  
+
 # File naming: who can relate to this?
-  
+
 &lt;center&gt;
   &lt;figure&gt;
       &lt;img style="margin:0px auto;display:block" src="img/files_naming.png" width = "700" alt="Laptop showing a file explorer with files badly named."/&gt;
@@ -942,12 +994,26 @@ This will ensure that the files will be recognized on most operating systems and
 &lt;/center&gt;
 
 ---
-  
+
 # File naming basic rules
-  
+
+&lt;img src="img/invalid_multibyte_string.png" alt="Screenshot of an Excel file with invalid code characters.", width="650"&gt;
+
+&lt;small&gt;
+```r
+r$&gt; read_csv("myfile.csv")
+Rows: 104937 Columns: 1
+Error in nchar(x, "width") : invalid multibyte string, element 1
+```
+&lt;/small&gt;
+
+---
+
+# File naming basic rules
+
 For sequential numbering, .background-highlight[use leading zeros to ensure files sort properly].
 
-- For example, use `0001`, `0002`, `1001` instead of  `1`, `2`, `1001`.
+- For example, use `0001`, `0002`, `1001` instead of `1`, `2`, `1001`.
 
 &lt;br&gt;
 
@@ -958,10 +1024,11 @@ For sequential numbering, .background-highlight[use leading zeros to ensure file
 &lt;/center&gt;
 
 ---
-  
+
 # When file naming goes wrong!
 
 .pull-left[
+
 &lt;center&gt;
     &lt;figure&gt;
       &lt;img style="margin:0px auto;display:block" src="img/python_file_naming.png" alt="Image showing a scientist that looks confused over his experiment." width = "500"/&gt;
@@ -971,13 +1038,14 @@ For sequential numbering, .background-highlight[use leading zeros to ensure file
 ]
 
 .pull-right[
+
 &gt; The glitch caused results of a common chemistry computation to vary depending on the operating system used, causing discrepancies among **Mac**, **Windows**, and **Linux** systems.
 
 &gt; ...the glitch, had to do with how different operating systems sort files.
-]
+&gt; ]
 
 ---
-  
+
 # When file naming goes wrong!
 
 Data files were sorted differently depending on the operating system where the Python scripts were executed.
@@ -989,9 +1057,8 @@ Data files were sorted differently depending on the operating system where the P
     &lt;figcaption&gt;&lt;b&gt;Original image from:&lt;/b&gt; Bhandari Neupane, J. et al. Characterization of Leptazolines A-D, Polar Oxazolines from the Cyanobacterium Leptolyngbya sp., Reveals a Glitch with the “Willoughby-Hoye” Scripts for Calculating NMR Chemical Shifts. Org. Lett. 21, 8449-8453 (2019).&lt;/figcaption&gt;  
 &lt;/center&gt;
 
-
 ---
-  
+
 # File naming basic rules
 
 --
@@ -1000,22 +1067,23 @@ Data files were sorted differently depending on the operating system where the P
 
 --
 
-- Separate file names with `_`  or `-` to add useful information about the data:  
---
-
-  - Project name.
+- Separate file names with `_` or `-` to add useful information about the data:
 
 --
 
-  - The sampling locations.
+- Project name.
 
 --
 
-  - Type of data/variable.
+- The sampling locations.
 
 --
 
-  - Date (YYYY-MM-DD).
+- Type of data/variable.
+
+--
+
+- Date (YYYY-MM-DD).
 
 --
 
@@ -1023,31 +1091,31 @@ Data files were sorted differently depending on the operating system where the P
 
 --
 
-<svg aria-hidden="true" role="img" viewBox="0 0 320 512" style="height:1em;width:0.62em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#E6352FFF;overflow:visible;position:relative;"><path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/></svg> 12-04-09 (2012-04-09 *or* 2004-12-09 or 2009-04-12, or ...)
- 
+<svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#E6352FFF;overflow:visible;position:relative;"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg> 12-04-09 (2012-04-09 _or_ 2004-12-09 or 2009-04-12, or ...)
+
 --
 
-<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#34A74BFF;overflow:visible;position:relative;"><path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7 425.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg> 2012-04-09 (2012 April 9th)
+<svg aria-hidden="true" role="img" viewBox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#34A74BFF;overflow:visible;position:relative;"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg> 2012-04-09 (2012 April 9th)
 
 ---
-  
+
 # File naming basic rules (examples)
 
 --
 
-<svg aria-hidden="true" role="img" viewBox="0 0 320 512" style="height:1em;width:0.62em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#E6352FFF;overflow:visible;position:relative;"><path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/></svg> `data.csv` (not descriptive enough)
+<svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#E6352FFF;overflow:visible;position:relative;"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg> `data.csv` (not descriptive enough)
 
 --
 
-<svg aria-hidden="true" role="img" viewBox="0 0 320 512" style="height:1em;width:0.62em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#E6352FFF;overflow:visible;position:relative;"><path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/></svg> `temperature_1.csv` (what is the meaning of **1** ?, no number padding!)
+<svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#E6352FFF;overflow:visible;position:relative;"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg> `temperature_1.csv` (what is the meaning of **1** ?, no number padding!)
 
 --
 
-<svg aria-hidden="true" role="img" viewBox="0 0 320 512" style="height:1em;width:0.62em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#E6352FFF;overflow:visible;position:relative;"><path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/></svg> `temperature_20160708` (no file extension provided)
+<svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#E6352FFF;overflow:visible;position:relative;"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg> `temperature_20160708` (no file extension provided)
 
 --
 
-<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#34A74BFF;overflow:visible;position:relative;"><path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7 425.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg> `station01_temperature_20160708.csv`
+<svg aria-hidden="true" role="img" viewBox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#34A74BFF;overflow:visible;position:relative;"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg> `station01_temperature_20160708.csv`
 
 --
 
@@ -1056,7 +1124,6 @@ Data files were sorted differently depending on the operating system where the P
 [How to name files - Jennifer Bryan (YouTube)](https://www.youtube.com/watch?v=ES1LTlnpLMk)
 
 [How to name files - Jennifer Bryan (Slides)](https://speakerdeck.com/jennybc/how-to-name-files-the-sequel)
-
 
 ---
 
@@ -1081,11 +1148,11 @@ Basic recommendations to preserve the raw data for future use:
 - Do not make any changes or corrections to the original raw data file.
 
 --
-  
+
 - .background-highlight[Use a scripted language (R, Python, Matlab, etc.) to perform analysis or make corrections and save that information in a separate file.]
 
 --
-  
+
 - If you want to do some analyses in Excel, make a copy of the file and do your calculations and graphs in the copy.
 
 &lt;small&gt;Source: https://dataoneorg.github.io/Education/bestpractices/preserve-information-keep&lt;/small&gt;
@@ -1103,7 +1170,7 @@ If a script changes the content of a raw data file and **saves it in the same fi
 &lt;/center&gt;
 
 ---
-  
+
 # Project directory structure
 
 --
@@ -1112,7 +1179,7 @@ If a script changes the content of a raw data file and **saves it in the same fi
 
 --
 
-- Consider using a specific folder to store raw data files. 
+- Consider using a specific folder to store raw data files.
 
 --
 
@@ -1123,7 +1190,7 @@ If a script changes the content of a raw data file and **saves it in the same fi
 - Data files produced by code are placed in a folder named `clean`.
 
 ---
-  
+
 # Project directory structure
 
 &lt;center&gt;
@@ -1153,7 +1220,7 @@ Photo by &lt;a href="https://unsplash.com/@alevisionco?utm_source=unsplash&amp;u
 &lt;/center&gt;
 
 ---
-  
+
 # Why do we want tidy data?
 
 --
@@ -1174,9 +1241,9 @@ Photo by &lt;a href="https://unsplash.com/@alevisionco?utm_source=unsplash&amp;u
 &lt;/center&gt;
 
 ---
-  
+
 # Tidy data
-  
+
 The main idea is that data should be organized in columns with .background-highlight[each column representing only a single type of data] (character, numerical, date, etc.).
 
 &lt;center&gt;
@@ -1218,9 +1285,9 @@ After proper transformations, the data is now tidy ([or in normal form](https://
 ---
 
 # Keep your data as rectangle tables
-  
-If you use a spreadsheet program, .background-highlight[keep your data arranged as rectangular tables]. Otherwise, .background-highlight[it makes data importation difficult]. 
-  
+
+If you use a spreadsheet program, .background-highlight[keep your data arranged as rectangular tables]. Otherwise, .background-highlight[it makes data importation difficult].
+
 &lt;center&gt;
 
 &lt;img src="img/unsplash/lukas-blazek-mcSDtbWXUZU-unsplash.jpg" class="centerImage" height="400" alt="An open laptop with a spreadsheet program."&gt;
@@ -1248,6 +1315,7 @@ This sheet has two tables.
 This sheet has one table.
 &lt;img src="img/data_rectangle_2.png" class="centerImage" width="250" alt="Data in a computer spreadsheet program."&gt;
 ]
+
 &lt;/center&gt;
 
 ---
@@ -1282,34 +1350,34 @@ Photo by &lt;a href="https://unsplash.com/@cdr6934?utm_source=unsplash&amp;utm_m
 &lt;/center&gt;
 
 ---
-  
+
 # Variable names
-  
+
 --
 
 .background-highlight[Be consistent with variable name capitalization:]
 
-<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#34A74BFF;overflow:visible;position:relative;"><path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7 425.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg> `temperature`, `precipitation`
+<svg aria-hidden="true" role="img" viewBox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#34A74BFF;overflow:visible;position:relative;"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg> `temperature`, `precipitation`
 
-<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#34A74BFF;overflow:visible;position:relative;"><path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7 425.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg> `Temperature`, `Precipitation`
+<svg aria-hidden="true" role="img" viewBox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#34A74BFF;overflow:visible;position:relative;"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg> `Temperature`, `Precipitation`
 
 --
 
 .background-highlight[Avoid mixing name capitalization:]
 
-<svg aria-hidden="true" role="img" viewBox="0 0 320 512" style="height:1em;width:0.62em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#E6352FFF;overflow:visible;position:relative;"><path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/></svg> `temperature`, `Precipitation`
+<svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#E6352FFF;overflow:visible;position:relative;"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg> `temperature`, `Precipitation`
 
-<svg aria-hidden="true" role="img" viewBox="0 0 320 512" style="height:1em;width:0.62em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#E6352FFF;overflow:visible;position:relative;"><path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/></svg> `temperature_min`, `TemperatureMax`
+<svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#E6352FFF;overflow:visible;position:relative;"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg> `temperature_min`, `TemperatureMax`
 
 ---
-  
+
 # Variable names
 
 --
 
 - Do not forget to provide information about abbreviations.
 
-    - `tmin` vs `temperature_minimum`
+  - `tmin` vs `temperature_minimum`
 
 --
 
@@ -1319,17 +1387,17 @@ Photo by &lt;a href="https://unsplash.com/@cdr6934?utm_source=unsplash&amp;utm_m
 
 - Explicitly state the unit of each variable:
 
-    - `depth_m`, `chla_mg_m2`
-  
+  - `depth_m`, `chla_mg_m2`
+
 --
 
 - Be consistent with variable names across files:
   - `temp` vs `temperature`
-  
+
 ---
-  
+
 # Missing values
-  
+
 --
 
 - .background-highlight[Missing values should be simply represented by space in your data files.]
@@ -1341,20 +1409,19 @@ Photo by &lt;a href="https://unsplash.com/@cdr6934?utm_source=unsplash&amp;utm_m
 --
 
 - If not possible, use a standardized code to represent missing values:
-    - `NA`, `NaN`
+  - `NA`, `NaN`
 
 --
 
-- <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#ffae00;overflow:visible;position:relative;"><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224c0-17.7-14.3-32-32-32s-32 14.3-32 32s14.3 32 32 32s32-14.3 32-32z"/></svg> .background-highlight[Do not use a numerical value (ex.: **-999**) to indicate missing values.]
+- <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#ffae00;overflow:visible;position:relative;"><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/></svg> .background-highlight[Do not use a numerical value (ex.: **-999**) to indicate missing values.]
 
-    - This can create situations where missing values will be included in calculations.
-    
-    - Ex.: the average of `c(1, NA, 3)` is different than the average of `c(1, -999, 3)`. 
+  - This can create situations where missing values will be included in calculations.
+  - Ex.: the average of `c(1, NA, 3)` is different than the average of `c(1, -999, 3)`.
 
 ---
-  
+
 # Visualization
-  
+
 --
 
 - Once data is tidy, .background-highlight[perform a visual inspection] to make sure there are no obvious errors in your data.
@@ -1362,18 +1429,18 @@ Photo by &lt;a href="https://unsplash.com/@cdr6934?utm_source=unsplash&amp;utm_m
 --
 
 - A picture is worth a thousand words.
-    - &lt;span class = "background-highlight"&gt;Always, always, always plot the data!&lt;/span&gt;
-  
+  - &lt;span class = "background-highlight"&gt;Always, always, always plot the data!&lt;/span&gt;
+
 --
 
 - A histogram can be used to represent the distribution of numerical data.
 
 ---
-  
+
 # Visualization
 
 In this example, we see that there is an outlier in the data. Measuring device fault? Manual entry error?
-  
+
 &lt;img src="index_files/figure-html/unnamed-chunk-4-1.svg" style="display: block; margin: auto;" /&gt;
 
 ---
@@ -1382,7 +1449,7 @@ class: inverse, center, middle
 
 # Backups
 
-## It is not *if*, but *when* your hard drive will fail.
+## It is not _if_, but _when_ your hard drive will fail.
 
 &lt;br&gt;
 
@@ -1398,9 +1465,8 @@ Photo by &lt;a href="https://unsplash.com/@artwall_hd?utm_source=unsplash&amp;ut
 
 &lt;/center&gt;
 
-
 ---
-  
+
 # Backups vs Archives
 
 --
@@ -1418,9 +1484,9 @@ Photo by &lt;a href="https://unsplash.com/@artwall_hd?utm_source=unsplash&amp;ut
 &lt;credit&gt;Source: &lt;a href="https://www.networkworld.com/article/3285652/backup-vs-archive-why-its-important-to-know-the-difference.html"&gt;https://www.networkworld.com/article/3285652/backup-vs-archive-why-its-important-to-know-the-difference.html&lt;/a&gt;&lt;/credit&gt;
 
 ---
-  
+
 # Importance of backups
-  
+
 --
 
 - .background-highlight[**Disk space is much cheaper than the time you invested in collecting, cleaning and analyzing your data.**]
@@ -1428,49 +1494,42 @@ Photo by &lt;a href="https://unsplash.com/@artwall_hd?utm_source=unsplash&amp;ut
 --
 
 - It is important to have .background-highlight[redundancy] in your data.
-    - <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#ffb82a;overflow:visible;position:relative;"><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224c0-17.7-14.3-32-32-32s-32 14.3-32 32s14.3 32 32 32s32-14.3 32-32z"/></svg> **A copy of your working directory in another directory on the same hard drive is not redundancy!**
+  - <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#ffb82a;overflow:visible;position:relative;"><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/></svg> **A copy of your working directory in another directory on the same hard drive is not redundancy!**
 
 --
 
 - Backups should not be only done on your computer (use cloud services)
-    
-    - Google Drive
-    
-    - Microsoft OneDrive (1TB of space if a student at Université Laval)
-  
-    - Dropbox
-    
-    - MEGA
+
+  - Google Drive
+  - Microsoft OneDrive (1TB of space if a student at Université Laval)
+  - Dropbox
+  - MEGA
 
 ---
-  
+
 # Importance of backups
-  
+
 - Use an incremental strategy to backup your data (.background-highlight[ideally daily]).
 
-    - [rsync](https://fr.wikipedia.org/wiki/Rsync)
+  - [rsync](https://fr.wikipedia.org/wiki/Rsync)
 
-    - [SyncBack](https://www.2brightsparks.com/syncback/syncback-hub.html)
+  - [SyncBack](https://www.2brightsparks.com/syncback/syncback-hub.html)
 
-    - [Duplicati](https://www.duplicati.com/)
+  - [Duplicati](https://www.duplicati.com/)
 
-    - [Syncthing](https://syncthing.net/)
+  - [Syncthing](https://syncthing.net/)
 
 - I keep 3 months of data.
 
-
 ---
-  
-# Version control
-  
+
+# Source code management
+
 - Backups of the source code used to generate data are also important.
 
 - Git is a version control system used to keep track of changes in computer files.
-    
-    - Primarily used for source code management in software development.
-    
-    - Coordinating work on those files among multiple people.
-
+  - Primarily used for source code management in software development.
+  - Coordinating work on those files among multiple peoples.
 
 &lt;div id = "container"&gt;
 &lt;div&gt;&lt;img src="https://miro.medium.com/max/1812/1*pXPseZOkwPqHGKaBXGS3sQ.png" height="100"/&gt;&lt;/div&gt;
@@ -1501,11 +1560,11 @@ Photo by &lt;a href="https://unsplash.com/@timmossholder?utm_source=unsplash&amp
 &lt;/center&gt;
 
 ---
-  
+
 # Publishing your data
-  
+
 Many journals and [funding agencies](http://www.science.gc.ca/eic/site/063.nsf/fra/h_97610.html) now require to have archiving strategies. Why?
-  
+
 --
 
 - Makes your data shareable (do not forget that research is funded with public money).
@@ -1516,11 +1575,9 @@ Many journals and [funding agencies](http://www.science.gc.ca/eic/site/063.nsf/f
 
 --
 
-- Makes your data citable (DOI, Digital Object Identifier).
-    
-    - Collecting and producing data is difficult and requires a lot of resources (technical and financial). 
-    
-    - Publishing your data allows other people to credit you for your hard work.
+- Makes your data citable (.background-highlight[DOI, Digital Object Identifier]).
+  - Collecting and producing data is difficult and requires a lot of resources (technical and financial).
+  - Publishing your data allows other people to credit you for your hard work.
 
 --
 
@@ -1533,13 +1590,14 @@ Many journals and [funding agencies](http://www.science.gc.ca/eic/site/063.nsf/f
 ---
 
 # Publishing your data
-  
+
 There are at least two different ways to make your data available:
-  
+
 1. In a dedicated data paper.
 
 2. In an appendix along with your paper (.background-highlight[assuming that your paper is published in an open-access journal]).
-  - [The Directory of Open Access Journals](https://www.doaj.org/) is useful to search for open access journals. 
+
+- [The Directory of Open Access Journals](https://www.doaj.org/) is useful to search for open access journals.
 
 &lt;br&gt;
 
@@ -1569,17 +1627,14 @@ There are at least two different ways to make your data available:
 You should rather provide the data in a way that is easily importable into a programming language as supplementary information (for example, a `CSV` file).
 
 ---
-  
+
 # What is a data paper?
-  
+
 - .background-highlight[Data presented in an appendix are rarely reviewed by peers.]
-  
 - Data papers are interesting alternatives to publish data:
-  
+
   - **Peer-reviewed** (high-quality data).
-  
   - Generally open access (obliviously!).
-  
   - Data are citable with a DOI.
 
 &gt; A data paper is a **peer-reviewed document** describing a dataset, published in a peer-reviewed journal. It takes effort to prepare, curate and describe data. Data papers provide recognition for this effort by means of a scholarly article.
@@ -1589,7 +1644,7 @@ You should rather provide the data in a way that is easily importable into a pro
 ---
 
 # What is a data paper?
-  
+
 A data paper is similar to a traditional scientific paper.
 
 &lt;center&gt;
@@ -1615,11 +1670,11 @@ The data associated with the paper is available online.
 &lt;img src="index_files/figure-html/unnamed-chunk-5-1.svg" style="display: block; margin: auto;" /&gt;
 
 ---
-  
+
 # Open repositories
 
 There are many options available to publish your data.
-  
+
 - Polar Data Catalogue (https://www.polardata.ca/)
 - Scholars Portal Dataverse (https://dataverse.scholarsportal.info/)
 - Federated Research Data Repository (https://www.frdr-dfdr.ca/repo/?locale=fr)
@@ -1653,9 +1708,9 @@ Photo by &lt;a href="https://unsplash.com/@glenncarstenspeters?utm_source=unspla
 &lt;/center&gt;
 
 ---
-  
+
 # Take home messages
-  
+
 --
 
 - Choose non-proprietary file formats (ex.: `CSV`).
@@ -1671,7 +1726,7 @@ Photo by &lt;a href="https://unsplash.com/@glenncarstenspeters?utm_source=unspla
 --
 
 - .background-highlight[**Backups your data externally as often as possible.**]
-    - Your hard drive will eventually crash, for sure!
+  - Your hard drive will eventually crash, for sure!
 
 --
 
