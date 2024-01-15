@@ -1646,15 +1646,15 @@
       "Version": "1.0.0",
       "Source": "GitHub",
       "RemoteType": "github",
-      "RemoteHost": "api.github.com",
       "RemoteUsername": "ropensci",
       "RemoteRepo": "rnaturalearthdata",
       "RemoteRef": "master",
-      "RemoteSha": "4c4793e69cc301bce53a5bd1dcf4324396f320c7",
+      "RemoteSha": "34adfc23ca297da6e934c99d4e78a00da23be6ea",
+      "RemoteHost": "api.github.com",
       "Requirements": [
         "R"
       ],
-      "Hash": "e4788313c16f011367ebfefa78a7bca7"
+      "Hash": "9f05ed5f3aa70c02163399c9951c5f61"
     },
     "rnaturalearthhires": {
       "Package": "rnaturalearthhires",
@@ -2115,13 +2115,13 @@
     },
     "uuid": {
       "Package": "uuid",
-      "Version": "1.1-1",
+      "Version": "1.2-0",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "CRAN",
       "Requirements": [
         "R"
       ],
-      "Hash": "3d78edfb977a69fc7a0341bee25e163f"
+      "Hash": "303c19bfd970bece872f93a824e323d9"
     },
     "vctrs": {
       "Package": "vctrs",
