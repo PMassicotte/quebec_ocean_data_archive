@@ -110,7 +110,7 @@ January 31, 2024 (updated: `r format(Sys.Date(), "%B %d, %Y")`)
 
 <b>Research assistant at Takuvik (Laval University)</b><br>
 
-- Remote sensing, modelling, data science, data visualization<br>
+- Remote sensing, modelling, data science, data visualization, programming<br>
 
 <br>
 
@@ -268,11 +268,11 @@ Ideally, the chosen file format should have these characteristics:
 
 --
 
-3. .background-highlight[human-readable]: the file should be human-readable or have tools available for easy interpretation and debugging.
+3. .background-highlight[human-readable]: the file should be human-readable **or** have tools available for reading and writing.
 
 --
 
-4. .background-highlight[Performance]: consideration for efficient read and write operations, especially for large datasets, is crucial for optimal performance.
+4. .background-highlight[Performance]: consideration for efficient read and write operations, especially for large datasets, is crucial for optimal performance (less important if you work with small datasets).
 
 ---
 
@@ -335,15 +335,15 @@ These files contain information on geographic features such as .background-highl
 
 --
 
-- GeoParquet (`.parquet`) is an incubating [Open Geospatial Consortium (OGC) standard](https://geoparquet.org/) standard that adds interoperable geospatial types (Point, Line, Polygon) to [Apache Parquet](https://parquet.apache.org/).
-
---
-
 - GeoJSON (`.json`, `.geojson`, JSON variant with simple geographical features)
 
 --
 
 - GeoTIFF (`.tif`, `.tiff`, TIFF variant enriched with GIS relevant metadata)
+
+--
+
+- GeoParquet (`.parquet`) is an incubating [Open Geospatial Consortium (OGC) standard](https://geoparquet.org/) standard that adds interoperable geospatial types (Point, Line, Polygon) to [Apache Parquet](https://parquet.apache.org/).
 
 ---
 
@@ -664,47 +664,41 @@ class: inverse, center, middle
 
 # R data importation tools
 
-For tabular data (`.CSV`, `.TXT`, `.TAB`, `.DAT`):
+- For tabular data (`.CSV`, `.TXT`, `.TAB`, `.DAT`):
 
-- `readr`: https://readr.tidyverse.org/index.html
-- `data.table`: https://rdatatable.gitlab.io/data.table/
+  - `readr`: https://readr.tidyverse.org/index.html
 
-- `arrow`: https://arrow.apache.org/
+  - `data.table`: https://rdatatable.gitlab.io/data.table/
 
-  - Very fast, optimized for columnar memory format for flat and hierarchical data.
-  - Available for: R, C, C++, Java, Python, Go, Julia, MATLAB, Ruby, Rust.
+<br>
 
----
+- For geographic data:
 
-# R data importation tools
+  - Shapefiles, gpkg, KMZ and KML: `sf`
 
-For geographic data:
+  - GeoJSON: `jsonlite`, `sf`, `geojson` and `geojsonsf`
 
-- Shapefiles, gpkg, KMZ and KML: `sf`
-- GeoJSON: `jsonlite`, `sf`, `geojson` and `geojsonsf`
-- GeoTIFF: `terra` and `stars`
-- For NetCDF: `terra`, `ncdf4`, `tidync` and `stars`
+  - GeoTIFF: `terra` and `stars`
+
+  - For NetCDF: `terra`, `ncdf4`, `tidync` and `stars`
 
 ---
 
 # Efficient reading tools
 
-```{r benchmark, results='hide'}
+```{r benchmark, results='hide', cache=TRUE, fig.height=5, fig.width=10, cache=TRUE}
 library(pins)
 
 file <- pin("http://eforexcel.com/wp/wp-content/uploads/2017/07/500000-Sales-Records.zip")
 
 bm <- microbenchmark::microbenchmark(
-  "read.csv" = read.csv(file),
+  "utils::read.csv" = utils::read.csv(file),
   "readr::read_csv" = readr::read_csv(file),
   "data.table::fread" = data.table::fread(file),
-  "arrow::read_csv_arrow" = arrow::read_csv_arrow(file),
   times = 1,
   unit = "milliseconds"
 )
-```
 
-```{r, fig.height=5, fig.width=10}
 bm |>
   summary() |>
   as_tibble() |>
@@ -772,7 +766,11 @@ This will ensure that the files will be recognized on most operating systems and
 
 # File naming basic rules
 
+Why using special characters and spaces is a bad idea.
+
 <img src="img/invalid_multibyte_string.png" alt="Screenshot of an Excel file with invalid code characters.", width="650">
+
+--
 
 <small>
 ```r
@@ -866,7 +864,7 @@ Data files were sorted differently depending on the operating system where the P
 
 --
 
-`r fontawesome::fa("times", fill = "#E6352FFF")` 12-04-09 (2012-04-09 _or_ 2004-12-09 or 2009-04-12, or ...)
+`r fontawesome::fa("times", fill = "#E6352FFF")` 12-04-09 (2012-04-09 _or_ 2004-12-09 or 2009-04-12, or ..., 6 possibiles combination in total)
 
 --
 

@@ -45,7 +45,7 @@ class: title-slide, center, bottom
 
 ## Philippe Massicotte
 
-January 31, 2024 (updated: January 13, 2024)
+January 31, 2024 (updated: January 29, 2024)
 
 ---
 
@@ -57,7 +57,7 @@ January 31, 2024 (updated: January 13, 2024)
 
 &lt;b&gt;Research assistant at Takuvik (Laval University)&lt;/b&gt;&lt;br&gt;
 
-- Remote sensing, modelling, data science, data visualization&lt;br&gt;
+- Remote sensing, modelling, data science, data visualization, programming&lt;br&gt;
 
 &lt;br&gt;
 
@@ -215,11 +215,11 @@ Ideally, the chosen file format should have these characteristics:
 
 --
 
-3. .background-highlight[human-readable]: the file should be human-readable or have tools available for easy interpretation and debugging.
+3. .background-highlight[human-readable]: the file should be human-readable **or** have tools available for reading and writing.
 
 --
 
-4. .background-highlight[Performance]: consideration for efficient read and write operations, especially for large datasets, is crucial for optimal performance.
+4. .background-highlight[Performance]: consideration for efficient read and write operations, especially for large datasets, is crucial for optimal performance (less important if you work with small datasets).
 
 ---
 
@@ -282,15 +282,15 @@ These files contain information on geographic features such as .background-highl
 
 --
 
-- GeoParquet (`.parquet`) is an incubating [Open Geospatial Consortium (OGC) standard](https://geoparquet.org/) standard that adds interoperable geospatial types (Point, Line, Polygon) to [Apache Parquet](https://parquet.apache.org/).
-
---
-
 - GeoJSON (`.json`, `.geojson`, JSON variant with simple geographical features)
 
 --
 
 - GeoTIFF (`.tif`, `.tiff`, TIFF variant enriched with GIS relevant metadata)
+
+--
+
+- GeoParquet (`.parquet`) is an incubating [Open Geospatial Consortium (OGC) standard](https://geoparquet.org/) standard that adds interoperable geospatial types (Point, Line, Polygon) to [Apache Parquet](https://parquet.apache.org/).
 
 ---
 
@@ -920,34 +920,29 @@ class: inverse, center, middle
 
 # R data importation tools
 
-For tabular data (`.CSV`, `.TXT`, `.TAB`, `.DAT`):
+- For tabular data (`.CSV`, `.TXT`, `.TAB`, `.DAT`):
 
-- `readr`: https://readr.tidyverse.org/index.html
-- `data.table`: https://rdatatable.gitlab.io/data.table/
+  - `readr`: https://readr.tidyverse.org/index.html
 
-- `arrow`: https://arrow.apache.org/
+  - `data.table`: https://rdatatable.gitlab.io/data.table/
 
-  - Very fast, optimized for columnar memory format for flat and hierarchical data.
-  - Available for: R, C, C++, Java, Python, Go, Julia, MATLAB, Ruby, Rust.
+&lt;br&gt;
 
----
+- For geographic data:
 
-# R data importation tools
+  - Shapefiles, gpkg, KMZ and KML: `sf`
 
-For geographic data:
+  - GeoJSON: `jsonlite`, `sf`, `geojson` and `geojsonsf`
 
-- Shapefiles, gpkg, KMZ and KML: `sf`
-- GeoJSON: `jsonlite`, `sf`, `geojson` and `geojsonsf`
-- GeoTIFF: `terra` and `stars`
-- For NetCDF: `terra`, `ncdf4`, `tidync` and `stars`
+  - GeoTIFF: `terra` and `stars`
+
+  - For NetCDF: `terra`, `ncdf4`, `tidync` and `stars`
 
 ---
 
 # Efficient reading tools
 
-
-
-&lt;img src="index_files/figure-html/unnamed-chunk-3-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/benchmark-1.svg" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -997,7 +992,11 @@ This will ensure that the files will be recognized on most operating systems and
 
 # File naming basic rules
 
+Why using special characters and spaces is a bad idea.
+
 &lt;img src="img/invalid_multibyte_string.png" alt="Screenshot of an Excel file with invalid code characters.", width="650"&gt;
+
+--
 
 &lt;small&gt;
 ```r
@@ -1091,7 +1090,7 @@ Data files were sorted differently depending on the operating system where the P
 
 --
 
-<svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#E6352FFF;overflow:visible;position:relative;"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg> 12-04-09 (2012-04-09 _or_ 2004-12-09 or 2009-04-12, or ...)
+<svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#E6352FFF;overflow:visible;position:relative;"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg> 12-04-09 (2012-04-09 _or_ 2004-12-09 or 2009-04-12, or ..., 6 possibiles combination in total)
 
 --
 
@@ -1441,7 +1440,7 @@ Photo by &lt;a href="https://unsplash.com/@cdr6934?utm_source=unsplash&amp;utm_m
 
 In this example, we see that there is an outlier in the data. Measuring device fault? Manual entry error?
 
-&lt;img src="index_files/figure-html/unnamed-chunk-4-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-3-1.svg" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1667,7 +1666,7 @@ The data associated with the paper is available online.
 
 ---
 
-&lt;img src="index_files/figure-html/unnamed-chunk-5-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-4-1.svg" style="display: block; margin: auto;" /&gt;
 
 ---
 
