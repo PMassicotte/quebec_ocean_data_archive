@@ -178,13 +178,11 @@ class: inverse, center, middle
 
 The file format used to store data has important implications:
 
---
+- Allows to .background-highlight[re-open] and .background-highlight[re-use] your data in the future:
 
-1. Allows to .background-highlight[re-open] and .background-highlight[re-use] your data in the future.
+  - Softwares might not be cross-platform (Windows/Mac/Linux).
 
---
-
-2. Other people can read your data without fancy softwares that are often not cross-platform (Windows/Mac/Linux).
+  - Proprietary file formats can become obsolete or unsupported.
 
 <center>
 <div id="container">
@@ -201,7 +199,7 @@ The file format used to store data has important implications:
 
 ---
 
-# File formats
+# Old-school computing in laboratories
 
 .pull-left[
 
@@ -734,7 +732,7 @@ class: inverse, center, middle
 
 ---
 
-# File naming: who can relate to this?
+# File naming: who can relate?
 
 <center>
   <figure>
@@ -840,7 +838,7 @@ Data files were sorted differently depending on the operating system where the P
 
 --
 
-- Separate file names with `_` or `-` to add useful information about the data:
+- Separate parts of file names with `_` or `-` to add useful information about the data:
 
 --
 
